@@ -1,11 +1,14 @@
 import sys, os
 from urllib.request import urlopen
 
-ip_path = os.path.dirname(sys.argv[0])+"/I-python"
-os.makedirs(ip_path)
-
 input("Appuyez sur entrée après avoir lu et accepté les conditions d’utilisation\n")
 done = 1
+
+ip_path = os.path.dirname(sys.argv[0])+"/I-python"
+try:
+    os.makedirs(ip_path)
+except:
+    pass
 
 print("Téléchargement du sous système cytron depuis le serveur de la passemblage")
 try:
