@@ -14,7 +14,7 @@ from webbrowser import open as webopen
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para
 
     # A CHANGER A CHAQUE VERSION:
-version_info = "VERSION: [Q 05.16 \n\n - NEWS - \n-APO \n\nmerci d'aller dans les paramètres pour plus d'info"
+version_info = "VERSION: -D 05 \n\n - NEWS - \n-APO \n\nmerci d'aller dans les paramètres pour plus d'info"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 
     #definition couleur
@@ -1598,13 +1598,6 @@ def apo_app():
     apo_pt_li= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     apo_tabl()
-def apo_menu_d():
-    try:
-        apo_1pt.destroy()
-        apo_2pt.destroy()
-        apo_elv.destroy()
-    except:
-        pass
 
 def apo_tabl_d():
     try:
@@ -1644,7 +1637,6 @@ def apo_app_d():
     if apo_open == 1:
         apo_titre.destroy()
         apo_tabl_d()
-        apo_menu_d()
         apo_open = 0
 
 #### APO FIN ###
