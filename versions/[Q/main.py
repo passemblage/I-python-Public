@@ -19,8 +19,8 @@ except:
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 06.10 -|- " + cytron.cy_version()
-version_info ="- NEWS -\n -cytron exploreur \n -bug"
+version_id = "[Q 06.11 -|- " + cytron.cy_version()
+version_info ="- NEWS -\n-bug"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 
 #definition des couleurs de base
@@ -63,6 +63,7 @@ fenetre = tk.Tk()
 
 #fenetre en plein ecran
 fenetre.attributes('-fullscreen', True)
+fenetre.geometry('1000x700')
 
 #set du titre de la fenetre
 fenetre.title(name_fenetre)
@@ -142,7 +143,6 @@ def menu_app_titre():
 def retour_app():
     app_retour_b.destroy()
     console.destroy()
-    taches_gestion.destroy()
     addtest_b.destroy()
     para_b.destroy()
     edt_b.destroy()
@@ -171,11 +171,11 @@ def menu_app():
     console.pack()
     console.place(x=0, y=52, width=120, height=70)
 
-    #bouton gestionaire des taches
-    global taches_gestion
-    taches_gestion = tk.Button(fenetre, text='Gestionnaire\ndes\ntaches', font=('', 12), bg = gen_couleur,activebackground=gen_couleur,command =taches_gestion_)
-    taches_gestion.pack()
-    taches_gestion.place(x=0, y=122, width=120, height=70)
+    #bouton cytron exploreur
+    global ce_b
+    ce_b = tk.Button(fenetre, text='cytron\n exploreur', font=('', 12), bg = gen_couleur,activebackground=gen_couleur,command = ce_app)
+    ce_b.pack()
+    ce_b.place(x=0, y=122, width=120, height=70)
 
     #bouton addtest
     global addtest_b
@@ -200,12 +200,6 @@ def menu_app():
     hedwige_b = tk.Button(fenetre, text='Hedwige', font=('', 12), bg = gen_couleur,activebackground=gen_couleur,command = hedwige_app)
     hedwige_b.pack()
     hedwige_b.place(x=0, y=402, width=120, height=70)
-
-    #bouton hedwige
-    global ce_b
-    ce_b = tk.Button(fenetre, text='cytron\n exploreur', font=('', 12), bg = gen_couleur,activebackground=gen_couleur,command = ce_app)
-    ce_b.pack()
-    ce_b.place(x=0, y=472, width=120, height=70)
 
 #########fin du setup du menu d app#########
 
@@ -547,7 +541,6 @@ def modif_color(rgb):
     if menu_app_ouvert == "oui":
         app_retour_b.configure(bg=rgb,activebackground=rgb)
         console.configure(bg=rgb,activebackground=rgb)
-        taches_gestion.configure(bg=rgb,activebackground=rgb)
         addtest_b.configure(bg=rgb,activebackground=rgb)
         para_b.configure(bg=rgb,activebackground=rgb)
         edt_b.configure(bg=rgb,activebackground=rgb)
@@ -560,12 +553,6 @@ def modif_color(rgb):
     try:
         message_bvn.configure(fg="black")
         lancer_code.configure(bg=rgb,activebackground=rgb)
-    except:
-        pass
-
-    ## gestionnaire des taches ##
-    try:
-        main_.configure(bg=rgb,activebackground=rgb)
     except:
         pass
 
@@ -625,12 +612,6 @@ def modif_color(rgb):
             hedwige_email_r_ba.configure(fg = "#000000", bg=gen_couleur)
             hedwige_text_ba.configure(fg = "#000000", bg=gen_couleur)
 
-        ## gestionnaire des taches ##
-        try:
-            taches__.configure(fg = rgb)
-        except:
-            pass
-
         ## add test ##
         try:
             addtest_titre.configure(fg = rgb)
@@ -686,11 +667,6 @@ def modif_color(rgb):
             hedwige_email_r_ba.configure(fg = "#000000", bg="#ffffff")
             hedwige_text_ba.configure(fg = "#000000", bg="#ffffff")
 
-        ## gestionnaire des taches ##
-        try:
-            taches__.configure(fg = "black")
-        except:
-            pass
         
         ## add test ##
         try:
@@ -844,34 +820,6 @@ def console_():
         lancer_code.place(x=largeur/2 -30, y=75,width=70, height=20)
 
 #########fin du setup de TIP#########
-
-#########debut du setup du gestionnaire des taches#########
-
-def taches_gestion_():
-    destroy_menu()
-    quitter_app()
-    global taches__ , main_ , ttaches
-    taches_gestion_
-    taches__ = tk.Label(fenetre, text="Gestionnaire des taches",bg=para_c_l, fg = para_t_l, font=('', 25))
-
-    taches__.pack()
-
-    taches__.place(x=largeur/2 - 256,
-                        y=2,
-                        width=515,
-                        height=40)
-
-    main_ = tk.Button(fenetre, text="Main.py (en cours)", bg = gen_couleur, activebackground= gen_couleur, command=fenetre.destroy)
-
-    main_.pack()
-
-    main_.place(x=largeur/2 - 55,
-                y=40,
-                width=110,
-                height=20)
-    ttaches = 1
-
-######### fin du setup du gestionnaire des taches #########
 ######### debut du setup du addtest #########
 
 def addtest_test():
@@ -1325,7 +1273,7 @@ def ce_app():
     ce_bas_go.pack()
     ce_bas_go.place(x=largeur/2 + 150, y=200, width=40, height=40)
 
-    ce_bas_ed = tk.Button(fenetre, text="•", font=('', 35),bg = gen_couleur,activebackground=gen_couleur,command = ce_ed)
+    ce_bas_ed = tk.Button(fenetre, text="•", font=('', 35),bg = gen_couleur,activebackground=gen_couleur,command = ce_app)
     ce_bas_ed.pack()
     ce_bas_ed.place(x=largeur/2 + 100, y=200, width=40, height=40)
 
@@ -1340,7 +1288,10 @@ def ce_label_af(x):
             ce_label[ce_len].pack()
             ce_label[ce_len].place(x=largeur/2 -300, y= 140 + ce_len*40, width=200, height=30)
         ce_sel = 0
-        ce_label[0].configure(bg = gen_couleur)
+        if para_dark_o == 0:
+            ce_label[0].configure(bg = gen_couleur)
+        else:
+            ce_label[0].configure(bg = gen_couleur, fg = "#171c2b")
     else:
         pass
 
@@ -1350,7 +1301,10 @@ def ce_haut():
     ce_sel = ce_sel - 1
     if ce_sel == -1:
         ce_sel = ce_len
-    ce_label[ce_sel].configure(bg = gen_couleur)
+    if para_dark_o == 0:
+        ce_label[ce_sel].configure(bg = gen_couleur)
+    else:
+        ce_label[ce_sel].configure(bg = gen_couleur, fg= "#171c2b")
 
 def ce_bas():
     global ce_sel, ce_len
@@ -1358,25 +1312,30 @@ def ce_bas():
     ce_sel = ce_sel + 1
     if ce_sel > ce_len:
         ce_sel = 0
-    ce_label[ce_sel].configure(bg = gen_couleur)
+    if para_dark_o == 0:
+        ce_label[ce_sel].configure(bg = gen_couleur)
+    else:
+        ce_label[ce_sel].configure(bg = gen_couleur, fg= "#171c2b")
 
 def ce_go():
     global ce_sel, ce_go_pass, ce_label_path
     ce_go_pass = ce_go_pass + "/" + os.listdir(ce_label_path)[ce_sel]
+    ce_go_fill = os.listdir(ce_label_path)[ce_sel]
+    
     try:
         ce_label_d()
         ce_label_af(ce_go_pass)
     except:
-        try:
-            edt_app()
-            edt_ba.delete("0.0", "end")
-            edt_ba.insert(0.0, cytron.cy_rfil(ce_go_pass))
-        except:
-            ce_app()
-            dp_app("erreur de ce_go")
+        #try:
+        edt_app()
+        edt_ba.delete("0.0", "end")
+        edt_ba.insert(0.0, cytron.cy_rfil(ce_go_pass))
 
-def ce_ed():
-    ce_app()
+        edt_name_ba.delete("0", "end")
+        edt_name_ba.insert(0, ce_go_fill)
+        #except:
+        #    ce_app()
+        #    dp_app("erreur de ce_go")
 
 def ce_label_d():
     global ce_label
@@ -1392,7 +1351,13 @@ def ce_bgrest():
     global ce_label, ce_len
     try:
         for x in range(ce_len+1):
-            ce_label[x].configure(bg = para_c_l)
+            
+
+            if para_dark_o == 0:
+                ce_label[x].configure(bg = para_c_l)
+            else:
+                ce_label[ce_sel].configure(bg= "#171c2b",fg = gen_couleur)
+
     except:
         pass
 
@@ -1452,7 +1417,14 @@ def dp_d():
 ##############################################
 ##############################################
 
-###### AUTO REB ######
+## CREATION DES DOSSIER ##
+
+
+cytron.cy_mkdir("/", "cytron")
+cytron.cy_mkdir("/cytron" ,"user")
+cytron.cy_mkdir("/cytron" ,"sys")
+
+######## AUTO REB #########
 
 def auto_reb():
     while True:
@@ -1471,6 +1443,7 @@ def auto_reb():
         ln = l
         hn = h
         if ln != lv or hn != hv:
+            time.sleep(2)
             essential_destroy()
             essential()
         time.sleep(0.5)
