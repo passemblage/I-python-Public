@@ -80,7 +80,7 @@ def info_ba_add(info):
     info_ba.configure(state='disabled')
 
 def version_stable_t():
-
+    info_ba_add("Téléchargement du sous système cytron depuis Github")
     try:
         with open(ip_path+"/cytron.py", 'wb') as img:
             img.write(urlopen('https://raw.githubusercontent.com/passemblage/I-python-Public/main/versions/-D/cytron.py').read())
