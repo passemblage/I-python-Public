@@ -80,6 +80,14 @@ def info_ba_add(info):
     info_ba.configure(state='disabled')
 
 def version_stable_t():
+
+    try:
+        with open(ip_path+"/cytron.py", 'wb') as img:
+            img.write(urlopen('https://raw.githubusercontent.com/passemblage/I-python-Public/main/versions/-D/cytron.py').read())
+            info_ba_add(">>> cytron.py installé avec succès\n")
+    except:
+        info_ba_add("échec: merci de vérifier votre connexion internet ou réessayer plus tard\n")
+
     info_ba_add("Téléchargement du fichier principal depuis Github")
     try:
         with open(ip_path + "/main.py", 'wb') as img:

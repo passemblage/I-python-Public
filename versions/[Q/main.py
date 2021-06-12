@@ -1,8 +1,8 @@
 ##############################debut des importations##############################
 
-import time, smtplib, ssl, os, sys
+import time, smtplib, ssl, os
 import tkinter as tk
-from math import exp, sqrt
+from math import sqrt
 from webbrowser import open as webopen
 from _thread import start_new_thread
 
@@ -19,7 +19,7 @@ except:
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 06.11 -|- " + cytron.cy_version()
+version_id = "-D 06 -|- " + cytron.cy_version()
 version_info ="- NEWS -\n-bug"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 
@@ -707,18 +707,13 @@ essential() #lancement de la fonction de setup
 ##############################################
 ##############################################
 
-#########debut du setup de TIP#########
+# 1 ########debut du setup de TIP######## 1 #
 def destroy_menu():
     try:
         terminal_code.destroy()
         message_bvn.destroy()
         terminal__.destroy()
         lancer_code.destroy()
-    except:
-        pass
-    try:
-        taches__.destroy()
-        main_.destroy()
     except:
         pass
 
@@ -819,8 +814,8 @@ def console_():
         lancer_code.pack()
         lancer_code.place(x=largeur/2 -30, y=75,width=70, height=20)
 
-#########fin du setup de TIP#########
-######### debut du setup du addtest #########
+# 1 ########fin du setup de TIP######## 1 #
+# 2 ######## debut du setup du addtest ######## 2 #
 
 def addtest_test():
     global addtest_result, addtest_inter
@@ -908,8 +903,8 @@ def addtest_app_d():
         addtest_destroy()
         addtest_open = 0
 
-######### fin du setup du addtest #########
-######### debut du setup des parametres #########
+# 2 ######## fin du setup du addtest ######## 2 #
+# 3 ######## debut du setup des parametres ######## 3 #
 
 def para_app():
     quitter_app()
@@ -930,6 +925,7 @@ def para_app():
         #on recupere la couleur
         rgb = para_color_ba.get()
         para_color_er_d()
+        backup = gen_couleur
         if rgb == "cclebug":
             for loop in range(0, 100000):
                 print(loop)
@@ -941,6 +937,7 @@ def para_app():
             try:
                 modif_color(rgb)
             except:
+                modif_color(backup)
                 para_color_er_d()
                 para_color_er = tk.Label(fenetre, text="couleur invalide", bg=para_c_l, fg = para_t_l,font=('', 12))
                 para_color_er.pack()
@@ -1035,9 +1032,8 @@ def para_app_d():
     except:
         pass
 
-#########fin du setup des parametres#########
-
-#########debut du setup de l editeur de texte#########
+# 3 ########fin du setup des parametres######## 3 #
+# 4 ########debut du setup de l editeur de texte######## 4 #
 
 def edt_app():
     quitter_app()
@@ -1074,12 +1070,15 @@ def edt_app():
 
 def edt_save():
     global edt_name_ba, edt_ba
-    nom = edt_name_ba.get()
-    text = edt_ba.get("0.0", "end")
-    if nom.split("@")[0] == "DEV":
-        cytron.cy_mkfil("/", nom.split("@")[1], text)
-    else:
-        cytron.cy_mkfil("/cytron/user", nom, text)
+    try:
+        nom = edt_name_ba.get()
+        text = edt_ba.get("0.0", "end")
+        if nom.split("@")[0] == "DEV":
+            cytron.cy_mkfil("/", nom.split("@")[1], text)
+        else:
+            cytron.cy_mkfil("/cytron/user", nom, text)
+    except:
+        dp_app("imposible de save ce fichier","@04AA")
 
 def edt_d():
     global edt_open, edt_titre
@@ -1090,8 +1089,9 @@ def edt_d():
         edt_name_ba.destroy()
         edt_open = 0
 
-#########fin du setup de l editeur de texte#########
-#########debut du setup du menu d'arret#########
+# 4 ########fin du setup de l editeur de texte######## 4 #
+# 5 ########debut du setup du menu d'arret######## 5 #
+
 
 def mda_app():
     quitter_app()
@@ -1140,9 +1140,9 @@ exit_fenetre = tk.Button(fenetre, text='Quitter',font=('', 12),bg = gen_couleur,
 exit_fenetre.pack()
 exit_fenetre.place(x=0,y=0,width=120,height=26)
 
-#########fin du setup du menu d'arret#########
+# 5 ########fin du setup du menu d'arret######## 5 #
 
-#########debut du setup d'hedwige#########
+# 6 ########debut du setup d'hedwige######## 6 #
 
 def hedwige_app():
     quitter_app()
@@ -1244,9 +1244,8 @@ def hedwige_d():
 
         hedwige_open = 0
 
-#########fin du setup d'hedwige#########
-
-#########debut du setup de cytron exploreur#########
+# 6 ########fin du setup d'hedwige######## 6 #
+# 7 ########debut du setup de cytron exploreur######## 7 #
 
 def ce_app():
     quitter_app()
@@ -1301,10 +1300,13 @@ def ce_haut():
     ce_sel = ce_sel - 1
     if ce_sel == -1:
         ce_sel = ce_len
-    if para_dark_o == 0:
-        ce_label[ce_sel].configure(bg = gen_couleur)
-    else:
-        ce_label[ce_sel].configure(bg = gen_couleur, fg= "#171c2b")
+    try:
+        if para_dark_o == 0:
+            ce_label[ce_sel].configure(bg = gen_couleur)
+        else:
+            ce_label[ce_sel].configure(bg = gen_couleur, fg= "#171c2b")
+    except:
+        pass
 
 def ce_bas():
     global ce_sel, ce_len
@@ -1312,30 +1314,36 @@ def ce_bas():
     ce_sel = ce_sel + 1
     if ce_sel > ce_len:
         ce_sel = 0
-    if para_dark_o == 0:
-        ce_label[ce_sel].configure(bg = gen_couleur)
-    else:
-        ce_label[ce_sel].configure(bg = gen_couleur, fg= "#171c2b")
+    try:
+        if para_dark_o == 0:
+            ce_label[ce_sel].configure(bg = gen_couleur)
+        else:
+            ce_label[ce_sel].configure(bg = gen_couleur, fg= "#171c2b")
+    except:
+        pass
 
 def ce_go():
     global ce_sel, ce_go_pass, ce_label_path
-    ce_go_pass = ce_go_pass + "/" + os.listdir(ce_label_path)[ce_sel]
-    ce_go_fill = os.listdir(ce_label_path)[ce_sel]
-    
     try:
-        ce_label_d()
-        ce_label_af(ce_go_pass)
-    except:
-        #try:
-        edt_app()
-        edt_ba.delete("0.0", "end")
-        edt_ba.insert(0.0, cytron.cy_rfil(ce_go_pass))
+        ce_go_pass = ce_go_pass + "/" + os.listdir(ce_label_path)[ce_sel]
+        ce_go_fill = os.listdir(ce_label_path)[ce_sel]
+        
+        try:
+            ce_label_d()
+            ce_label_af(ce_go_pass)
+        except:
+            try:
+                edt_app()
+                edt_ba.delete("0.0", "end")
+                edt_ba.insert(0.0, cytron.cy_rfil(ce_go_pass))
 
-        edt_name_ba.delete("0", "end")
-        edt_name_ba.insert(0, ce_go_fill)
-        #except:
-        #    ce_app()
-        #    dp_app("erreur de ce_go")
+                edt_name_ba.delete("0", "end")
+                edt_name_ba.insert(0, ce_go_fill)
+            except:
+                ce_app()
+                dp_app("imposible d'ouvrir ce fichier avec l'edt","@07AA")
+    except:
+        pass
 
 def ce_label_d():
     global ce_label
@@ -1373,10 +1381,10 @@ def ce_d():
         ce_open = 0
 
 
-######### fin du setup de cytron exploreur#########
-####### debut du setup de la page de debug ########
+# 7 ######## fin du setup de cytron exploreur######## 7 #
+# 8 ###### debut du setup de la page de debug ####### 8 #
 
-def dp_app(raison):
+def dp_app(raison, code):
     quitter_app()
 
     global dp_titre, dp_open, dp_erreur, dp_version_id
@@ -1391,7 +1399,7 @@ def dp_app(raison):
     dp_version_id.pack()
     dp_version_id.place(x=largeur/2 -100, y=hauteur-20, width=200, height=20)
 
-    msg = "oups une erreur s'est produite\nraison: "+ raison
+    msg = "oups une erreur s'est produite:\n "+ raison + "\ncode:" + code
     dp_erreur = tk.Label(fenetre, text=msg, bg=para_c_l, fg = para_t_l,font=('', 15))
     dp_erreur.pack()
     dp_erreur.place(x=largeur/2 -250, y=hauteur/2-40, width=500, height=80)
@@ -1404,7 +1412,7 @@ def dp_d():
         dp_erreur.destroy()
         dp_open = 0
 
-######## fin du setup de la page de debug #########
+# 8 ####### fin du setup de la page de debug ######## 8 #
 
 
 ##############################################
@@ -1419,10 +1427,12 @@ def dp_d():
 
 ## CREATION DES DOSSIER ##
 
-
-cytron.cy_mkdir("/", "cytron")
-cytron.cy_mkdir("/cytron" ,"user")
-cytron.cy_mkdir("/cytron" ,"sys")
+try:
+    cytron.cy_mkdir("/", "cytron")
+    cytron.cy_mkdir("/cytron" ,"user")
+    cytron.cy_mkdir("/cytron" ,"sys")
+except:
+    pass
 
 ######## AUTO REB #########
 
