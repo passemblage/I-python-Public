@@ -19,7 +19,7 @@ except:
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "-D 06 -|- " + cytron.cy_version()
+version_id = "[Q 07.01 -|- " + cytron.cy_version()
 version_info ="- NEWS -\n-bug"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 
@@ -73,7 +73,7 @@ def theme_chang(color, text):
     global para_c_l, para_t_l, para_app_o
     fenetre.configure(bg=color)
     try:
-        message_bvn.configure(bg=color,fg= text )
+        terminal_sortie.configure(bg=color,fg= text )
     except:
         pass
     para_c_l = color
@@ -233,7 +233,7 @@ def essential_destroy():
     Label_Heure.destroy()
 
 def essential():
-    global Label_Heure, ligne_menu_outil_g, ligne_menu_outil_d, quitter_app_b, largeur, hauteur, message_bvn, cplr_hauteur, cplr_taille, exit_fenetre, fsf
+    global Label_Heure, ligne_menu_outil_g, ligne_menu_outil_d, quitter_app_b, largeur, hauteur, terminal_sortie, cplr_hauteur, cplr_taille, exit_fenetre, fsf
 
     if fsf == 1:
         largeur = fenetre.winfo_width()
@@ -264,11 +264,7 @@ def essential():
     ligne_menu_outil_d.place(x=largeur - 120, y=0, width=2, height=hauteur)
 
     ligne_menu_outil_g = tk.Button(fenetre, text='', font=('', 12), bg = gen_couleur, activebackground=gen_couleur, borderwidth=0)
-
-    ligne_menu_outil_g.place(x=118,
-                    y=0,
-                    width=2,
-                    height=hauteur)
+    ligne_menu_outil_g.place(x=118,y=0,width=2,height=hauteur)
 
     quitter_app_b = tk.Button(fenetre, text="quitter l'app", font=('', 12), bg = gen_couleur, activebackground=gen_couleur, command = quitter_app)
     quitter_app_b.place(x=0, y=26, width=120, height=26)
@@ -551,8 +547,9 @@ def modif_color(rgb):
 
     ## terminal ##
     try:
-        message_bvn.configure(fg="black")
+        terminal_sortie.configure(fg="black")
         lancer_code.configure(bg=rgb,activebackground=rgb)
+        terminal_ligne.configure(bg=rgb,activebackground=rgb)
     except:
         pass
 
@@ -598,7 +595,7 @@ def modif_color(rgb):
         try:
             terminal_code.configure(fg = "black", bg=gen_couleur)
             terminal__.configure(fg = rgb)
-            message_bvn.configure(fg= rgb )
+            terminal_sortie.configure(fg= rgb )
         except:
             pass
 
@@ -711,9 +708,10 @@ essential() #lancement de la fonction de setup
 def destroy_menu():
     try:
         terminal_code.destroy()
-        message_bvn.destroy()
+        terminal_sortie.destroy()
         terminal__.destroy()
         lancer_code.destroy()
+        terminal_ligne.destroy()
     except:
         pass
 
@@ -721,78 +719,111 @@ def destroy_menu():
 def interpreter(code):
     global fsf, fe1
 
-    if code == "clear" or code == "CLEAR":
-        sortie_ = ""
-        message_bvn.config(text=sortie_)
+    commande = code.split(" ")
+    
+    if commande[0] == "clear" or commande[0] == "CLEAR":
+        sortie = ""
+        tip_sortie(sortie)
 
-    elif code == "news" or code == "NEWS" or code == "new" or code == "NEW" or code == "info" or code == "INFO":
-        sortie_ = version_info
-        message_bvn.config(text=sortie_)
+    elif commande[0] == "news" or commande[0] == "NEWS" or commande[0] == "new" or commande[0] == "NEW" or commande[0] == "info" or commande[0] == "INFO":
+        sortie = version_info
+        tip_sortie(sortie)
 
-    elif code == "aide":
-        sortie_ = "dim => affiche les dimentions de I-python \n news => affiche les infos sur la version\n fst => fullscreen True \n fsf => fullscreen False \n clear => clear l'ecran \n reb + *ARG* => reboot [0 ~} d+s / 1 ~} d / 2 ~} s] \n fe *ARG* => active des fontionnalité [1 ~} auto reb]"
-        message_bvn.config(text=sortie_)
+    elif commande[0] == "aide":
+        sortie = "dim => affiche les dimentions de I-python \nnews => affiche les infos sur la version\nfst => fullscreen True \nfsf => fullscreen False \nclear => clear l'ecran \nreb + *ARG* => reboot [0 ~} d+s / 1 ~} d / 2 ~} s] \nfe *ARG* => active des fontionnalité [1 ~} auto reb]"
+        tip_sortie(sortie)
 
-    elif code == "dim" or code == "DIM":
-        sortie_ = largeur,"x", hauteur
-        message_bvn.config(text=sortie_)
+    elif commande[0] == "dim" or commande[0] == "DIM":
+        sortie = largeur,"x", hauteur
+        tip_sortie(sortie)
 
-    elif code == "fe 1":
-        if fe1 == 0:
-            try:
-                start_new_thread( auto_reb,())
-                fe1 = 1
-                sortie_ = "reb automatique activé avec succès"
-            except:
-                sortie_ = "imposible d'activé le reb automatique"
-        else:
-            sortie_ = "le reb automatique est déjà activé"
-        message_bvn.config(text=sortie_)
+    elif commande[0] == "fe":
+        try:
+            if commande[1] == "1":
+                if fe1 == 0:
+                    try:
+                        start_new_thread( auto_reb,())
+                        fe1 = 1
+                        sortie = "reb automatique activé avec succès"
+                    except:
+                        sortie = "imposible d'activé le reb automatique"
+                else:
+                    sortie = "le reb automatique est déjà activé"
+            else:
+                sortie = "ERREUR : ARGUMENT INCONNUE ici -> " + commande[1]
+        except:
+            sortie = "ERREUR : PAS D' ARGUMENT"
+        tip_sortie(sortie)
 
-    elif code == "fsf":
+    elif commande[0] == "fsf":
         fsf = 1
         fenetre.attributes('-fullscreen', False)
-        sortie_ = "fullscreen = False"
-        message_bvn.config(text=sortie_)
+        sortie = "fullscreen = False"
+        tip_sortie(sortie)
 
-    elif code == "fst":
+    elif commande[0] == "fst":
         fsf = 0
         fenetre.attributes('-fullscreen', True)
-        sortie_ = "fullscreen = True"
-        message_bvn.config(text=sortie_)
+        sortie = "fullscreen = True"
+        tip_sortie(sortie)
 
-    elif code == "reb" or code == "reb 0":
-        essential_destroy()
-        essential()
+    elif commande[0] == "cytron":
+        arg = []
+        for i in range(len(commande)-1):
+            arg.append(commande[i+1])
+        sortie = cytron.cy_run(arg)
+        tip_sortie(sortie)
 
-    elif code == "reb 1":
-        essential_destroy()
+    elif commande[0] == "reb":
+        try:
+            if commande[1] == "0":
+                essential_destroy()
+                essential()
 
-    elif code == "reb 2":
-        essential()
+            elif commande[1] == "1":
+                essential_destroy()
+
+            elif commande[1] == "2":
+                essential()
+
+            else:
+                sortie = "ERREUR : ARGUMENT INCONNUE ici -> " + commande[1]
+                tip_sortie(sortie)
+
+        except:
+            essential_destroy()
+            essential()
+        
 
     #si pas de commande valide
     else:
-        sortie_ = "ERREUR : COMMANDE INCONNUE"
-        message_bvn.config(text=sortie_)
+        sortie = "ERREUR : COMMANDE INCONNUE"
+        tip_sortie(sortie)
+
+def tip_sortie(sortie):
+    terminal_ligne.place(x=largeur/2 -205, y=120, width=2, height=len(sortie.split("\n")) * 20)
+    terminal_sortie.config(text=sortie)
 
 ### app tip #####
 def console_():
     quitter_app()
 
-    global console_open, terminal_code, terminal__, lancer_code, message_bvn
+    global console_open, terminal_code, terminal__, lancer_code, terminal_sortie, terminal_ligne
     #si console fermee
     if console_open == 0:
         console_open = 1
 
-        message_bvn = tk.Label(fenetre,bg=para_c_l, fg = para_t_l, font=('', 12))
-        message_bvn.pack()
-        message_bvn.place(x=largeur/2 -250, y=90, width=500, height=200)
+        terminal_sortie = tk.Label(fenetre,bg=para_c_l, fg = para_t_l, font=('', 12),justify="left", anchor="nw")
+        terminal_sortie.pack()
+        terminal_sortie.place(x=largeur/2 -200, y=120, width=500, height=200,)
 
         terminal_code = tk.Entry(fenetre, width=30)
         terminal_code.insert(0, "entrez votre commande ici (taper AIDE pour commencer)")
         terminal_code.pack()
         terminal_code.place(x= 150 ,y=50,width=largeur - 300,height=20)
+
+        terminal_ligne = tk.Button(fenetre, text='', font=('', 12), bg = gen_couleur, activebackground=gen_couleur, borderwidth=0)
+        terminal_ligne.place(x=largeur/2 -205, y=120, width=2, height=0)
 
         if para_dark_o == 1:
             terminal_code.configure(fg = "black", bg=gen_couleur)

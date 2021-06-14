@@ -4,7 +4,7 @@ from _thread import start_new_thread
 
 global cy_path_v, version, console_o
 
-version = "cytron 4"
+version = "cytron 6"
 
 console_o = 0
 cy_path_v = os.path.dirname(sys.argv[0])
@@ -47,58 +47,44 @@ def cy_rfil_rela(chem, nom):
     fil = open(cy_temp, "r")
     return(fil.read())
 
-def console_cytron():
-    while console_o == 0:
-        if input() == "cytron":
-            if console_o == 0:
-                start_new_thread(console,())
-                break
-
 def console():
     global console_o
     console_o = 1
     while True:
         ipt = input('~} ').split(" ")
-        if ipt[0] == "":
-            pass
-        elif ipt[0] == "exit":
-            console_o = 0
-            start_new_thread( console_cytron,())
-            break
-        elif ipt[0] == "version":
-            print(cy_version())
-        elif ipt[0] == "path":
-            print(cy_path())
-        elif ipt[0] == "mkdir":
-            try:
-                cy_mkdir(ipt[1], ipt[2])
-            except:
-                print("erreur: 'chem rela + nom'")
-        elif ipt[0] == "wget":
-            try:
-                cy_wget(ipt[1], ipt[2], ipt[3])
-            except:
-                print("erreur: 'chem rela + nom + addr'")
-        elif ipt[0] == "mkfil":
-            try:
-                cy_mkfil(ipt[1], ipt[2], ipt[3])
-            except:
-                print("erreur: 'chem rela + nom + text'")
-        elif ipt[0] == "rfil":
-            try:
-                print(cy_rfil_rela(ipt[1], ipt[2]))
-            except:
-                print("erreur: 'nom'")
-        elif ipt[0] == "aide" or ipt[0] == "help":
-            print("exit    > sort de la console")
-            print("version > affiche la version")
-            print("path    > affiche le chemain")
-            print("mkdir   > crée un dossier")
-            print("wget    > crée un fichier depuis le web")
-            print("mkfil   > créé un fichier")
-            print("rfil    > affiche le contenue d'un fichier")
-            print("help    > affiche l'aide")
-        else:
-            print("commande inconnu")
-        
-start_new_thread( console_cytron,())
+        print(cy_run(ipt))
+
+def cy_run(ipt):
+    if ipt[0] == "":
+        pass
+    elif ipt[0] == "version":
+        return(cy_version())
+    elif ipt[0] == "path":
+        return(cy_path())
+    elif ipt[0] == "mkdir":
+        try:
+            cy_mkdir(ipt[1], ipt[2])
+            return("DONE!")
+        except:
+            return("erreur: 'chem rela + nom'")
+    elif ipt[0] == "wget":
+        try:
+            cy_wget(ipt[1], ipt[2], ipt[3])
+            return("DONE!")
+        except:
+            return("erreur: 'chem rela + nom + addr'")
+    elif ipt[0] == "mkfil":
+        try:
+            cy_mkfil(ipt[1], ipt[2], ipt[3])
+            return("DONE!")
+        except:
+            return("erreur: 'chem rela + nom + text'")
+    elif ipt[0] == "rfil":
+        try:
+            return(cy_rfil_rela(ipt[1], ipt[2]))
+        except:
+            return("erreur: 'nom'")
+    elif ipt[0] == "aide" or ipt[0] == "help":
+        return("version > affiche la version\npath    > affiche le chemain\nmkdir   > crée un dossier\nwget    > crée un fichier depuis le web\nmkfil   > créé un fichier\nrfil    > affiche le contenue d'un fichier\nhelp    > affiche l'aide")
+    else:
+        return("commande inconnu")
