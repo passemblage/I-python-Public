@@ -1,0 +1,30 @@
+global on, bt, st
+on = 0
+
+def dev():
+    global on
+    if on == 0:
+        bt.configure(bg="green",activebackground="green")
+        on = 1
+    else:
+        bt.configure(bg="red",activebackground="red")
+        on = 0
+
+bt = tk.Button(fenetre, text='action', bg = "red", activebackground="red", command=dev)
+bt.pack()
+bt.place(x=largeur/2 - 60, y=200, width=120, height=70)
+
+def off():
+    def stop():
+        bt.destroy()
+        st.destroy()
+
+    while True:
+        if icai_off == True:
+            try:
+                stop()
+            except:
+                pass
+        else:
+            time.sleep(0.2)
+start_new_thread( off,())

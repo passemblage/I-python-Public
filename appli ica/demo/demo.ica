@@ -1,0 +1,6 @@
+-t ! nom=texte , x=500 , y=200 , lx=200 , ly=50
+-b ! nom=bouton avec couleur par defaut , x=500 , y=240 , lx=250 , ly=30
+-b ! nom=bouton avec couleur en nom , x=500 , y=280 , lx=250 , ly=30 , c=red
+-b ! nom=bouton avec couleur en HEX , x=500 , y=320 , lx=250 , ly=30 , c=#00FFFF
+
+/go

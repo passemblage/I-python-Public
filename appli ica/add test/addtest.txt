@@ -1,0 +1,67 @@
+def addtest_test():
+    global addtest_result, addtest_inter
+    def addtest_destroy():
+        try:
+            addtest_result.destroy()
+        except:
+            pass
+        try:
+            addtest_inter.destroy()
+        except:
+            pass
+    # le test en lui meme
+    addtest_sc = 0
+    addtest_debut = time.time()
+    while time.time() - addtest_debut < 2:
+        addtest_sc = addtest_sc + 1
+    addtest_s = round(addtest_sc / 500000,1)
+    # l'affichage des resultat
+    addtest_destroy()
+    addtest_score = "score:", addtest_s,
+    addtest_result = tk.Label(fenetre, text=addtest_score,bg=para_c_l, fg = para_t_l , font=('', 12))
+    addtest_result.pack()
+    addtest_result.place(x=largeur/2 -256, y=100, width=515, height=40)
+
+    addtest_inter = tk.Label(fenetre, text="PLUS C'EST HAUT MIEUX C'EST!\nmoins de 5: la reactivite de votre pc est tres basse\nentre 5 et 10: la reactivite de votre pc est basse\nentre 10 et 20: la reactivite de votre pc est moyenne\nentre 20 et 30: la reactivite de votre pc est bonne\nplus de 30: la reactivite de votre pc est excellente!" ,bg=para_c_l, fg = para_t_l, font=('', 12))
+    addtest_inter.pack()
+    addtest_inter.place(x=largeur/2 -256 , y=160, width=515, height=120)
+
+global addtest_titre, addtest_start_b, addtest_open, threadtest_start_b, addtest_result, addtest_inter
+addtest_titre = tk.Label(fenetre, text="test de performance",bg=para_c_l, fg = para_t_l, font=('', 25))
+addtest_titre.pack()
+addtest_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
+
+addtest_inter = tk.Label(fenetre, text="cliquer sur le test de votre choix\n(les tests peuvent dure une dizaine de seconde merci d'etre patient)" ,bg=para_c_l, fg = para_t_l, font=('', 12))
+addtest_inter.pack()
+addtest_inter.place(x=largeur/2 -256 , y=160, width=515, height=120)
+
+addtest_start_b = tk.Button(fenetre, text="START", bg = gen_couleur, activebackground= "gray" ,font=('', 14), command=addtest_test)
+addtest_start_b.pack()
+addtest_start_b.place(x=largeur/2 - 55, y=45, width=110, height=40)
+
+
+
+def off():
+    def addtest_destroy():
+        try:
+            addtest_result.destroy()
+        except:
+            pass
+        try:
+            addtest_inter.destroy()
+        except:
+            pass
+    def stop():
+        addtest_start_b.destroy()
+        addtest_titre.destroy()
+        addtest_destroy()
+
+    while True:
+        if icai_off == True:
+            try:
+                stop()
+            except:
+                pass
+        else:
+            time.sleep(0.2)
+start_new_thread( off,())
