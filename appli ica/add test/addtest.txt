@@ -31,7 +31,7 @@ addtest_titre = tk.Label(fenetre, text="test de performance",bg=para_c_l, fg = p
 addtest_titre.pack()
 addtest_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
 
-addtest_inter = tk.Label(fenetre, text="cliquer sur le test de votre choix\n(les tests peuvent dure une dizaine de seconde merci d'etre patient)" ,bg=para_c_l, fg = para_t_l, font=('', 12))
+addtest_inter = tk.Label(fenetre, text="cliquer sur start pour commancer\nle test peut prendre une dizaine de seconde merci d'etre patient" ,bg=para_c_l, fg = para_t_l, font=('', 12))
 addtest_inter.pack()
 addtest_inter.place(x=largeur/2 -256 , y=160, width=515, height=120)
 

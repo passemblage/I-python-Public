@@ -1,30 +1,35 @@
-##############################debut des importations##############################
+##############################       debut des importations       ##############################
 
 import time, smtplib, ssl, os
 import tkinter as tk
-from math import sqrt
+
 from webbrowser import open as webopen
 from _thread import start_new_thread
+from datetime import datetime
 
 try:
     import cytron
 except:
     print("ERR: le module cytron n'a pas peu etre importé")
 
-##############################fin des importations##############################
+##############################        fin des importations         ##############################
 
-##############################debut d'assignation des variables##############################
+##############################  debut d'assignation des variables  ##############################
 
 #globalisation des variables
-global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id
+global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id, icai_off
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 07.01 -|- " + cytron.cy_version()
-version_info ="- NEWS -\n-bug"
+version_id = "[Q 07.02"
+version_info ="- NEWS -\n  *ICA"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 
-#definition des couleurs de base
-gen_couleur= "#00FF00"
+#definition de la couleur par defaut
+try:       # si il y une coulleur valide dans le fichier data, on l'applique 
+    gen_couleur = cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[0]
+except:    # sinon on met en lime
+    gen_couleur= "#00FF00"
+
 para_c_l = "#f0f0f0"
 para_t_l = "black"
 
@@ -36,10 +41,12 @@ edt_open = 0
 mda_open = 0
 dp_open = 0
 ce_open = 0
-addtest_open = 0
 hedwige_open = 0
 console_open = 0
 menu_col_o = 0
+ical_open = 0
+icai_open = 0
+icai_off = False
 
 #initialisation de fsf : 0 = full screen, 1 = pas de full screen
 fsf = 0
@@ -68,6 +75,16 @@ fenetre.geometry('1000x700')
 #set du titre de la fenetre
 fenetre.title(name_fenetre)
 
+##############################################
+##############################################
+###                                        ###
+###                                        ###
+###                THEMES                  ###
+###                                        ###
+###                                        ###
+##############################################
+##############################################
+
 #changer le theme pour n'importe quoi
 def theme_chang(color, text):
     global para_c_l, para_t_l, para_app_o
@@ -87,26 +104,32 @@ def para_lite():
     global para_dark_o
     theme_chang("#f0f0f0", "black")
     para_dark_o = 0
+
     try:
         modif_color(gen_couleur)
     except:
         pass
-    if para_app_o == 1:
-        para_color_ba.configure( fg = "#000000")
-        para_color_ba.configure(fg = "#000000", bg="#ffffff")
 
 #definition fonction theme sombre
 def para_dark():
     global para_dark_o
-    theme_chang("#171c2b", "#f2e9a7")
+    theme_chang("#171c2b", gen_couleur)
     para_dark_o = 1
     try:
         modif_color(gen_couleur)
     except:
         pass
 
-#setup du theme clair (compatibilité linux)
-para_lite()
+
+#setup du theme
+try:       # si il y un theme valide dans le fichier data, on l'applique 
+    setup_theme = int(cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[1])
+    if setup_theme == 0:
+        para_lite()
+    else:
+        para_dark()
+except:    # sinon on met en claire  
+    para_lite()
 
 #definition fonction alterner entre theme clair et sombre
 def theme_c():
@@ -116,16 +139,21 @@ def theme_c():
         para_dark()
     quitter_app()
 
-#########fin du setup de la fenetre#########
-
-#########debut du setup du menu d app#########
+##############################################
+##############################################
+###                                        ###
+###                                        ###
+###               MENU APP                 ###
+###                                        ###
+###                                        ###
+##############################################
+##############################################
 
 #fonction pour quitter n'importe quelle app
 def quitter_app():
     global console_open
     console_open = 0
     destroy_menu()
-    addtest_app_d()
     para_app_d()
     edt_d()
     mda_d()
@@ -133,6 +161,8 @@ def quitter_app():
     ce_d()
     dp_d()
     para_info_q()
+    ical_d()
+    icai_d()
 
 def menu_app_titre():
     global menu_app_b
@@ -143,11 +173,11 @@ def menu_app_titre():
 def retour_app():
     app_retour_b.destroy()
     console.destroy()
-    addtest_b.destroy()
     para_b.destroy()
     edt_b.destroy()
     hedwige_b.destroy()
     ce_b.destroy()
+    ical_b.destroy()
     menu_app_titre()
     global menu_app_ouvert
     menu_app_ouvert = "non"
@@ -156,12 +186,7 @@ def menu_app():
     menu_app_b.destroy()
     global app_retour_b, menu_app_ouvert
     menu_app_ouvert = "oui"
-    app_retour_b = tk.Button(fenetre,
-                       font=('', 13),
-                       bg = gen_couleur,
-                       activebackground=gen_couleur,
-                       text = "Retour",
-                       command =retour_app)
+    app_retour_b = tk.Button(fenetre,font=('', 13),bg = gen_couleur,activebackground=gen_couleur,text = "Retour",command =retour_app)
     app_retour_b.pack()
     app_retour_b.place(x=0,y=hauteur - 80,width=120,height=80)
 
@@ -177,11 +202,11 @@ def menu_app():
     ce_b.pack()
     ce_b.place(x=0, y=122, width=120, height=70)
 
-    #bouton addtest
-    global addtest_b
-    addtest_b = tk.Button(fenetre, text='test de\nperformance', font=('', 12), bg = gen_couleur,activebackground=gen_couleur,command =addtest_app)
-    addtest_b.pack()
-    addtest_b.place(x=0, y=192, width=120, height=70)
+    #bouton ical
+    global ical_b
+    ical_b = tk.Button(fenetre, text="lanceur\nd'app ICA", font=('', 12), bg = gen_couleur,activebackground=gen_couleur,command = ical_app)
+    ical_b.pack()
+    ical_b.place(x=0, y=192, width=120, height=70)
 
     #bouton paramètres
     global para_b
@@ -201,18 +226,19 @@ def menu_app():
     hedwige_b.pack()
     hedwige_b.place(x=0, y=402, width=120, height=70)
 
+    
+
 #########fin du setup du menu d app#########
 
-#########debut du setup d essential#########
-
-#### ESSENTIAL EXPLICATION ####
-# essential est une fonction  #
-# pour placer les boutons et  #
-# lancer les fonctionalité de #
-# base de I-python, c'est une #
-# fonction car ainsi on peut  #
-# la relancer pour ne pas     #
-# avoir a reboot I-python -pf4#
+##############################################
+##############################################
+###                                        ###
+###                                        ###
+###               ESSENSIAL                ###
+###                                        ###
+###                                        ###
+##############################################
+##############################################
 
 def essential_destroy():
     global menu_col_o, menu_app_ouvert
@@ -220,6 +246,7 @@ def essential_destroy():
     quitter_app_b.destroy()
     ligne_menu_outil_d.destroy()
     ligne_menu_outil_g.destroy()
+    info_b.destroy()
     if menu_col_o == 0:
         menu_col()
         retour_couleur()
@@ -233,7 +260,7 @@ def essential_destroy():
     Label_Heure.destroy()
 
 def essential():
-    global Label_Heure, ligne_menu_outil_g, ligne_menu_outil_d, quitter_app_b, largeur, hauteur, terminal_sortie, cplr_hauteur, cplr_taille, exit_fenetre, fsf
+    global Label_Heure, ligne_menu_outil_g, info_b, ligne_menu_outil_d, quitter_app_b, largeur, hauteur, terminal_sortie, cplr_hauteur, cplr_taille, exit_fenetre, fsf
 
     if fsf == 1:
         largeur = fenetre.winfo_width()
@@ -269,12 +296,18 @@ def essential():
     quitter_app_b = tk.Button(fenetre, text="quitter l'app", font=('', 12), bg = gen_couleur, activebackground=gen_couleur, command = quitter_app)
     quitter_app_b.place(x=0, y=26, width=120, height=26)
 
+    info_b = tk.Button(fenetre, text= version_id + "\n" + cytron.cy_version(), font=('', 12), bg = gen_couleur, activebackground=gen_couleur)
+    info_b.place(x=largeur-120, y=0, width=120, height=52)
+
     # caluculs pour le relatif #
-    cplr_hauteur = hauteur - 80
-    cplr_taille = cplr_hauteur / 23
+    cplr_hauteur = hauteur - (80 + 52)
+    cplr_taille = cplr_hauteur / 22
 
     menu_app_titre()
 
+def save_para():
+    text = str(gen_couleur) + "\n" + str(para_dark_o)
+    cytron.cy_mkfil("/cytron/sys", "data.txt", text)
 
 
 def relancer_essential():
@@ -316,10 +349,9 @@ def retour_couleur():
     color_rose.destroy()
     color_aubergine.destroy()
     color_bordeau.destroy()
-    color_gris.destroy()
     color_argent.destroy()
     color_charbon.destroy()
-    color_citron.destroy()
+    color_cytron.destroy()
     color_printemps.destroy()
     menu_col2()
 
@@ -341,42 +373,42 @@ def menu_col():
     global color_rose_clair,color_yellow,color_magenta,color_bleu_fonce,color_red
     global color_orange,color_green,color_blue,color_bleu,color_cyan,color_lime
     global color_violet,color_kaki,color_eme,color_blanc,color_rose,color_aubergine
-    global color_bordeau,color_gris,color_argent,color_charbon,color_citron,color_printemps
+    global color_bordeau,color_gris,color_argent,color_charbon,color_cytron,color_printemps
 
     #bordeau
     def bordeau():
-        modif_color('#6d071a')
-    color_bordeau = tk.Button(fenetre,font=('', 12),bg = "#6d071a",activebackground='#6d071a',text = "BORDEAU",command = bordeau)
+        modif_color('#aa1531')
+    color_bordeau = tk.Button(fenetre,font=('', 12),bg = "#aa1531",activebackground='#aa1531',text = "BORDEAU",command = bordeau)
     color_bordeau.pack()
-    color_bordeau.place(x=largeur - 120, y=cplr_hauteur/23*0, width=120, height=cplr_hauteur/23 +1)
+    color_bordeau.place(x=largeur - 120, y=52+cplr_taille*0, width=120, height=cplr_taille +1)
 
     #red
     def red():
         modif_color('red')
     color_red = tk.Button(fenetre, font=('', 12), bg = "red", activebackground='red', text = "ROUGE", command = red)
     color_red.pack()
-    color_red.place(x=largeur - 120, y=cplr_hauteur/23*1, width=120, height=cplr_hauteur/23 +1)
+    color_red.place(x=largeur - 120, y=52+cplr_taille*1, width=120, height=cplr_taille +1)
 
     #orange
     def orange():
         modif_color('#FF6100')
     color_orange = tk.Button(fenetre, font=('', 12), bg = "#FF6100", activebackground='#FF6100', text = "ORANGE", command = orange)
     color_orange.pack()
-    color_orange.place(x=largeur - 120, y=cplr_hauteur/23*2, width=120, height=cplr_hauteur/23 +1)
+    color_orange.place(x=largeur - 120, y=52+cplr_taille*2, width=120, height=cplr_taille +1)
 
     #kaki / or
     def kaki():
         modif_color('#CC9729')
     color_kaki = tk.Button(fenetre,font=('', 12),bg = "#CC9729",activebackground='#CC9729',text = "OR",command = kaki)
     color_kaki.pack()
-    color_kaki.place(x=largeur - 120, y=cplr_hauteur/23*3, width=120, height=cplr_hauteur/23 +1)
+    color_kaki.place(x=largeur - 120, y=52+cplr_taille*3, width=120, height=cplr_taille +1)
 
     #moon
     def aubergine():
         modif_color('#f2e9a7')
     color_aubergine = tk.Button(fenetre,font=('', 12),bg = "#f2e9a7",activebackground='#f2e9a7',text = "MOON (dracula)",command = aubergine)
     color_aubergine.pack()
-    color_aubergine.place(x=largeur - 120, y=cplr_hauteur/23*4, width=120, height=cplr_hauteur/23 +1)
+    color_aubergine.place(x=largeur - 120, y=52+cplr_taille*4, width=120, height=cplr_taille +1)
 
     #jaune
     def yellow():
@@ -384,126 +416,119 @@ def menu_col():
     color_yellow = tk.Button(fenetre,font=('', 12),bg = "yellow",activebackground='yellow',text = "JAUNE",command = yellow)
     color_yellow.pack()
 
-    color_yellow.place(x=largeur - 120, y=cplr_hauteur/23*5, width=120, height=cplr_hauteur/23 +1)
+    color_yellow.place(x=largeur - 120, y=52+cplr_taille*5, width=120, height=cplr_taille +1)
 
-    #citron
-    def citron():
+    #cytron
+    def cytron():
         modif_color('#d0ff00')
-    color_citron = tk.Button(fenetre,font=('', 12),bg = "#d0ff00",activebackground='#d0ff00',text = "CITRON",command = citron)
-    color_citron.pack()
-    color_citron.place(x=largeur - 120, y=cplr_hauteur/23*6, width=120, height=cplr_hauteur/23 +1)
+    color_cytron = tk.Button(fenetre,font=('', 12),bg = "#d0ff00",activebackground='#d0ff00',text = "CYTRON",command = cytron)
+    color_cytron.pack()
+    color_cytron.place(x=largeur - 120, y=52+cplr_taille*6, width=120, height=cplr_taille +1)
 
     #lime
     def lime():
         modif_color('#00FF00')
     color_lime = tk.Button(fenetre,font=('', 12),bg = "#00FF00",activebackground='#00FF00',text = "LIME",command = lime)
     color_lime.pack()
-    color_lime.place(x=largeur - 120, y=cplr_hauteur/23*7, width=120, height=cplr_hauteur/23 +1)
+    color_lime.place(x=largeur - 120, y=52+cplr_taille*7, width=120, height=cplr_taille +1)
 
     #printemps
     def printemps():
         modif_color('#10c342')
     color_printemps = tk.Button(fenetre,font=('', 12),bg = "#10c342",activebackground='#10c342',text = "PRINTEMPS",command = printemps)
     color_printemps.pack()
-    color_printemps.place(x=largeur - 120, y=cplr_hauteur/23*8, width=120, height=cplr_hauteur/23 +1)
+    color_printemps.place(x=largeur - 120, y=52+cplr_taille*8, width=120, height=cplr_taille +1)
 
     #green
     def green():
         modif_color('green')
     color_green = tk.Button(fenetre,font=('', 12),bg = "green",activebackground='green',text = "VERT",command = green)
     color_green.pack()
-    color_green.place(x=largeur - 120,y=cplr_hauteur/23*9,width=120,height=cplr_hauteur/23 +1)
+    color_green.place(x=largeur - 120,y=52+cplr_taille*9,width=120,height=cplr_taille +1)
 
     #eme
     def eme():
         modif_color('#006666')
     color_eme = tk.Button(fenetre,font=('', 12),bg = "#006666",activebackground='#006666',text = "-EME-",command = eme)
     color_eme.pack()
-    color_eme.place(x=largeur - 120,y=cplr_hauteur/23*10, width=120,height=cplr_hauteur/23 +1)
+    color_eme.place(x=largeur - 120,y=52+cplr_taille*10, width=120,height=cplr_taille +1)
 
     #cyan
     def cyan():
         modif_color('#44FCCA')
     color_cyan = tk.Button(fenetre,font=('', 12),bg = "#44FCCA",activebackground='#44FCCA',text = "CYAN",command = cyan)
     color_cyan.pack()
-    color_cyan.place(x=largeur - 120, y=cplr_hauteur/23*11, width=120, height=cplr_hauteur/23 +1)
+    color_cyan.place(x=largeur - 120, y=52+cplr_taille*11, width=120, height=cplr_taille +1)
 
     #bleu clair
     def bleu():
         modif_color('#00acff')
     color_bleu = tk.Button(fenetre,font=('', 12),bg = "#00acff",activebackground='#00acff',text = "BLEU CLAIR",command = bleu)
     color_bleu.pack()
-    color_bleu.place(x=largeur - 120, y=cplr_hauteur/23*12, width=120, height=cplr_hauteur/23 +1)
+    color_bleu.place(x=largeur - 120, y=52+cplr_taille*12, width=120, height=cplr_taille +1)
 
     #blue
     def blue():
         modif_color('blue')
     color_blue = tk.Button(fenetre,font=('', 12),bg = "blue",activebackground='blue',text = "BLEU",command = blue)
     color_blue.pack()
-    color_blue.place(x=largeur - 120,y=cplr_hauteur/23*13, width=120,height=cplr_hauteur/23 +1)
+    color_blue.place(x=largeur - 120,y=52+cplr_taille*13, width=120,height=cplr_taille +1)
 
     #bleu_fonce
     def bleu_fonce():
         modif_color('#001589')
     color_bleu_fonce = tk.Button(fenetre,font=('', 12),bg = "#001589",activebackground='#001589',text = "BLEU FONCE",command = bleu_fonce)
     color_bleu_fonce.pack()
-    color_bleu_fonce.place(x=largeur - 120, y=cplr_hauteur/23*14, width=120, height=cplr_hauteur/23 +1)
+    color_bleu_fonce.place(x=largeur - 120, y=52+cplr_taille*14, width=120, height=cplr_taille +1)
 
     #violet
     def violet():
         modif_color('#8A06C8')
     color_violet = tk.Button(fenetre,font=('', 12),bg = "#8A06C8",activebackground='#8A06C8',text = "VIOLET",command = violet)
     color_violet.pack()
-    color_violet.place(x=largeur - 120, y=cplr_hauteur/23*15, width=120, height=cplr_hauteur/23 +1)
+    color_violet.place(x=largeur - 120, y=52+cplr_taille*15, width=120, height=cplr_taille +1)
 
     #rose
     def rose():
         modif_color('#EF00A7')
     color_rose = tk.Button(fenetre,font=('', 12),bg = "#EF00A7",activebackground='#EF00A7',text = "ROSE",command = rose)
     color_rose.pack()
-    color_rose.place(x=largeur - 120, y=cplr_hauteur/23*16, width=120, height=cplr_hauteur/23 +1)
+    color_rose.place(x=largeur - 120, y=52+cplr_taille*16, width=120, height=cplr_taille +1)
 
     #magenta
     def magenta():
         modif_color('magenta')
     color_magenta = tk.Button(fenetre,font=('', 12),bg = "magenta",activebackground='magenta',text = "MAGENTA",command = magenta)
     color_magenta.pack()
-    color_magenta.place(x=largeur - 120, y=cplr_hauteur/23*17, width=120, height=cplr_hauteur/23 +1)
+    color_magenta.place(x=largeur - 120, y=52+cplr_taille*17, width=120, height=cplr_taille +1)
 
     #rose_clair
     def rose_clair():
         modif_color('#FFAADD')
     color_rose_clair = tk.Button(fenetre,font=('', 12),bg = "#FFAADD",activebackground='#FFAADD',text = "ROSE CLAIR",command = rose_clair)
     color_rose_clair.pack()
-    color_rose_clair.place(x=largeur - 120, y=cplr_hauteur/23*18, width=120, height=cplr_hauteur/23 +1)
+    color_rose_clair.place(x=largeur - 120, y=52+cplr_taille*18, width=120, height=cplr_taille +1)
 
     #blanc
     def blanc():
         modif_color('#FFFFFF')
     color_blanc = tk.Button(fenetre,font=('', 12),bg = "#FFFFFF",activebackground='#FFFFFF',text = "BLANC",command = blanc)
     color_blanc.pack()
-    color_blanc.place(x=largeur - 120, y=cplr_hauteur/23*19, width=120, height=cplr_hauteur/23 +1)
+    color_blanc.place(x=largeur - 120, y=52+cplr_taille*19, width=120, height=cplr_taille +1)
 
     #argent
     def argent():
         modif_color('#c8c8c8')
     color_argent = tk.Button(fenetre,font=('', 12),bg = "#c8c8c8",activebackground='#c8c8c8',text = "ARGENT",command = argent)
     color_argent.pack()
-    color_argent.place(x=largeur - 120, y=cplr_hauteur/23*20, width=120, height=cplr_hauteur/23 +1)
-
-    #gris
-    def gris():
-        modif_color('#808080')
-    color_gris = tk.Button(fenetre,font=('', 12),bg = "#808080",activebackground='#808080',text = "GRIS",command = gris)
-    color_gris.pack()
-    color_gris.place(x=largeur - 120, y=cplr_hauteur/23*21, width=120, height=cplr_hauteur/23 +1)
+    color_argent.place(x=largeur - 120, y=52+cplr_taille*20, width=120, height=cplr_taille +1)
 
     #charbon
     def charbon():
-        modif_color('#424242')
-    color_charbon = tk.Button(fenetre,font=('', 12),bg = "#424242",activebackground='#424242',text = "CHARBON",command = charbon)
+        modif_color('#505050')
+    color_charbon = tk.Button(fenetre,font=('', 12),bg = "#505050",activebackground='#505050',text = "CHARBON",command = charbon)
     color_charbon.pack()
-    color_charbon.place(x=largeur - 120, y=cplr_hauteur/23*22, width=120, height=cplr_hauteur/23 +1)
+    color_charbon.place(x=largeur - 120, y=52+cplr_taille*21, width=120, height=cplr_taille +1)
 
 
 def menu_col2():
@@ -514,7 +539,7 @@ def menu_col2():
 
 def modif_color(rgb):
     ###### GLOBALS ######
-    global para_dark_o, para_t_l, addtest_open, gen_couleur
+    global para_dark_o, para_t_l, gen_couleur
     gen_couleur = rgb
     para_t_l = "black"
 
@@ -524,6 +549,7 @@ def modif_color(rgb):
     Label_Heure.configure(bg=rgb,activebackground=rgb)
     ligne_menu_outil_g.configure(bg=rgb,activebackground=rgb)
     ligne_menu_outil_d.configure(bg=rgb,activebackground=rgb)
+    info_b.configure(bg=rgb,activebackground=rgb)
     quitter_app_b.configure(bg=rgb,activebackground=rgb)
     exit_fenetre.configure(bg=rgb,activebackground=rgb)
 
@@ -536,12 +562,8 @@ def modif_color(rgb):
     ## menu_app ##
     if menu_app_ouvert == "oui":
         app_retour_b.configure(bg=rgb,activebackground=rgb)
-        console.configure(bg=rgb,activebackground=rgb)
-        addtest_b.configure(bg=rgb,activebackground=rgb)
-        para_b.configure(bg=rgb,activebackground=rgb)
-        edt_b.configure(bg=rgb,activebackground=rgb)
-        hedwige_b.configure(bg=rgb,activebackground=rgb)
-        ce_b.configure(bg=rgb,activebackground=rgb)
+        retour_app()
+        menu_app()
     else:
         menu_app_b.configure(bg=rgb,activebackground=rgb)
 
@@ -579,15 +601,6 @@ def modif_color(rgb):
         mda_anul_b.configure(bg=rgb,activebackground=rgb)
         mda_reboot_b.configure(bg=rgb,activebackground=rgb)
 
-    ## add test ##
-    if addtest_open == 1:
-        addtest_start_b.configure(bg=rgb,activebackground=rgb)
-        threadtest_start_b.configure(bg=rgb,activebackground=rgb)
-
-    ## cytron exploreur ##
-    if ce_open == 1:
-        quitter_app()
-        
     ###### LABELS DARK ######
     if para_dark_o == 1:
 
@@ -608,15 +621,6 @@ def modif_color(rgb):
             hedwige_psw_ba.configure(fg = "#000000", bg=gen_couleur)
             hedwige_email_r_ba.configure(fg = "#000000", bg=gen_couleur)
             hedwige_text_ba.configure(fg = "#000000", bg=gen_couleur)
-
-        ## add test ##
-        try:
-            addtest_titre.configure(fg = rgb)
-            addtest_inter.configure(fg = rgb)
-            addtest_result.configure(fg = rgb)
-        except:
-            pass
-
         ## edt ##
         if edt_open == 1:
             edt_titre.configure(fg = rgb)
@@ -646,7 +650,6 @@ def modif_color(rgb):
         except:
             pass
 
-
     ###### LABELS LIGHT ######
     else:
 
@@ -663,15 +666,6 @@ def modif_color(rgb):
             hedwige_psw_ba.configure(fg = "#000000", bg="#ffffff")
             hedwige_email_r_ba.configure(fg = "#000000", bg="#ffffff")
             hedwige_text_ba.configure(fg = "#000000", bg="#ffffff")
-
-        
-        ## add test ##
-        try:
-            addtest_titre
-            addtest_result
-            addtest_inter
-        except:
-            pass
 
         ## edt ##
         if edt_open == 1:
@@ -690,6 +684,23 @@ def modif_color(rgb):
             para_color_ba.configure(fg = "#000000", bg="#ffffff")
         except:
             pass
+
+    
+    ##### CLOSE & OPEN #####
+
+    ## cytron exploreur ##
+    if ce_open == 1:
+        quitter_app()
+        ce_app()
+
+    ## ical ##
+    if ical_open == 1:
+        quitter_app()
+        ical_app()
+
+    if icai_open == 1:
+        quitter_app()
+
 #########fin du setup des couleurs#########
     
 essential() #lancement de la fonction de setup
@@ -768,10 +779,13 @@ def interpreter(code):
         tip_sortie(sortie)
 
     elif commande[0] == "cytron":
-        arg = []
-        for i in range(len(commande)-1):
-            arg.append(commande[i+1])
-        sortie = cytron.cy_run(arg)
+        try:
+            arg = []
+            for i in range(len(commande)-1):
+                arg.append(commande[i+1])
+            sortie = cytron.cy_run(arg)
+        except:
+            sortie = "erreur pas d'argument"
         tip_sortie(sortie)
 
     elif commande[0] == "reb":
@@ -846,95 +860,6 @@ def console_():
         lancer_code.place(x=largeur/2 -30, y=75,width=70, height=20)
 
 # 1 ########fin du setup de TIP######## 1 #
-# 2 ######## debut du setup du addtest ######## 2 #
-
-def addtest_test():
-    global addtest_result, addtest_inter
-    # le test en lui meme
-    addtest_sc = 0
-    addtest_debut = time.time()
-    while time.time() - addtest_debut < 2:
-        addtest_sc = addtest_sc + 1
-    addtest_s = round(addtest_sc / 500000,1)
-    # l'affichage des résultat
-    addtest_destroy()
-    addtest_score = "score:", addtest_s,
-    addtest_result = tk.Label(fenetre, text=addtest_score,bg=para_c_l, fg = para_t_l , font=('', 12))
-    addtest_result.pack()
-    addtest_result.place(x=largeur/2 -256, y=100, width=515, height=40)
-
-    addtest_inter = tk.Label(fenetre, text="PLUS C'EST HAUT MIEUX C'EST!\nmoins de 5: la réactivité de votre pc est très basse\nentre 5 et 10: la réactivité de votre pc est basse\nentre 10 et 20: la réactivité de votre pc est moyenne\nentre 20 et 30: la réactivité de votre pc est bonne\nplus de 30: la réactivité de votre pc est excellente!" ,bg=para_c_l, fg = para_t_l, font=('', 12))
-    addtest_inter.pack()
-    addtest_inter.place(x=largeur/2 -256 , y=160, width=515, height=120)
-
-def thread_test(a):
-    # le test en lui meme
-    global thread_test_stop
-    x = sqrt(789456123789465123123456789789456123)
-    thread_test_stop = thread_test_stop + a
-    
-
-def thread_test_l():
-    # le script du lancement du test + affichage score
-    global thread_test_stop, addtest_result, addtest_inter
-    starting_time = time.time()
-    thread_test_stop = 0
-    for a in range(50000):
-        start_new_thread( thread_test,(a, ))
-    while thread_test_stop > 1249975000:
-        pass
-    thread_test_s = time.time() - starting_time
-    addtest_destroy()
-    addtest_score = "score:", round((thread_test_s**2), 2)
-    addtest_result = tk.Label(fenetre, text=addtest_score,bg=para_c_l, fg = para_t_l , font=('', 12))
-    addtest_result.pack()
-    addtest_result.place(x=largeur/2 -256, y=100, width=515, height=40)
-
-    addtest_inter = tk.Label(fenetre, text="PLUS C'EST BAS MIEUX C'EST!\nplus de 100: le thread et très mal exucuter sur votre pc\nentre 100 et 70: le threading est mal exucuter sur votre pc\nentre de 70 et 30: le threading est assez mal exucuter sur votre pc\nentre 30 et 15: le threading est bien exucuter sur votre pc\nmoins de 15: le threading est très bien exucuter sur votre pc" ,bg=para_c_l, fg = para_t_l, font=('', 12))
-    addtest_inter.pack()
-    addtest_inter.place(x=largeur/2 -256 , y=160, width=515, height=120)
-
-def addtest_destroy():
-    try:
-        addtest_result.destroy()
-    except:
-        pass
-    try:
-        addtest_inter.destroy()
-    except:
-        pass
-
-def addtest_app():
-    quitter_app()
-
-    global addtest_titre, addtest_start_b, addtest_open, threadtest_start_b, addtest_result, addtest_inter
-    addtest_open = 1
-    addtest_titre = tk.Label(fenetre, text="test de performance",bg=para_c_l, fg = para_t_l, font=('', 25))
-    addtest_titre.pack()
-    addtest_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
-
-    addtest_inter = tk.Label(fenetre, text="cliquer sur le test de votre choix\n(les tests peuvent duré une dizaine de seconde merci d’être patient)" ,bg=para_c_l, fg = para_t_l, font=('', 12))
-    addtest_inter.pack()
-    addtest_inter.place(x=largeur/2 -256 , y=160, width=515, height=120)
-
-    addtest_start_b = tk.Button(fenetre, text="Add test", bg = gen_couleur, activebackground= "gray" ,font=('', 11), command=addtest_test)
-    addtest_start_b.pack()
-    addtest_start_b.place(x=largeur/2 - 115, y=45, width=110, height=40)
-
-    threadtest_start_b = tk.Button(fenetre, text="thread test", bg = gen_couleur, activebackground= "gray" ,font=('', 11), command=thread_test_l)
-    threadtest_start_b.pack()
-    threadtest_start_b.place(x=largeur/2 + 5, y=45, width=110, height=40)
-
-def addtest_app_d():
-    global addtest_open
-    if addtest_open == 1:
-        addtest_start_b.destroy()
-        addtest_titre.destroy()
-        threadtest_start_b.destroy()
-        addtest_destroy()
-        addtest_open = 0
-
-# 2 ######## fin du setup du addtest ######## 2 #
 # 3 ######## debut du setup des parametres ######## 3 #
 
 def para_app():
@@ -958,8 +883,8 @@ def para_app():
         para_color_er_d()
         backup = gen_couleur
         if rgb == "cclebug":
-            for loop in range(0, 100000):
-                print(loop)
+            for loop in range(0, 10000000000):
+                pass
             para_color_er_d()
             para_color_er = tk.Label(fenetre, text="ramener la coupe à la maison", bg=para_c_l, fg = para_t_l,font=('', 12))
             para_color_er.pack()
@@ -1149,11 +1074,12 @@ def mda_app():
 
 #id de la version
 
-    mda_version_id = tk.Label(fenetre, text=version_id, bg=para_c_l, fg = para_t_l,font=('', 10))
+    mda_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
     mda_version_id.pack()
     mda_version_id.place(x=largeur/2 -100, y=hauteur-20, width=200, height=20)
 
 def quitter():
+    save_para()
     fenetre.destroy()
 
 def mda_d():
@@ -1310,11 +1236,15 @@ def ce_app():
     ce_label_af(cytron.cy_path())
 
 def ce_label_af(x):
-    global ce_len, ce_label_path, ce_sel
+    global ce_len, ce_label_path, ce_sel, ce_listdir
     ce_label_path = x
-    if len(os.listdir(ce_label_path)) != 0:
-        for ce_len in range(len(os.listdir(ce_label_path))):
-            ce_label.extend([tk.Label(fenetre, text=os.listdir(ce_label_path)[ce_len],bg=para_c_l, fg = para_t_l, font=('', 12))])
+    ce_listdir = os.listdir(ce_label_path)
+    for ce_len in range(len(ce_listdir)):
+        if ce_listdir[ce_len] == "__pycache__":
+            del ce_listdir[ce_len]
+    if len(ce_listdir) != 0:
+        for ce_len in range(len(ce_listdir)):
+            ce_label.extend([tk.Label(fenetre, text=ce_listdir[ce_len],bg=para_c_l, fg = para_t_l, font=('', 12))])
             ce_label[ce_len].pack()
             ce_label[ce_len].place(x=largeur/2 -300, y= 140 + ce_len*40, width=200, height=30)
         ce_sel = 0
@@ -1354,10 +1284,10 @@ def ce_bas():
         pass
 
 def ce_go():
-    global ce_sel, ce_go_pass, ce_label_path
+    global ce_sel, ce_go_pass, ce_label_path, ce_listdir
     try:
-        ce_go_pass = ce_go_pass + "/" + os.listdir(ce_label_path)[ce_sel]
-        ce_go_fill = os.listdir(ce_label_path)[ce_sel]
+        ce_go_pass = ce_go_pass + "/" + ce_listdir[ce_sel]
+        ce_go_fill = ce_listdir[ce_sel]
         
         try:
             ce_label_d()
@@ -1426,7 +1356,7 @@ def dp_app(raison, code):
 
     #id de la version
 
-    dp_version_id = tk.Label(fenetre, text=version_id, bg=para_c_l, fg = para_t_l,font=('', 10))
+    dp_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
     dp_version_id.pack()
     dp_version_id.place(x=largeur/2 -100, y=hauteur-20, width=200, height=20)
 
@@ -1444,7 +1374,325 @@ def dp_d():
         dp_open = 0
 
 # 8 ####### fin du setup de la page de debug ######## 8 #
+# 9 ############ debut sutup ICA ############ 9 #
 
+def ical_app():
+    quitter_app()
+
+    global ical_titre, ical_open, ical_label, ical_haut_b, ical_bas_b, ical_sel, ical_bas_go, ical_len, ical_label_path, ical_icaf
+    ical_open = 1
+    ical_titre = tk.Label(fenetre, text="lanceur d'app ICA",bg=para_c_l, fg = para_t_l, font=('', 25))
+    ical_titre.pack()
+    ical_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
+
+    ical_label = []
+    ical_label_path = cytron.cy_path() + "/cytron/sys/app"
+    ical_sel = 0
+
+    #fleches
+    ical_haut_b = tk.Button(fenetre, text="⇧", font=('', 25),bg = gen_couleur,activebackground=gen_couleur,command = ical_haut)
+    ical_haut_b.pack()
+    ical_haut_b.place(x=largeur/2 + 100, y=150, width=40, height=40)
+
+    ical_bas_b = tk.Button(fenetre, text="⇩", font=('', 25),bg = gen_couleur,activebackground=gen_couleur,command = ical_bas)
+    ical_bas_b.pack()
+    ical_bas_b.place(x=largeur/2 + 100, y=250, width=40, height=40)
+
+    ical_bas_go = tk.Button(fenetre, text="⇨", font=('', 25),bg = gen_couleur,activebackground=gen_couleur,command = ical_go)
+    ical_bas_go.pack()
+    ical_bas_go.place(x=largeur/2 + 150, y=200, width=40, height=40)
+
+    temp = os.listdir(cytron.cy_path() + "/cytron/sys/app")
+    ical_icaf = []
+
+    for x in range(len(temp)):
+        if temp[x].split(".")[1] == "ica":
+            ical_icaf.append(temp[x])
+
+    ical_len = -2
+
+    if len(ical_icaf) != 0:
+        for ical_len in range(len(ical_icaf)):
+            ical_label.extend([tk.Label(fenetre, text=ical_icaf[ical_len],bg=para_c_l, fg = para_t_l, font=('', 12))])
+            ical_label[ical_len].pack()
+            ical_label[ical_len].place(x=largeur/2 -300, y= 140 + ical_len*40, width=200, height=30)
+        ical_sel = 0
+        if para_dark_o == 0:
+            ical_label[0].configure(bg = gen_couleur)
+        else:
+            ical_label[0].configure(bg = gen_couleur, fg = "#171c2b")
+    else:
+        pass
+
+def ical_haut():
+    global ical_sel, ical_len
+    if ical_len != -2:
+        ical_bgrest()
+        ical_sel = ical_sel - 1
+        if ical_sel == -1:
+            ical_sel = ical_len
+        try:
+            if para_dark_o == 0:
+                ical_label[ical_sel].configure(bg = gen_couleur)
+            else:
+                ical_label[ical_sel].configure(bg = gen_couleur, fg= "#171c2b")
+        except:
+            pass
+
+def ical_bas():
+    global ical_sel, ical_len
+    if ical_len != -2:
+        ical_bgrest()
+        ical_sel = ical_sel + 1
+        if ical_sel > ical_len:
+            ical_sel = 0
+        try:
+            if para_dark_o == 0:
+                ical_label[ical_sel].configure(bg = gen_couleur)
+            else:
+                ical_label[ical_sel].configure(bg = gen_couleur, fg= "#171c2b")
+        except:
+            pass
+
+def ical_go():
+    if ical_len != -2:
+        global ical_sel, ical_icaf, ica_nom
+        ica_nom = ical_icaf[ical_sel]
+        icai(ical_label_path + "/" + ica_nom)
+    
+
+def ical_label_d():
+    global ical_label
+    try:
+        for x in range(ical_len+1):
+            ical_label[x].destroy()
+    except:
+        pass
+    del ical_label
+    ical_label = []
+
+def ical_bgrest():
+    global ical_label, ical_len
+    try:
+        for x in range(ical_len+1):
+            if para_dark_o == 0:
+                ical_label[x].configure(bg = para_c_l)
+            else:
+                ical_label[ical_sel].configure(bg= "#171c2b",fg = gen_couleur)
+    except:
+        pass
+
+def ical_d():
+    global ical_titre, ical_open
+    if ical_open == 1:
+        ical_titre.destroy()
+        ical_haut_b.destroy()
+        ical_bas_b.destroy()
+        ical_bas_go.destroy()
+        ical_label_d()
+        ical_open = 0
+
+def icai(chem):
+    global icai_v, icai_link, icai_lcode
+    global icai_nb_t, icai_t_nom, icai_t_x, icai_t_y, icai_t_lx, icai_t_ly
+    global icai_nb_b, icai_b_nom, icai_b_x, icai_b_y, icai_b_lx, icai_b_c, icai_b_ly
+
+    icai_init_p()
+    cont = cytron.cy_rfil(chem)
+    ligne = cont.split("\n")
+    nbligne = len(ligne)
+    icai_log("STRAT! " + str(chem) + " -> " + str(nbligne) + " ligne(s)")      # on affiche des infos
+    for nb in range(nbligne):                                                  # on traite les linge une par une
+        l = ligne[nb]
+        lpp = l.split(" ! ")[0]
+        if lpp == "-t":                                               #si c'est une zone text
+            icai_init_vt()                                            # on initialise les variables de verification text
+            icai_log("zone texte ligne " + str(nb+1) + ": " + l)      # on affiche des infos
+            arg = l.split(" ! ")[1].split(" , ")                      # on divise les arg.
+            for nb2 in range(len(arg)):                               # on traite les arg. un par un
+                div = arg[nb2].split("=")                             # on divise les arg. avec le "="
+                dact = div[0]                                         # dact -> arg avent le "="
+                dinf = div[1]                                         # dinf -> arg après le "="
+                icai_log(str(dact) +"-> "+ str(dinf))                 # on affiche des infos
+                if dact == "nom":
+                    tnom = dinf
+                    icai_v[0] = True
+                elif dact == "x":
+                    tx = dinf
+                    icai_v[1] = True
+                elif dact == "y":
+                    ty = dinf
+                    icai_v[2] = True
+                elif dact == "lx":
+                    tlx = dinf
+                    icai_v[3] = True
+                elif dact == "ly":
+                    tly = dinf
+                    icai_v[4] = True
+                else:
+                    icai_log("dact inconnu ici-> " + dact)
+            if icai_v == [True, True, True, True, True]:
+                icai_nb_t = icai_nb_t + 1
+                icai_t_nom.append(tnom)
+                icai_t_x.append(tx)
+                icai_t_y.append(ty)
+                icai_t_lx.append(tlx)
+                icai_t_ly.append(tly)
+                icai_log("ARGS ok")
+            else:
+                icai_log("ARGS manquant: [nom, x, y, lx, ly] statut: "+ str(icai_v))
+
+        elif lpp == "-b":                                             #si c'est un bouton
+            icai_init_vt()                                            # on initialise les variables de verification text
+            icai_log("bouton ligne " + str(nb+1) + ": " + l)          # on affiche des infos
+            arg = l.split(" ! ")[1].split(" , ")                      # on divise les arg.
+            for nb2 in range(len(arg)):                               # on traite les arg. un par un
+                div = arg[nb2].split("=")                             # on divise les arg. avec le "="
+                dact = div[0]                                         # dact -> arg avent le "="
+                dinf = div[1]                                         # dinf -> arg après le "="
+                icai_log(str(dact) +"-> "+ str(dinf))                 # on affiche des infos
+                if dact == "nom":
+                    tnom = dinf
+                    icai_v[0] = True
+                elif dact == "x":
+                    tx = dinf
+                    icai_v[1] = True
+                elif dact == "y":
+                    ty = dinf
+                    icai_v[2] = True
+                elif dact == "lx":
+                    tlx = dinf
+                    icai_v[3] = True
+                elif dact == "ly":
+                    tly = dinf
+                    icai_v[4] = True
+                elif dact == "c":
+                    tc = dinf
+                else:
+                    icai_log("dact inconnu ici-> " + dact)
+            if icai_v == [True, True, True, True, True]:
+                icai_nb_b = icai_nb_b + 1
+                icai_b_nom.append(tnom)
+                icai_b_x.append(tx)
+                icai_b_y.append(ty)
+                icai_b_lx.append(tlx)
+                icai_b_ly.append(tly)
+                try:
+                    icai_b_c.append(tc)
+                except:
+                    icai_b_c.append(gen_couleur)
+                
+                icai_log("ARGS ok")
+            else:
+                icai_log("ARGS manquant: [nom, x, y, lx, ly] statut: "+ str(icai_v))
+
+        elif lpp == "/link" or lpp == "/l":                             # si c'est un lien
+            icai_log("lien ligne " + str(nb+1) + ": " + l)              # on affiche des infos
+            try:
+                cytron.cy_rfil_rela("/cytron/sys/app/", l.split(" ! ")[1])     # on test le lien
+                icai_link.append(l.split(" ! ")[1])                            # on save le lien
+
+                icai_log("lien valide")                                 # on affiche des infos
+            except:
+                icai_log("lien invalide")                               # on affiche des infos
+        elif l == "/go":                                                # si on a le signal /go
+            icai_log("lancement de icai_go")                                 
+            icai_go()                                                   # on lance la creation de bouton
+            icai_log("fin de icai_go")
+    icai_log("fin de icai\n")
+    icai_log_print()
+
+def icai_log(text):
+    global log
+    log = log + "\n" + datetime.utcnow().strftime('%d/%m/%Y %H:%M:%S.%f')[:-3] + " | " + text
+
+def icai_log_print():
+    global log
+    try:
+        text = cytron.cy_rfil_rela("/cytron/sys/log", "ica.log")
+        cytron.cy_mkfil("/cytron/sys/log", "ica.log", text + "\n" + log)
+    except:
+        cytron.cy_mkfil("/cytron/sys/log", "ica.log", log)
+
+
+def icai_init_p():
+    global log, icai_link, icai_lcode
+    global icai_nb_t, icai_t_nom, icai_t_x, icai_t_y, icai_t_lx, icai_t_ly, icai_t
+    global icai_nb_b, icai_b_nom, icai_b_x, icai_b_y, icai_b_lx, icai_b_ly, icai_b_c, icai_b
+
+    icai_nb_t = 0
+    icai_t_nom = []
+    icai_t_x = []
+    icai_t_y = []
+    icai_t_lx = []
+    icai_t_ly = []
+    icai_t = []
+
+    icai_nb_b = 0
+    icai_b_nom = []
+    icai_b_x = []
+    icai_b_y = []
+    icai_b_lx = []
+    icai_b_ly = []
+    icai_b_c = []
+    icai_b = []
+
+    icai_link = []
+    icai_lcode = []
+
+    log = ""
+
+
+def icai_init_vt():
+    global icai_v
+    icai_v = [False, False, False, False, False]
+
+def icai_go():
+    global ica_nom, icai_titre, icai_open, icai_link
+    global icai_nb_t, icai_t_nom, icai_t_x, icai_t_y, icai_t_lx, icai_t_ly, icai_t
+    global icai_nb_b, icai_b_nom, icai_b_x, icai_b_y, icai_b_lx, icai_b_ly, icai_b_c, icai_b
+
+    ical_d()
+    icai_open = 1
+    titre = ica_nom.split(".")[0]
+    icai_titre = tk.Label(fenetre, text=titre,bg=para_c_l, fg = para_t_l, font=('', 25))
+    icai_titre.pack()
+    icai_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
+
+    for nb in range(len(icai_link)):
+        exec(cytron.cy_rfil_rela("/cytron/sys/app/", str(icai_link[nb])))
+
+    for nb in range(icai_nb_t):                 #placement de zone text
+        icai_t.extend([tk.Label(fenetre, text=icai_t_nom[nb],bg=para_c_l, fg = para_t_l, font=('', 12))])
+        icai_t[nb].pack()
+        icai_t[nb].place(x=icai_t_x[nb], y= icai_t_y[nb], width= icai_t_lx[nb], height=icai_t_ly[nb])
+
+    for nb in range(icai_nb_b):                 #placement des bouton
+        icai_b.extend([tk.Button(fenetre, text=icai_b_nom[nb],bg = icai_b_c[nb], activebackground=icai_b_c[nb], font=('', 12))])
+        icai_b[nb].pack()
+        icai_b[nb].place(x=icai_b_x[nb], y= icai_b_y[nb], width= icai_b_lx[nb], height=icai_b_ly[nb])
+
+def icai_d_t():
+    for nb in range(icai_nb_t):
+        icai_t[nb].destroy()
+    for nb in range(icai_nb_b):
+        icai_b[nb].destroy()
+    
+def icai_offs():
+    global icai_off
+    icai_off = True
+    time.sleep(0.5)
+    icai_off = False
+
+def icai_d():
+    global icai_open
+    if icai_open == 1:
+        icai_titre.destroy()
+        icai_d_t()
+        start_new_thread( icai_offs,())
+        icai_open = 0
+
+        
 
 ##############################################
 ##############################################
@@ -1458,12 +1706,11 @@ def dp_d():
 
 ## CREATION DES DOSSIER ##
 
-try:
-    cytron.cy_mkdir("/", "cytron")
-    cytron.cy_mkdir("/cytron" ,"user")
-    cytron.cy_mkdir("/cytron" ,"sys")
-except:
-    pass
+cytron.cy_mkdir("/", "cytron")
+cytron.cy_mkdir("/cytron" ,"user")
+cytron.cy_mkdir("/cytron" ,"sys")
+cytron.cy_mkdir("/cytron/sys" ,"app")
+cytron.cy_mkdir("/cytron/sys" ,"log")
 
 ######## AUTO REB #########
 

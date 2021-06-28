@@ -17,8 +17,7 @@ bt.place(x=largeur/2 - 60, y=200, width=120, height=70)
 def off():
     def stop():
         bt.destroy()
-        st.destroy()
-
+        
     while True:
         if icai_off == True:
             try:

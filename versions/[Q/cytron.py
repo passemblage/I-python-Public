@@ -4,7 +4,7 @@ from _thread import start_new_thread
 
 global cy_path_v, version, console_o
 
-version = "cytron 6"
+version = "cytron 7"
 
 console_o = 0
 cy_path_v = os.path.dirname(sys.argv[0])
@@ -23,9 +23,12 @@ def cy_mkdire(chem, nom):
     cy_mkdir(chem, nom)
 
 def cy_mkdir(chem, nom):
-    cy_temp = cy_path_v + chem + "/" + nom
-    os.makedirs(cy_temp)
-
+    try:
+        cy_temp = cy_path_v + chem + "/" + nom
+        os.makedirs(cy_temp)
+        return("DONE!")
+    except:
+        return("erreur: 'chem rela + nom'")
 
 def cy_wget(chem, nom, addr):
     cy_temp = cy_path_v + chem + "/" + nom
@@ -62,11 +65,7 @@ def cy_run(ipt):
     elif ipt[0] == "path":
         return(cy_path())
     elif ipt[0] == "mkdir":
-        try:
-            cy_mkdir(ipt[1], ipt[2])
-            return("DONE!")
-        except:
-            return("erreur: 'chem rela + nom'")
+        cy_mkdir(ipt[1], ipt[2])        
     elif ipt[0] == "wget":
         try:
             cy_wget(ipt[1], ipt[2], ipt[3])
