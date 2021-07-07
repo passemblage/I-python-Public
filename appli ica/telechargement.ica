@@ -1,0 +1,9 @@
+/d ! addtest.ica | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/add%20test/addtest.ica | 1
+/d ! addtest.txt | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/add%20test/addtest.txt | 1
+/d ! demo2.ica | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/demo2/demo2.ica | 1
+/d ! demo2.txt | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/demo2/demo2.txt | 1
+/d ! demo.ica | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/demo/demo.ica | 1
+
+-t ! nom=ok! , x=200 , y=100 , lx=50 , ly=50
+
+/go
