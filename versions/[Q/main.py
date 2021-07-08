@@ -20,8 +20,8 @@ except:
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id, icai_off
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 07.02"
-version_info ="- NEWS -\n  *ICA"
+version_id = "[Q 07.03"
+version_info ="- NEWS -\n  *telechargement depuis du ICA (/d)"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 
 #definition de la couleur par defaut
@@ -1595,6 +1595,24 @@ def icai(chem):
                 icai_log("lien valide")                                 # on affiche des infos
             except:
                 icai_log("lien invalide")                               # on affiche des infos
+        elif lpp == "/d" or lpp == "/download":
+            icai_log("download ligne " + str(nb+1) + ": " + l)          # on affiche des infos
+            try:
+                arg = l.split(" ! ")[1].split(" | ")                    # on divise les arg.
+                if int(arg[2]) == 1:
+                    icai_log("type de telechargement: force")
+                    cytron.cy_wget("/cytron/sys/app", str(arg[0]), str(arg[1]))
+                else:
+                    icai_log("type de telechargement: standard")
+                    try:
+                        cytron.cy_rfil_rela("/cytron/sys/app/", str(arg[0]))
+                        icai_log("-> fichier deja present")
+                    except:
+                        icai_log("-> ficher non pressent, telechargent")
+                        cytron.cy_wget("/cytron/sys/app", str(arg[0]), str(arg[1]))
+                icai_log("fin de la commande de telechargement")
+            except:
+                icai_log("erreur telechargement!")
         elif l == "/go":                                                # si on a le signal /go
             icai_log("lancement de icai_go")                                 
             icai_go()                                                   # on lance la creation de bouton
@@ -1648,7 +1666,7 @@ def icai_init_vt():
     icai_v = [False, False, False, False, False]
 
 def icai_go():
-    global ica_nom, icai_titre, icai_open, icai_link
+    global ica_nom, icai_titre, icai_open, icai_link, icai_download_l, icai_download_f, icai_download_o
     global icai_nb_t, icai_t_nom, icai_t_x, icai_t_y, icai_t_lx, icai_t_ly, icai_t
     global icai_nb_b, icai_b_nom, icai_b_x, icai_b_y, icai_b_lx, icai_b_ly, icai_b_c, icai_b
 
