@@ -6,6 +6,6 @@
 /d ! magnet.ica | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/magnet/magnet.ica | 1
 /d ! magnet.txt | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/magnet/magnet.txt | 1
 
--t ! nom=ok! , x=200 , y=100 , lx=50 , ly=50
+-t ! nom=telechargement complete , x=200 , y=100 , lx=50 , ly=50
 
 /go
