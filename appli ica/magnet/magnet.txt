@@ -1,0 +1,291 @@
+from random import randint
+
+global randint
+
+def gch():
+    global bsv
+
+    def add(a,b,c,d):
+        valleur[d] = round((valleur[d] + valleur[c] + valleur[b] + valleur[a])/1.5)
+        valleur[a] = 0
+        valleur[b] = 0
+        valleur[c] = 0
+
+    add(4,3,2,1)
+    add(8,7,6,5)
+    add(12,11,10,9)
+    add(16,15,14,13)
+    
+    for x in range(5):
+        temp = randint(1,16)
+        valleur[temp] = valleur[temp] + randint(1,6)
+
+    for x in range(1,17):
+        if valleur[x] == 0:
+            temp = ""
+        else:
+            temp = valleur[x]
+        la[x].configure(text = temp)
+
+        if bsv < valleur[x]:
+            bsv = valleur[x]
+            bsi.configure(text = "meilleur score -> " + str(bsv))
+
+def haut():
+    global bsv
+
+    def add(a,b,c,d):
+        valleur[d] = round((valleur[d] + valleur[c] + valleur[b] + valleur[a])/1.5)
+        valleur[a] = 0
+        valleur[b] = 0
+        valleur[c] = 0
+
+    add(13,9,5,1)
+    add(14,10,6,2)
+    add(15,11,7,3)
+    add(16,12,8,4)
+
+    for x in range(5):
+        temp = randint(1,16)
+        valleur[temp] = valleur[temp] + randint(1,6)
+    
+    for x in range(1,17):
+        if valleur[x] == 0:
+            temp = ""
+        else:
+            temp = valleur[x]
+        la[x].configure(text = temp)
+
+        if bsv < valleur[x]:
+            bsv = valleur[x]
+            bsi.configure(text = "meilleur score -> " + str(bsv))
+
+
+def drt():
+    global bsv
+
+    def add(a,b,c,d):
+        valleur[d] = round((valleur[d] + valleur[c] + valleur[b] + valleur[a])/1.5)
+        valleur[a] = 0
+        valleur[b] = 0
+        valleur[c] = 0
+
+    add(1,2,3,4)
+    add(5,6,7,8)
+    add(9,10,11,12)
+    add(13,14,15,16)
+
+    for x in range(5):
+        temp = randint(1,16)
+        valleur[temp] = valleur[temp] + randint(1,6)
+    
+    for x in range(1,17):
+        if valleur[x] == 0:
+            temp = ""
+        else:
+            temp = valleur[x]
+        la[x].configure(text = temp)
+
+        if bsv < valleur[x]:
+            bsv = valleur[x]
+            bsi.configure(text = "meilleur score -> " + str(bsv))
+
+
+def bas():
+    global bsv
+
+    def add(a,b,c,d):
+        valleur[d] = round((valleur[d] + valleur[c] + valleur[b] + valleur[a])/1.5)
+        valleur[a] = 0
+        valleur[b] = 0
+        valleur[c] = 0
+
+    add(1,5,9,13)
+    add(2,6,10,14)
+    add(3,7,11,15)
+    add(4,8,12,16)
+
+    for x in range(5):
+        temp = randint(1,16)
+        valleur[temp] = valleur[temp] + randint(1,6)
+    
+    for x in range(1,17):
+        if valleur[x] == 0:
+            temp = ""
+        else:
+            temp = valleur[x]
+        la[x].configure(text = temp)
+
+        if bsv < valleur[x]:
+            bsv = valleur[x]
+            bsi.configure(text = "meilleur score -> " + str(bsv))
+
+
+global la , bsi , bsv , valleur , notice , notice2 , notice3
+global act_haut , act_bas , act_gch , act_drt , dco1 , dco2 , dco3 , dco4
+
+valleur = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+la = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+bsv = 1
+
+
+# ligne 1
+la[1] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[1])
+la[1].pack()
+la[1].place(x=largeur/2-135, y=100 ,width=60,height=60)
+
+la[2] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[2])
+la[2].pack()
+la[2].place(x=largeur/2-65, y=100 ,width=60,height=60)
+
+la[3] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[3])
+la[3].pack()
+la[3].place(x=largeur/2+5, y=100 ,width=60,height=60)
+
+la[4] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[4])
+la[4].pack()
+la[4].place(x=largeur/2+75, y=100 ,width=60,height=60)
+
+# ligne 2
+la[5] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[5])
+la[5].pack()
+la[5].place(x=largeur/2-135, y=170 ,width=60,height=60)
+
+la[6] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[6])
+la[6].pack()
+la[6].place(x=largeur/2-65, y=170 ,width=60,height=60)
+
+la[7] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[7])
+la[7].pack()
+la[7].place(x=largeur/2+5, y=170 ,width=60,height=60)
+
+la[8] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[8])
+la[8].pack()
+la[8].place(x=largeur/2+75, y=170 ,width=60,height=60)
+
+# ligne 3
+la[9] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[9])
+la[9].pack()
+la[9].place(x=largeur/2-135, y=240 ,width=60,height=60)
+
+la[10] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[10])
+la[10].pack()
+la[10].place(x=largeur/2-65, y=240 ,width=60,height=60)
+
+la[11] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[11])
+la[11].pack()
+la[11].place(x=largeur/2+5, y=240 ,width=60,height=60)
+
+la[12] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[12])
+la[12].pack()
+la[12].place(x=largeur/2+75, y=240 ,width=60,height=60)
+
+# ligne 4
+la[13] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[13])
+la[13].pack()
+la[13].place(x=largeur/2-135, y=310 ,width=60,height=60)
+
+la[14] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[14])
+la[14].pack()
+la[14].place(x=largeur/2-65, y=310 ,width=60,height=60)
+
+la[15] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[15])
+la[15].pack()
+la[15].place(x=largeur/2+5, y=310 ,width=60,height=60)
+
+la[16] = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = valleur[16])
+la[16].pack()
+la[16].place(x=largeur/2+75, y=310 ,width=60,height=60)
+
+act_haut = tk.Button(fenetre, text="", bg = "gray", activebackground="black", command = haut )
+act_haut.pack()
+act_haut.place(x=largeur/2-135, y=70, width=270, height=20)
+
+act_bas = tk.Button(fenetre, text="", bg = "gray", activebackground="black", command = bas )
+act_bas.pack()
+act_bas.place(x=largeur/2-135, y=380, width=270, height=20)
+
+act_gch = tk.Button(fenetre, text="", bg = "gray", activebackground="black", command = gch )
+act_gch.pack()
+act_gch.place(x=largeur/2-165, y=100, width=20, height=270)
+
+act_drt = tk.Button(fenetre, text="", bg = "gray", activebackground="black", command = drt )
+act_drt.pack()
+act_drt.place(x=largeur/2+145, y=100, width=20, height=270)
+
+dco1 = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = "")
+dco1.pack()
+dco1.place(x=largeur/2-165, y=70 ,width=20,height=20)
+
+dco2 = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = "")
+dco2.pack()
+dco2.place(x=largeur/2+145, y=70 ,width=20,height=20)
+
+dco3 = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = "")
+dco3.pack()
+dco3.place(x=largeur/2-165, y=380 ,width=20,height=20)
+
+dco4 = tk.Label(fenetre, font=("", 13), bg = gen_couleur, activebackground= gen_couleur, text = "")
+dco4.pack()
+dco4.place(x=largeur/2+145, y=380 ,width=20,height=20)
+
+bsi = tk.Label(fenetre, text="meilleur score -> 1",bg=para_c_l, fg = para_t_l, font=("", 13))
+bsi.pack()
+bsi.place(x=largeur/2-80, y=410 ,width=160,height=20)
+
+notice = tk.Label(fenetre, text="BUT DU JEU: les barres gris dont des aiment qui attirent les casses quand on",bg=para_c_l, fg = para_t_l, font=("", 10))
+notice.pack()
+notice.place(x=largeur/2-300, y=hauteur-45 ,width=600,height=15)
+
+notice2 = tk.Label(fenetre, text="clique dessus, les valeur sont ajoutees mais elles sont divise par 1,5 et de nouvelle",bg=para_c_l, fg = para_t_l, font=("", 10))
+notice2.pack()
+notice2.place(x=largeur/2-300, y=hauteur-30 ,width=600,height=15)
+
+notice3 = tk.Label(fenetre, text="valeur pop a des endroit random. Le but est d'avoir le plus gros score sur une casse.",bg=para_c_l, fg = para_t_l, font=("", 10))
+notice3.pack()
+notice3.place(x=largeur/2-300, y=hauteur-15 ,width=600,height=15)
+
+for x in range(10):
+    temp = randint(1,16)
+    valleur[temp] = valleur[temp] + randint(1,6)
+
+for x in range(1,17):
+    if valleur[x] == 0:
+        temp = ""
+    else:
+        temp = valleur[x]
+    la[x].configure(text = temp)
+
+    if bsv < valleur[x]:
+        bsv = valleur[x]
+        bsi.configure(text = "meilleur score -> " + str(bsv))
+
+def off():
+    
+    def stop():
+        for x in range(1,17):
+            la[x].destroy()
+        act_haut.destroy()
+        act_bas.destroy()
+        act_gch.destroy()
+        act_drt.destroy()
+        dco1.destroy()
+        dco2.destroy()
+        dco3.destroy()
+        dco4.destroy()
+        bsi.destroy()
+        notice.destroy()
+        notice2.destroy()
+        notice3.destroy()
+
+    while True:
+        if icai_off == True:
+            try:
+                stop()
+            except:
+                pass
+        else:
+            time.sleep(0.2)
+
+
+start_new_thread( off,())
