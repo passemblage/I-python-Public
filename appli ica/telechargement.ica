@@ -10,6 +10,6 @@
 
 
 
--t ! nom=telechargement complete , x=200 , y=100 , lx=50 , ly=50
+-t ! nom=ok! , x=200 , y=100 , lx=50 , ly=50
 
 /go
