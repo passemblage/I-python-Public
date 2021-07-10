@@ -1,4 +1,7 @@
 
+global x, y
+x = 0
+y = 0
 
 global canvas
 canvas = tk.Canvas(fenetre,width = 800, height = 400, bg="white")
@@ -9,31 +12,46 @@ global raquette
 raquette = canvas.create_rectangle(100,150,200,250,fill='red')
 
 def droite(event):
-    global canvas
-    canvas.move(raquette,10,0)
+    global x, y
+    if x < 590:
+        global canvas
+        canvas.move(raquette,10,0)
+        x += 10
+    print("x", x, "y", y)
 def gauche(event):
-    global canvas
-    canvas.move(raquette,-10,0)
+    global x, y
+    if x > -90:
+        global canvas
+        canvas.move(raquette,-10,0)
+        x -= 10
+    print("x", x, "y", y)
 def bas(event):
-    global canvas
-    canvas.move(raquette,0,10)
+    global x, y
+    if y < 140:
+        global canvas
+        canvas.move(raquette,0,10)
+        y += 10
+    print("x", x, "y", y)
 def haut(event):
-    global canvas
-    canvas.move(raquette,0,-10)
+    global x, y
+    if y > -140:
+        global canvas
+        canvas.move(raquette,0,-10)
+        y -= 10
+    print("x", x, "y", y)
 
 
-canvas.bind('d', droite)
-canvas.bind('q', gauche)
-canvas.bind('s', bas)
-canvas.bind('z', haut)
+canvas.bind_all('d', droite)
+canvas.bind_all('q', gauche)
+canvas.bind_all('s', bas)
+canvas.bind_all('z', haut)
 
 def off():
     def stop():
-        global canvas
-        canvas.unbind('d', droite)
-        canvas.unbind('q', gauche)
-        canvas.unbind('s', bas)
-        canvas.unbind('z', haut)
+        canvas.unbind("d")
+        canvas.unbind("q")
+        canvas.unbind("s")
+        canvas.unbind("z")
         canvas.destroy()
 
     while True:
