@@ -1,0 +1,41 @@
+
+
+global canvas
+canvas = tk.Canvas(fenetre,width = 800, height = 400, bg="white")
+canvas.pack()
+canvas.place(x=largeur/2-400, y=200)
+
+raquette = canvas.create_rectangle(100,150,200,250,fill='red')
+
+def droite(event):
+    global canvas
+    canvas.move(raquette,10,0)
+def gauche(event):
+    global canvas
+    canvas.move(raquette,-10,0)
+def bas(event):
+    global canvas
+    canvas.move(raquette,0,10)
+def haut(event):
+    global canvas
+    canvas.move(raquette,0,-10)
+
+
+canvas.bind_all('d', droite)
+canvas.bind_all('q', gauche)
+canvas.bind_all('s', bas)
+canvas.bind_all('z', haut)
+
+def off():
+    def stop():
+        canvas.destroy()
+
+    while True:
+        if icai_off == True:
+            try:
+                stop()
+            except:
+                pass
+        else:
+            time.sleep(0.2)
+start_new_thread( off,())

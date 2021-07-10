@@ -5,6 +5,10 @@
 /d ! demo.ica | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/demo/demo.ica | 1
 /d ! magnet.ica | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/magnet/magnet.ica | 1
 /d ! magnet.txt | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/magnet/magnet.txt | 1
+/d ! carre qui bouge.txt | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/carre%20qui%20bouge/carre%20qui%20bouge.txt | 1
+/d ! carre qui bouge.ica | https://raw.githubusercontent.com/passemblage/I-python-Public/main/appli%20ica/carre%20qui%20bouge/carre%20qui%20bouge.ica | 1
+
+
 
 -t ! nom=telechargement complete , x=200 , y=100 , lx=50 , ly=50
 
