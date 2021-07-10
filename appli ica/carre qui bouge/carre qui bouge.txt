@@ -5,6 +5,7 @@ canvas = tk.Canvas(fenetre,width = 800, height = 400, bg="white")
 canvas.pack()
 canvas.place(x=largeur/2-400, y=200)
 
+global raquette
 raquette = canvas.create_rectangle(100,150,200,250,fill='red')
 
 def droite(event):
