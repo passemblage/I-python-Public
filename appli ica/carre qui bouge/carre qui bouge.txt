@@ -29,6 +29,10 @@ canvas.bind_all('z', haut)
 
 def off():
     def stop():
+        canvas.unbind("d")
+        canvas.unbind("q")
+        canvas.unbind("s")
+        canvas.unbind("z")
         canvas.destroy()
 
     while True:
