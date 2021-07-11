@@ -20,7 +20,7 @@ except:
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id, icai_off
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 07.03"
+version_id = "[Q 07.04"
 version_info ="- NEWS -\n  *telechargement depuis du ICA (/d)"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation, cytron, ICA et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 
