@@ -1,5 +1,5 @@
 
-import cytron
+import cytron, math
 
 global nb
 nb = 0
@@ -7,7 +7,12 @@ nb = 0
 cytron.cy_mkdir("/cytron/sys/app/", "sauvegardes_jeu_a_cliquer")
 
 try:
-    nb = int(cytron.cy_rfil_rela("/cytron/sys/app/sauvegardes_jeu_a_cliquer/", "save.txt"))
+    nbtemp = int(cytron.cy_rfil_rela("/cytron/sys/app/sauvegardes_jeu_a_cliquer/", "save.txt"))
+    temp = math.log(nbtemp, 2)
+    if temp%1 == 0:
+        nb = temp
+    else:
+        nb = "CHEAT"
 except:
     cytron.cy_mkfil("/cytron/sys/app/sauvegardes_jeu_a_cliquer/", "save.txt", nb)
 
