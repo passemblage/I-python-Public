@@ -1,5 +1,5 @@
 
-import cytron, math
+import cytron
 
 global nb
 nb = 0
