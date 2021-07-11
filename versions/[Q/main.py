@@ -22,7 +22,7 @@ global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1,
 # A CHANGER A CHAQUE VERSION:
 version_id = "[Q 07.03"
 version_info ="- NEWS -\n  *telechargement depuis du ICA (/d)"
-info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
+info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation, cytron, ICA et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 
 #definition de la couleur par defaut
 try:       # si il y une coulleur valide dans le fichier data, on l'applique 
@@ -111,9 +111,10 @@ def para_lite():
         pass
 
 #definition fonction theme sombre
-def para_dark():
-    global para_dark_o
-    theme_chang("#171c2b", gen_couleur)
+def para_dark(col):
+    global para_dark_o, para_dark_col
+    para_dark_col = col
+    theme_chang(col, gen_couleur)
     para_dark_o = 1
     try:
         modif_color(gen_couleur)
@@ -127,7 +128,7 @@ try:       # si il y un theme valide dans le fichier data, on l'applique
     if setup_theme == 0:
         para_lite()
     else:
-        para_dark()
+        para_dark("#171c2b")
 except:    # sinon on met en claire  
     para_lite()
 
@@ -136,7 +137,7 @@ def theme_c():
     if para_dark_o == 1:
         para_lite()
     else:
-        para_dark()
+        para_dark("#171c2b")
     quitter_app()
 
 ##############################################
@@ -580,11 +581,15 @@ def modif_color(rgb):
         para_color_ap_b.configure(bg=rgb,activebackground=rgb)
         para_lite_b.configure(bg="gray",activebackground="gray")
         para_dark_b.configure(bg=rgb,activebackground=rgb)
+        para_fsf.configure(bg=rgb,activebackground=rgb)
+        para_fst.configure(bg=rgb,activebackground=rgb)
         para_info_ex.configure(bg=rgb,activebackground=rgb)
+        para_fsbr()
     try:
         para_info_q_b.configure(bg=rgb,activebackground=rgb)
     except:
         pass
+    
 
     ## hedwige ##
     if hedwige_open == 1:
@@ -637,11 +642,10 @@ def modif_color(rgb):
             para_t_l = rgb
             para_lite_b.configure(bg=rgb,activebackground=rgb)
             para_dark_b.configure(bg="gray",activebackground="gray")
-            para_info.configure(fg= rgb)
             para_color_ex.configure(fg = rgb)
-            para_theme_ex.configure(fg = rgb)
             para_color_ba.configure(fg = gen_couleur)
             para_color_ba.configure(fg = "black", bg=gen_couleur)
+            para_fsbr()
         except:
             pass
         try:
@@ -649,6 +653,7 @@ def modif_color(rgb):
             para_info_f.configure(fg = rgb)
         except:
             pass
+        
 
     ###### LABELS LIGHT ######
     else:
@@ -738,6 +743,12 @@ def interpreter(code):
 
     elif commande[0] == "news" or commande[0] == "NEWS" or commande[0] == "new" or commande[0] == "NEW" or commande[0] == "info" or commande[0] == "INFO":
         sortie = version_info
+        tip_sortie(sortie)
+
+    elif commande[0] == "noir+noir=noir":
+        para_dark("black")
+        terminal__.configure(bg="black",fg=gen_couleur)
+        sortie = "oki :)"
         tip_sortie(sortie)
 
     elif commande[0] == "aide":
@@ -864,7 +875,7 @@ def console_():
 
 def para_app():
     quitter_app()
-    global para_color_ex, para_color_ba, para_color_ap_b, para_theme_ex, para_dark_b, para_lite_b, para_app_o, para_info, para_info_ex
+    global para_color_ex, para_color_ba, para_color_ap_b, para_dark_b, para_lite_b, para_app_o, para_info_ex, para_fsf, para_fst
     para_app_o = 1
     para_titre_aff()
     para_color_ex = tk.Label(fenetre, text="couleur custom:",bg=para_c_l, fg = para_t_l, font=('', 12))
@@ -903,42 +914,71 @@ def para_app():
     para_color_ap_b.pack()
     para_color_ap_b.place(x=largeur/2 + 137, y=60, width=70, height=20)
 
-    para_theme_ex = tk.Label(fenetre, text="Theme:",bg=para_c_l, fg = para_t_l, font=('', 12))
-    para_theme_ex.pack()
-    para_theme_ex.place(x=largeur/2 - 221, y=142, width=100, height=40)
-
     para_lite_b = tk.Button(fenetre, text="paradise's dream",font=('', 13), bg = gen_couleur, activebackground=gen_couleur, command=para_lite)
     para_lite_b.pack()
-    para_lite_b.place(x=largeur/2 - 135, y=150, width=135, height=25)
+    para_lite_b.place(x=largeur/2 +5, y=120, width=135, height=25)
 
-    para_dark_b = tk.Button(fenetre, text="dracula night", font=('', 13) , bg = gen_couleur, activebackground=gen_couleur, command=para_dark)
+    para_dark_b = tk.Button(fenetre, text="dracula night", font=('', 13) , bg = gen_couleur, activebackground=gen_couleur, command=para_para_dark)
     para_dark_b.pack()
-    para_dark_b.place(x=largeur/2 + 15, y=150, width=115, height=25)
+    para_dark_b.place(x=largeur/2 - 140, y=120, width=135, height=25)
 
-    para_info = tk.Label(fenetre, text="information:",bg=para_c_l, fg = para_t_l, font=('', 12))
-    para_info.pack()
-    para_info.place(x=largeur/2 - 140, y=234, width=100, height=40)
+    para_fst = tk.Button(fenetre, text="plein écran",font=('', 13), bg = gen_couleur, activebackground=gen_couleur, command=para_fst_aff)
+    para_fst.pack()
+    para_fst.place(x=largeur/2 - 140, y=180, width=135, height=25)
 
-    para_info_ex = tk.Button(fenetre, text="afficher",font=('', 13), bg = gen_couleur, activebackground=gen_couleur, command=para_info_aff)
+    para_fsf = tk.Button(fenetre, text="mode fenetré",font=('', 13), bg = gen_couleur, activebackground=gen_couleur, command=para_fsf_aff)
+    para_fsf.pack()
+    para_fsf.place(x=largeur/2 + 5, y=180, width=135, height=25)
+
+    para_info_ex = tk.Button(fenetre, text="afficher les informations",font=('', 13), bg = gen_couleur, activebackground=gen_couleur, command=para_info_aff)
     para_info_ex.pack()
-    para_info_ex.place(x=largeur/2 - 40, y=242, width=100, height=25)
+    para_info_ex.place(x=largeur/2 - 140, y=240, width=280, height=25)
+
+    para_fsbr()
 
     if para_dark_o == 1:
         para_lite_b.configure(bg=gen_couleur,activebackground=gen_couleur)
         para_dark_b.configure(bg="gray",activebackground="gray")
         para_color_ba.configure(fg = gen_couleur)
         para_color_ba.configure(fg = "black", bg=gen_couleur)
+        
     else:
         para_lite_b.configure(bg="gray",activebackground="gray")
         para_dark_b.configure(bg=gen_couleur,activebackground=gen_couleur)
         para_color_ba.configure( fg = "#000000")
         para_color_ba.configure(fg = "#000000", bg="#ffffff")
 
+def para_para_dark():
+    para_dark("#171c2b")
+
+def para_fsbr():
+    if fsf == 1:
+        para_fsf.configure(bg="gray",activebackground="gray")
+    else:
+        para_fst.configure(bg="gray",activebackground="gray")
+
 def para_titre_aff():
     global para_titre
     para_titre = tk.Label(fenetre, text="Paramètres",bg=para_c_l, fg = para_t_l, font=('', 25))
     para_titre.pack()
     para_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
+
+def para_fsf_aff():
+    global fsf, fe1
+    if fe1 == 0:
+        start_new_thread( auto_reb,())
+        fe1 = 1
+    fsf = 1
+    fenetre.attributes('-fullscreen', False)
+    essential_destroy()
+    essential()
+
+def para_fst_aff():
+    global fsf
+    fsf = 0
+    fenetre.attributes('-fullscreen', True)
+    essential_destroy()
+    essential()
 
 def para_info_q():
     try:
@@ -954,9 +994,12 @@ def para_info_r():
 
 
 def para_info_aff():
-    global para_info_f, para_info_q_b
+    global para_info_f, para_info_q_b , para_titre
     para_app_d()
-    para_titre_aff()
+
+    para_titre = tk.Button(fenetre, text="Paramètres",bg=para_c_l, fg = para_t_l, activebackground=gen_couleur, font=('', 25), borderwidth=0, command=para_noir)
+    para_titre.pack()
+    para_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
 
     para_info_f = tk.Label(fenetre, text=info_para,bg=para_c_l, fg = para_t_l, font=('', 12))
     para_info_f.pack()
@@ -965,6 +1008,12 @@ def para_info_aff():
     para_info_q_b = tk.Button(fenetre, text="quitter",font=('', 12), bg = gen_couleur, activebackground=gen_couleur, command=para_info_r)
     para_info_q_b.pack()
     para_info_q_b.place(x=largeur/2 -255, y=hauteur - 100 , width=510, height=25)
+
+def para_noir():
+    para_dark("#000000")
+    para_titre.configure(bg="#000000", activebackground="#000000")
+    para_info_f.configure(bg="#000000")
+
 
 def para_color_er_d():
     try:
@@ -979,12 +1028,12 @@ def para_app_d():
         para_color_ex.destroy()
         para_color_ba.destroy()
         para_color_ap_b.destroy()
-        para_theme_ex.destroy()
         para_color_er_d()
         para_lite_b.destroy()
         para_dark_b.destroy()
         para_info_ex.destroy()
-        para_info.destroy()
+        para_fsf.destroy()
+        para_fst.destroy()
     except:
         pass
 
@@ -1251,7 +1300,7 @@ def ce_label_af(x):
         if para_dark_o == 0:
             ce_label[0].configure(bg = gen_couleur)
         else:
-            ce_label[0].configure(bg = gen_couleur, fg = "#171c2b")
+            ce_label[0].configure(bg = gen_couleur, fg = para_dark_col)
     else:
         pass
 
@@ -1265,7 +1314,7 @@ def ce_haut():
         if para_dark_o == 0:
             ce_label[ce_sel].configure(bg = gen_couleur)
         else:
-            ce_label[ce_sel].configure(bg = gen_couleur, fg= "#171c2b")
+            ce_label[ce_sel].configure(bg = gen_couleur, fg= para_dark_col)
     except:
         pass
 
@@ -1279,7 +1328,7 @@ def ce_bas():
         if para_dark_o == 0:
             ce_label[ce_sel].configure(bg = gen_couleur)
         else:
-            ce_label[ce_sel].configure(bg = gen_couleur, fg= "#171c2b")
+            ce_label[ce_sel].configure(bg = gen_couleur, fg= para_dark_col)
     except:
         pass
 
@@ -1325,7 +1374,7 @@ def ce_bgrest():
             if para_dark_o == 0:
                 ce_label[x].configure(bg = para_c_l)
             else:
-                ce_label[ce_sel].configure(bg= "#171c2b",fg = gen_couleur)
+                ce_label[ce_sel].configure(bg= para_dark_col,fg = gen_couleur)
 
     except:
         pass
@@ -1420,7 +1469,7 @@ def ical_app():
         if para_dark_o == 0:
             ical_label[0].configure(bg = gen_couleur)
         else:
-            ical_label[0].configure(bg = gen_couleur, fg = "#171c2b")
+            ical_label[0].configure(bg = gen_couleur, fg = para_dark_col)
     else:
         pass
 
@@ -1435,7 +1484,7 @@ def ical_haut():
             if para_dark_o == 0:
                 ical_label[ical_sel].configure(bg = gen_couleur)
             else:
-                ical_label[ical_sel].configure(bg = gen_couleur, fg= "#171c2b")
+                ical_label[ical_sel].configure(bg = gen_couleur, fg= para_dark_col)
         except:
             pass
 
@@ -1450,7 +1499,7 @@ def ical_bas():
             if para_dark_o == 0:
                 ical_label[ical_sel].configure(bg = gen_couleur)
             else:
-                ical_label[ical_sel].configure(bg = gen_couleur, fg= "#171c2b")
+                ical_label[ical_sel].configure(bg = gen_couleur, fg= para_dark_col)
         except:
             pass
 
@@ -1478,7 +1527,7 @@ def ical_bgrest():
             if para_dark_o == 0:
                 ical_label[x].configure(bg = para_c_l)
             else:
-                ical_label[ical_sel].configure(bg= "#171c2b",fg = gen_couleur)
+                ical_label[ical_sel].configure(bg= para_dark_col,fg = gen_couleur)
     except:
         pass
 
