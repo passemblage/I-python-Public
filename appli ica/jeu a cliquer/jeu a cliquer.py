@@ -14,7 +14,7 @@ except:
 def func():
     global nb
     nb += 1
-    bouton.config(text=int(nb))
+    bouton.config(text=int(nb)) 
 
 global bouton
 bouton = tk.Button(fenetre, text=int(nb),font=('', 30), bg = "gray", activebackground="gray", command=func)
