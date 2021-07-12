@@ -19,7 +19,7 @@ def func():
 global bouton
 bouton = tk.Button(fenetre, text=int(nb),font=('', 30), bg = "gray", activebackground="gray", command=func)
 bouton.pack()
-bouton.place(x=largeur/2-200, y=hauteur/2-35 , width=400, height=70)
+bouton.place(x=largeur/2-200, y=hauteur/2 , width=400, height=70)
 
 def off():
     def stop():
