@@ -17,7 +17,7 @@ def func():
     bouton.config(text=int(nb)) 
 
 global bouton
-bouton = tk.Button(fenetre, text=int(nb),font=('', 30), bg = "gray", activebackground="gray", command=func)
+bouton = tk.Button(fenetre, text=int(nb),font=('', 30), bg = "red", activebackground="red", command=func)
 bouton.pack()
 bouton.place(x=largeur/2-200, y=hauteur/2 , width=400, height=70)
 
