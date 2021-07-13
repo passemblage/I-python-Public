@@ -1,4 +1,4 @@
-##############################       debut des importations       ##############################
+##############################       debut des importations       ############################## Quitter
 
 import time, smtplib, ssl, os
 import tkinter as tk
@@ -20,9 +20,9 @@ except:
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id, icai_off
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 07.04"
-version_info ="- NEWS -\n  *telechargement depuis du ICA (/d)"
-info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation, cytron, ICA et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
+version_id = "[Q 07.05"
+version_info ="- NEWS -\n  *fix de bugs mineurs (.ica et cytron)"
+info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation tests, et dev ica\npf4: développement, programmation, cytron, ICA et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 
 #definition de la couleur par defaut
 try:       # si il y une coulleur valide dans le fichier data, on l'applique 
@@ -1453,10 +1453,13 @@ def ical_app():
 
     temp = os.listdir(cytron.cy_path() + "/cytron/sys/app")
     ical_icaf = []
-
+#cy_rfil
     for x in range(len(temp)):
-        if temp[x].split(".")[1] == "ica":
-            ical_icaf.append(temp[x])
+        try:
+            if temp[x].split(".")[1] == "ica":
+                ical_icaf.append(temp[x])
+        except:
+            pass
 
     ical_len = -2
 

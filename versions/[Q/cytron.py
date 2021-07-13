@@ -4,7 +4,7 @@ from _thread import start_new_thread
 
 global cy_path_v, version, console_o
 
-version = "cytron 7"
+version = "cytron 8"
 
 console_o = 0
 cy_path_v = os.path.dirname(sys.argv[0])
@@ -38,7 +38,7 @@ def cy_wget(chem, nom, addr):
 def cy_mkfil(chem, nom, text):
     cy_temp = cy_path_v + chem + "/" + nom
     fil = open(cy_temp, "w")
-    fil.write(text)
+    fil.write(str(text))
     fil.close()
 
 def cy_rfil(chem):
@@ -47,8 +47,11 @@ def cy_rfil(chem):
 
 def cy_rfil_rela(chem, nom):
     cy_temp = cy_path_v + chem + "/" + nom
-    fil = open(cy_temp, "r")
-    return(fil.read())
+    try:
+        fil = open(cy_temp, "r")
+        return(fil.read())
+    except:
+        pass
 
 def console():
     global console_o
