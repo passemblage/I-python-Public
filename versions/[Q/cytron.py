@@ -4,7 +4,7 @@ from _thread import start_new_thread
 
 global cy_path_v, version, console_o
 
-version = "cytron 8"
+version = "cytron 11"
 
 console_o = 0
 cy_path_v = os.path.dirname(sys.argv[0])
@@ -12,6 +12,9 @@ cy_path_v = os.path.dirname(sys.argv[0])
 def cy_console_print():
     if console_o == 0:
         start_new_thread(console,())
+
+def cy_ls(chem):
+    return(os.listdir(cy_path_v + chem))
 
 def cy_version():
     return(version)
@@ -58,7 +61,14 @@ def console():
     console_o = 1
     while True:
         ipt = input('~} ').split(" ")
-        print(cy_run(ipt))
+        retour = cy_run(ipt)
+        if retour == None:
+            os.system('cls' if os.name == 'nt' else 'clear')
+        elif retour == "exit":
+            console_o = 0
+            break
+        else:
+            print(retour)
 
 def cy_run(ipt):
     if ipt[0] == "":
@@ -68,7 +78,11 @@ def cy_run(ipt):
     elif ipt[0] == "path":
         return(cy_path())
     elif ipt[0] == "mkdir":
-        cy_mkdir(ipt[1], ipt[2])        
+        try:
+            cy_mkdir(ipt[1], ipt[2])
+            return("DONE!")
+        except:
+            return("erreur: 'chem rela + nom'") 
     elif ipt[0] == "wget":
         try:
             cy_wget(ipt[1], ipt[2], ipt[3])
@@ -81,12 +95,19 @@ def cy_run(ipt):
             return("DONE!")
         except:
             return("erreur: 'chem rela + nom + text'")
+    elif ipt[0] == "ls":
+        try:
+            return(cy_ls(ipt[1]))
+        except:
+            return("erreur: 'chem rela'")
     elif ipt[0] == "rfil":
         try:
             return(cy_rfil_rela(ipt[1], ipt[2]))
         except:
             return("erreur: 'nom'")
+    elif ipt[0] == "exit":
+        return("exit")
     elif ipt[0] == "aide" or ipt[0] == "help":
-        return("version > affiche la version\npath    > affiche le chemain\nmkdir   > crée un dossier\nwget    > crée un fichier depuis le web\nmkfil   > créé un fichier\nrfil    > affiche le contenue d'un fichier\nhelp    > affiche l'aide")
+        return("version > affiche la version\npath    > affiche le chemain\nmkdir   > crée un dossier\nls      > affiche le contenue d'un dossier\nwget    > crée un fichier depuis le web\nmkfil   > créé un fichier\nrfil    > affiche le contenue d'un fichier\nhelp    > affiche l'aide")
     else:
         return("commande inconnu")
