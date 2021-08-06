@@ -1,7 +1,45 @@
-# I-python
-## DOCUMENTATION
-### applications
-#### Terminal (TIP)
+# DOCUMENTATION
+# compatibilité*
+<table>
+    <thead>
+        <tr>
+            <th colspan="3">liste exigence pour I-python</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> </td>
+            <td><b>MINIMUM</td>
+            <td><b>RECOMMANDÉ</td>
+        </tr>
+        <tr>
+            <td><b>python</td>
+            <td>- 3.4 ou supérieur<p>- suite tkinter</td>
+            <td>- 3.7 ou supérieur<p>- suite tkinter</td>
+        </tr>
+        <tr>
+            <td><b>os</td>
+            <td>- Windows 7 ou supérieur <p> - système graphique basé sur debian</td>
+            <td>- Windows 10 ou supérieur</td>
+        </tr>
+        <tr>
+            <td><b>espace disque</td>
+            <td>100 Ko</td>
+            <td>200 Ko</td>
+        </tr>
+        <tr>
+            <td><b>RAM</td>
+            <td>20 Mo libres</td>
+            <td>30 Mo libres</td>
+        </tr>
+</table>
+
+<p>
+    *Les application ica ne sont pas maintenue de garantirent ces critères.
+</p><br>
+
+# applications
+## Terminal (TIP)
 <p>
     le terminal est la première application de I-python.<br>
     Il a été créé dans la V02. Et sont mode développeur a été supprimé en [Q 06.08.<br>
@@ -10,7 +48,7 @@
 <table>
     <thead>
         <tr>
-            <th colspan="2">lite des commandes de TIP</th>
+            <th colspan="2">liste des commandes de TIP</th>
         </tr>
     </thead>
     <tbody>
@@ -37,6 +75,10 @@
         <tr>
             <td>clear</td>
             <td>Efface la précédente sortie de TIP</td>
+        </tr>
+        <tr>
+            <td>cytron + <i>arg</i></td>
+            <td>Permet de taper des commandes cytron depuis I-python</td>
         </tr>
         <tr>
             <td>Reb + <i>arg</i></td>
