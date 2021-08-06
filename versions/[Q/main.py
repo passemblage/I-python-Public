@@ -20,9 +20,9 @@ except:
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id, icai_off
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 07.05"
-version_info ="- NEWS -\n  *fix de bugs mineurs (.ica et cytron)"
-info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation tests, et dev ica\npf4: développement, programmation, cytron, ICA et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
+version_id = "[Q 07.06"
+version_info ="- NEWS -\n  *compatibilité systeme linux basé sur debian"
+info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation tests, et dev ica\npf4: développement, programmation, cytron, ICA et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: https://discord.gg/PFbymQ3d97"
 
 #definition de la couleur par defaut
 try:       # si il y une coulleur valide dans le fichier data, on l'applique 
@@ -1291,6 +1291,7 @@ def ce_label_af(x):
     for ce_len in range(len(ce_listdir)):
         if ce_listdir[ce_len] == "__pycache__":
             del ce_listdir[ce_len]
+            break
     if len(ce_listdir) != 0:
         for ce_len in range(len(ce_listdir)):
             ce_label.extend([tk.Label(fenetre, text=ce_listdir[ce_len],bg=para_c_l, fg = para_t_l, font=('', 12))])

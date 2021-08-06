@@ -1,17 +1,40 @@
+'''
+--|~|--|~|--|~|--|~|--|~|--|~|--
+
+██  ████        ██████        ██
+████    ██     ██           ████
+██      ██   ████████     ██  ██
+████████       ██       ██    ██
+██             ██       █████████
+██             ██             ██
+               ██
+.pour    : Passemblage
+.avec    : Lolo11
+.codé en : UTF-8
+.langage : python 3
+.note    : version compatibile
+           debian linux
+--|~|--|~|--|~|--|~|--|~|--|~|--
+'''
+
+### importation ###
 import os, sys
 from urllib.request import urlopen
 from _thread import start_new_thread
 
+### definition des variables ###
 global cy_path_v, version, console_o
 
-version = "cytron 11"
+version = "cytron 12"
 
 console_o = 0
 cy_path_v = os.path.dirname(sys.argv[0])
 
+### MULTI OS ###
+
 def cy_console_print():
     if console_o == 0:
-        start_new_thread(console,())
+        start_new_thread(console_to_thread,())
 
 def cy_ls(chem):
     return(os.listdir(cy_path_v + chem))
@@ -56,7 +79,8 @@ def cy_rfil_rela(chem, nom):
     except:
         pass
 
-def console():
+### console pour cy_console_print ###
+def console_to_thread():
     global console_o
     console_o = 1
     while True:
@@ -69,6 +93,8 @@ def console():
             break
         else:
             print(retour)
+
+### commandes ###
 
 def cy_run(ipt):
     if ipt[0] == "":
