@@ -14,6 +14,7 @@ bt = tk.Button(fenetre, text='action', bg = "red", activebackground="red", comma
 bt.pack()
 bt.place(x=largeur/2 - 60, y=200, width=120, height=70)
 
+
 def off():
     def stop():
         bt.destroy()
@@ -22,6 +23,7 @@ def off():
         if icai_off == True:
             try:
                 stop()
+                break
             except:
                 pass
         else:

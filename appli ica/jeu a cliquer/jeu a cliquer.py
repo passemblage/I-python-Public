@@ -64,6 +64,7 @@ def off():
         if icai_off == True:
             try:
                 stop()
+                break
             except:
                 pass
         else:
