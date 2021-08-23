@@ -1,6 +1,6 @@
 # I-python
 ## compatibilité*
-### liste exigence pour I-python
+#### liste exigence pour I-python
 
 ||MINIMUM|RECOMMANDÉ|
 |-|-|-|
@@ -21,7 +21,9 @@ Il a été créé dans la V02. Et son mode développeur a été supprimé en [Q 
 Depuis toute les commandes sont accessible sans mot de passe.<br>
 
 
-|liste des commandes de TIP||
+#### liste des commandes de TIP
+
+|COMMANDE|DESCRIPTION|
 |-|-|
 |aide|Affiche une courte aide|
 |dim|Affiche les dimension de l’écran utilisé par I-python pour le calcul du relatif|
