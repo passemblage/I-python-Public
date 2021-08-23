@@ -4,13 +4,13 @@
 
 ||MINIMUM|RECOMMANDÉ|
 |-|-|-|
-| python | - 3.4 ou supérieur<p> - suite tkinter |- 3.7 ou supérieur<p>- suite tkinter|
-| os 	| - Windows 7 ou supérieur <p> - système graphique basé sur debian 	|- Windows 10 ou supérieur|
+| python | - 3.4 ou supérieur<br> - suite tkinter |- 3.7 ou supérieur<br>- suite tkinter|
+| os 	| - Windows 7 ou supérieur <br> - système graphique basé sur debian 	|- Windows 10 ou supérieur|
 | espace disque 	| 100 Ko | 200 Ko |
 | RAM 	| 20 Mo libres | 30 Mo libres |
 
 
-<p>
+<br>
     *Les applications ica ne sont pas maintenue de garantirent ces critères.
 </p><br>
 
@@ -32,7 +32,7 @@ Depuis toute les commandes sont accessible sans mot de passe.<br>
 |fsf|Repasse I-python en plein écran|
 |clear|Efface la précédente sortie de TIP|
 |cytron + <i>arg</i>|Permet de taper des commandes cytron depuis I-python|
-|Reb + <i>arg</i>|Reb le système avec un reb de type arg<p><i>arg</i> = 1: détruit tout les boutons<p><i>arg</i> = 2: replace tout les boutons<p><i>arg</i> = 0: reb 1 puis reb 2]|
+|Reb + <i>arg</i>|Reb le système avec un reb de type arg<br><i>arg</i> = 1: détruit tout les boutons<br><i>arg</i> = 2: replace tout les boutons<br><i>arg</i> = 0: reb 1 puis reb 2]|
 |fe + <i>arg</i>|Active la fonctionnalité expérimentale numéro <i>arg</i>|
 
 ### Cytron exploreur
