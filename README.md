@@ -39,6 +39,7 @@
 </p><br>
 
 ## applications
+
 ### Terminal (TIP)
 
 le terminal est la première application de I-python.<br>
