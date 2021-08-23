@@ -1,4 +1,5 @@
-# compatibilité*
+# I-python
+## compatibilité*
 <table>
     <thead>
         <tr>
@@ -37,8 +38,8 @@
     *Les applications ica ne sont pas maintenue de garantirent ces critères.
 </p><br>
 
-# applications
-## Terminal (TIP)
+## applications
+### Terminal (TIP)
 
 le terminal est la première application de I-python.<br>
 Il a été créé dans la V02. Et son mode développeur a été supprimé en [Q 06.08.<br>
@@ -97,27 +98,27 @@ Depuis toute les commandes sont accessible sans mot de passe.<br>
         </tr>
 </table>
 
-## Cytron exploreur
+### Cytron exploreur
 
 Cytron exploreur est un explorateur de fichier qui est arrivé en [Q 06.09<br>
 il permet de naviguer dans les fichier d’I-python avec un interface graphique<br>
 il a aussi remplacé la barre d’ouverture de l’éditeur de texte<br>
 
-## Lanceur d'app ica
+### Lanceur d'app ica
 
 Le lanceur d’app ica est apparut en [Q 07.02<br>
 il permet de lancé interprétation et l’exécution d’une app ica.<br>
 Son système de sélection reprend le code de cytron exploreur<br>
 pour lister tout les fichier ica du dossier <i> ~/cytron/sys/app </i>
 
-## Paramètres
+### Paramètres
 
 <i> en rédaction </i>
 
-## Editeur de texte
+### Editeur de texte
 
 <i> en rédaction </i>
 
-## Hedwige
+### Hedwige
 
 <i> en rédaction </i>
