@@ -10,9 +10,7 @@
 | RAM 	| 20 Mo libres | 30 Mo libres |
 
 
-<br>
-    *Les applications ica ne sont pas maintenue de garantirent ces critères.
-</p><br>
+<i>*Les applications ica ne sont pas maintenue de garantirent ces critères.</i>
 
 ## applications
 
