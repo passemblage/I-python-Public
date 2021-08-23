@@ -1,38 +1,15 @@
 # I-python
 ## compatibilité*
-<table>
-    <thead>
-        <tr>
-            <th colspan="3">liste exigence pour I-python</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td> </td>
-            <td><b>MINIMUM</td>
-            <td><b>RECOMMANDÉ</td>
-        </tr>
-        <tr>
-            <td><b>python</td>
-            <td>- 3.4 ou supérieur<p>- suite tkinter</td>
-            <td>- 3.7 ou supérieur<p>- suite tkinter</td>
-        </tr>
-        <tr>
-            <td><b>os</td>
-            <td>- Windows 7 ou supérieur <p> - système graphique basé sur debian</td>
-            <td>- Windows 10 ou supérieur</td>
-        </tr>
-        <tr>
-            <td><b>espace disque</td>
-            <td>100 Ko</td>
-            <td>200 Ko</td>
-        </tr>
-        <tr>
-            <td><b>RAM</td>
-            <td>20 Mo libres</td>
-            <td>30 Mo libres</td>
-        </tr>
-</table>
+### liste exigence pour I-python
+
+||MINIMUM|RECOMMANDÉ|
+|-|-|-|
+| python | - 3.4 ou supérieur<p> - suite tkinter |- 3.7 ou supérieur<p>- suite tkinter|
+| os 	| - Windows 7 ou supérieur <p> - système graphique basé sur debian 	|- Windows 10 ou supérieur|
+| espace disque 	| 100 Ko | 200 Ko |
+| RAM 	| 20 Mo libres | 30 Mo libres |
+|
+
 
 <p>
     *Les applications ica ne sont pas maintenue de garantirent ces critères.
