@@ -8,7 +8,6 @@
 | os 	| - Windows 7 ou supérieur <p> - système graphique basé sur debian 	|- Windows 10 ou supérieur|
 | espace disque 	| 100 Ko | 200 Ko |
 | RAM 	| 20 Mo libres | 30 Mo libres |
-|
 
 
 <p>
