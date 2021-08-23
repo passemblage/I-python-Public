@@ -15,7 +15,7 @@ Téléchargez [l’installeur](https://github.com/passemblage/I-python-Public/re
 | RAM 	| 20 Mo libres | 30 Mo libres |
 
 
-<i>*Les applications ica ne sont pas maintenue de garantirent ces critères.</i>
+<i>*Les applications ica ne sont pas maintenue de garantir ces critères.</i>
 
 ## applications
 
