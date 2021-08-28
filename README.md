@@ -2,7 +2,7 @@
 
 ## INSTALLATION
 
-Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) ou téléchargez les fichiers depuis le [centre de téléchargement](https://passemblage.github.io/I-python-Public/fichier/download)
+Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) ou téléchargez les fichiers depuis le [centre de téléchargement](https://passemblage.github.io/I-python-Public/web/download)
 
 ## COMPATIBILITÉ*
 ### liste exigence pour I-python
@@ -66,8 +66,8 @@ Ils permettent de modifier et personnaliser les réglages comme la couleur via u
 
 ## VOIR AUSSI
 
-[condition d'utilisation](https://passemblage.github.io/I-python-Public/fichier/legal)
+[condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
 
-[documentation technique](https://passemblage.github.io/I-python-Public/fichier/doc-technique)
+[documentation technique](https://passemblage.github.io/I-python-Public/web/doc-technique)
 
-[centre de téléchargement](https://passemblage.github.io/I-python-Public/fichier/download)
+[centre de téléchargement](https://passemblage.github.io/I-python-Public/web/download)
