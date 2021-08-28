@@ -15,9 +15,7 @@ En utilisant les lien de téléchargement suivants, vous accepter les [condition
 
 [systeme de fichier cytron (requis)](https://passemblage.github.io/I-python-Public/versions/[Q/cytron.py)
 
-### archives
-
-[discord.gg/PFbymQ3d97](https://discord.gg/PFbymQ3d97)
+[archives depuis discord](https://discord.gg/PFbymQ3d97)
 
 ### python3
 
