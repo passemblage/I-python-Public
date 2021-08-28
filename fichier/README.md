@@ -4,8 +4,11 @@ Les presentes CGU ou Conditions Generales d Utilisation encadrent juridiquement 
 Constituant le contrat entre la societe Passemblage, l Utilisateur, l acces a l appli doit être precede de l acceptation de ces CGU. L acces a cette appli signifie l acceptation des presentes CGU.
 
 Article 2) Acces au site
-L appli permet d acceder gratuitement aux services suivants:
-    - Utilisation de I-python de son sous systeme cytron
+L’appli permet l'utilisation gratuite des services suivants :
+    - systeme I-python
+    - ces applis integrées
+    - son sous systeme de fichier cytron
+    - l'interpréteur d'app ica
 L appli est accessible gratuitement depuis n importe ou par tout utilisateur  Tous les frais necessaires pour l acces aux services (materiel informatique, connexion Internet...) sont a la charge de l utilisateur.
 Pour des raisons de maintenance ou autres, l acces a l appli peut être interrompu ou suspendu par l editeur sans preavis ni justification.
 

@@ -5,9 +5,12 @@
 Les présentes CGU ou Conditions Générales d’Utilisation encadrent juridiquement l’utilisation des services de l’application I-python (ci-après dénommé «l’app», ou «l’appli »).
 <br>Constituant le contrat entre la société Passemblage, l’Utilisateur, l’accès à l’appli doit être précédé de l’acceptation de ces CGU. L’accès à cette appli signifie l’acceptation des présentes CGU.
 
-### Article 2 : Accès au site
-L’appli permet d’accéder gratuitement aux services suivants :
-    <br>• Utilisation de I-python
+### Article 2 : Accès aux services
+L’appli permet l'utilisation gratuite des services suivants :
+    <br>• systeme I-python
+    <br>• ces applis integrées
+    <br>• son sous systeme de fichier cytron
+    <br>• l'interpréteur d'app ica
 <br>L’appli est accessible gratuitement depuis n’importe où par tout utilisateur  Tous les frais nécessaires pour l’accès aux services (matériel informatique, connexion Internet…) sont à la charge de l’utilisateur.
 <br>Pour des raisons de maintenance ou autres, l’accès a l’appli peut être interrompu ou suspendu par l’éditeur sans préavis ni justification.
 
