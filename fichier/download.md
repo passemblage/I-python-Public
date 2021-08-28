@@ -11,7 +11,7 @@ En utilisant les lien de téléchargement suivants, vous accepter les [condition
 
 [version stable](https://passemblage.github.io/I-python-Public/versions/-D/main.py)
 
-[version de dévloppement](https://passemblage.github.io/I-python-Public/versions/-D/main.py)
+[version de développement](https://passemblage.github.io/I-python-Public/versions/-D/main.py)
 
 [systeme de fichier cytron (requis)](https://passemblage.github.io/I-python-Public/versions/[Q/cytron.py)
 
