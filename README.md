@@ -55,7 +55,8 @@ pour lister tout les fichier ica du dossier <i> ~/cytron/sys/app </i>
 
 ### Paramètres
 
-<i> en rédaction </i>
+Les paramètres composent l’application la plus complète d' I-python.<br>
+Ils permettent de modifier et personnaliser les réglages comme la couleur via un champ de saisie (code HEX ou nom), le thème et le mode full screen / fenêtré ainsi qu'un accès au copyright.
 
 ### Editeur de texte
 
