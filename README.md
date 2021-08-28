@@ -1,10 +1,10 @@
 # I-python
 
-## INSTALLATION
+## • INSTALLATION
 
 Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) ou téléchargez les fichiers depuis le [centre de téléchargement](https://passemblage.github.io/I-python-Public/web/download)
 
-## COMPATIBILITÉ*
+## • COMPATIBILITÉ*
 ### liste exigence pour I-python
 
 ||MINIMUM|RECOMMANDÉ|
@@ -17,7 +17,7 @@ Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releas
 
 <i>*Les applications ica ne sont pas maintenue de garantire ces critères.</i>
 
-## APPLICATION
+## • APPLICATION
 
 ### Terminal (TIP)
 
@@ -64,7 +64,7 @@ Ils permettent de modifier et personnaliser les réglages comme la couleur via u
 
 <i> en rédaction </i>
 
-## VOIR AUSSI
+## • sVOIR AUSSI
 
 [condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
 
