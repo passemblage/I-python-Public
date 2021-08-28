@@ -2,7 +2,7 @@
 ## • CONDITIONS GÉNÉRALES D'UTILISATION
 
 ### Article 1 : Objet
-Les présentes CGU ou Conditions Générales d’Utilisation encadrent juridiquement l’utilisation des services de l’application I-python (ci-après dénommé «l’app», ou «l’appli »).
+Les présentes CGU ou Conditions Générales d’Utilisation encadrent juridiquement l’utilisation des services de l’application I-python.
 <br>Constituant le contrat entre la société Passemblage, l’Utilisateur, l’accès à l’appli doit être précédé de l’acceptation de ces CGU. L’accès à cette appli signifie l’acceptation des présentes CGU.
 
 ### Article 2 : Accès aux services
