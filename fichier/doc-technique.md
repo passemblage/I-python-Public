@@ -1,5 +1,5 @@
 # I-python
-## -|- CODE ERREUR -|-
+## CODE ERREUR
 
 <b> - 01 TIP </b>
 
@@ -21,7 +21,7 @@
 
 <b> - 09 ICA (I-python Custom Apps) </b>
 
-## -|- LISTE DES VARIABLES & FONCTIONS -|-
+## LISTE DES VARIABLES & FONCTIONS
 
 |ADD TEST||
 |-|-|
@@ -63,7 +63,7 @@
 |para_dark_o|0 = désactivé / 1 = activé|
 |para_app_o|0 = fermer / 1 = ouvert|
 
-## -|- VOIR AUSSI -|-
+## VOIR AUSSI
 [retour a l'accueil](https://passemblage.github.io/I-python-Public/)
 
 [condition d'utilisation](https://passemblage.github.io/I-python-Public/fichier/legal)
