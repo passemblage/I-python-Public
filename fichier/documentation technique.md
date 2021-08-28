@@ -38,7 +38,7 @@
 |addtest_score|forme le résultat en une variable|
 |addtest_destroy|détruit result && explication|
 |addtest_inter|texte d'interprétation du score|
-
+<br>
 |PARAMETRES||
 |-|-|
 |para_titre|affichage du titre de l'appli|

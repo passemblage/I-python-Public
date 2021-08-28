@@ -67,6 +67,6 @@ pour lister tout les fichier ica du dossier <i> ~/cytron/sys/app </i>
 
 ## -|- VOIR AUSSI -|-
 
-[condition d'utilisation](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py)
+[condition d'utilisation](https://passemblage.github.io/I-python-Public/fichier/legal)
 
-[documentation technique](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py)
+[documentation technique](https://passemblage.github.io/I-python-Public/fichier/documentation%20technique)
