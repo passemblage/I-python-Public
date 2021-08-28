@@ -1,5 +1,5 @@
 # [I-python](https://passemblage.github.io/I-python-Public/)
-## • CODE ERREUR
+## • CODE D'ERREUR
 
 <b> - 01 TIP </b>
 
