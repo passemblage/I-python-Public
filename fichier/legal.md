@@ -1,5 +1,4 @@
 # I-python
-[retour a l'accueil](https://passemblage.github.io/I-python-Public/)
 ## Conditions générales d’utilisation de I-python:
 
 ### Article 1 : Objet
