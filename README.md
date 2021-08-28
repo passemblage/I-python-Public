@@ -64,7 +64,7 @@ Ils permettent de modifier et personnaliser les réglages comme la couleur via u
 
 <i> en rédaction </i>
 
-## • sVOIR AUSSI
+## • VOIR AUSSI
 
 [condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
 
