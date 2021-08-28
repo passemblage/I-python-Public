@@ -22,4 +22,4 @@ En utilisant les lien de téléchargement suivants, vous accepter les [condition
 ## VOIR AUSSI
 [retour a l'accueil](https://passemblage.github.io/I-python-Public/)
 
-[condition d'utilisation](https://passemblage.github.io/I-python-Public/fichier/legal)
+[conditions d'utilisation](https://passemblage.github.io/I-python-Public/fichier/legal)
