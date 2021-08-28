@@ -1,22 +1,16 @@
 # I-python
 ## CENTRE DE TÉLÉCHARGEMENT
 ### installation automatique
-installeur (en python):
 
-[I-python.py](https://passemblage.github.io/I-python-Public/I-python.py)
+[installeur (en python)](https://passemblage.github.io/I-python-Public/I-python.py)
 
 ### installation manuelle
-version stable:
 
-[main.py](https://passemblage.github.io/I-python-Public/versions/-D/main.py)
+[version stable](https://passemblage.github.io/I-python-Public/versions/-D/main.py)
 
-version de dévloppement:
+[version de dévloppement](https://passemblage.github.io/I-python-Public/versions/-D/main.py)
 
-[main.py](https://passemblage.github.io/I-python-Public/versions/-D/main.py)
-
-systeme de fichier cytron: (requis)
-
-[cytron.py](https://passemblage.github.io/I-python-Public/versions/[Q/cytron.py)
+[systeme de fichier cytron (requis)](https://passemblage.github.io/I-python-Public/versions/[Q/cytron.py)
 
 ### python3
 
