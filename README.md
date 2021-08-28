@@ -65,24 +65,8 @@ pour lister tout les fichier ica du dossier <i> ~/cytron/sys/app </i>
 
 <i> en rédaction </i>
 
-## -|- CODE ERREUR -|-
+## -|- VOIR AUSSI -|-
 
-<b> - 01 TIP </b>
+[condition d'utilisation](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py)
 
-<b> - 02 test de perf </b>
-
-<b> - 03 parametres </b>
-
-<b> - 04 editeur de texte </b>
-<br>@04AA >> edt_save()
-
-<b> - 05 menu d'arret </b>
-
-<b> - 06 d'hedwige </b>
-
-<b> - 07 cytron exploreur </b>
-<br>@07AA >> ce_go()
-
-<b> - 08 page de debug </b>
-
-<b> - 09 ICA (I-python Custom Apps) </b>
+[documentation technique](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py)
