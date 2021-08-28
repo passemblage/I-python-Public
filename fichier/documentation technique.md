@@ -64,7 +64,6 @@
 |para_app_o|0 = fermer / 1 = ouvert|
 
 ## -|- VOIR AUSSI -|-
+[retour a l'accueil](https://passemblage.github.io/I-python-Public/)
 
 [condition d'utilisation](https://passemblage.github.io/I-python-Public/fichier/legal)
-
-[retour a l'accueil](https://passemblage.github.io/I-python-Public/)
