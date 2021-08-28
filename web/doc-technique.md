@@ -63,7 +63,7 @@
 |para_dark_o|0 = désactivé / 1 = activé|
 |para_app_o|0 = fermer / 1 = ouvert|
 
-## VOIR AUSSI
+## • VOIR AUSSI
 [retour a l'accueil](https://passemblage.github.io/I-python-Public/)
 
 [conditions d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
