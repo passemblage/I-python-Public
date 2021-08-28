@@ -10,11 +10,11 @@ version stable:
 
 [main.py](https://passemblage.github.io/I-python-Public/versions/-D/main.py)
 
-version de dévloppement
+version de dévloppement:
 
 [main.py](https://passemblage.github.io/I-python-Public/versions/-D/main.py)
 
-cytron (requis)
+systeme de fichier cytron: (requis)
 
 [cytron.py](https://passemblage.github.io/I-python-Public/versions/[Q/cytron.py)
 
