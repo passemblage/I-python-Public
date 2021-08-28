@@ -1,23 +1,26 @@
-## Conditions generales d utilisation de I-python
-### Article 1) Objet
-Les presentes CGU ou Conditions Generales d Utilisation encadrent juridiquement l utilisation des services de l application I-python (ci-apres denomme "l app", ou "l appli" ).
-Constituant le contrat entre la societe Passemblage, l Utilisateur, l acces a l appli doit être precede de l acceptation de ces CGU. L acces a cette appli signifie l acceptation des presentes CGU.
+# I-python
 
-### Article 2) Acces au site
-L appli permet d acceder gratuitement aux services suivants:
-    - Utilisation de I-python de son sous systeme cytron
-L appli est accessible gratuitement depuis n importe ou par tout utilisateur  Tous les frais necessaires pour l acces aux services (materiel informatique, connexion Internet...) sont a la charge de l utilisateur.
-Pour des raisons de maintenance ou autres, l acces a l appli peut être interrompu ou suspendu par l editeur sans preavis ni justification.
+## Conditions générales d’utilisation de I-python:
 
-### Article 3) Propriete intellectuelle
-Les marques, logos ainsi que les contenus de l appli (illustrations graphiques, textes…) sont proteges par le Code de la propriete intellectuelle et par le droit d auteur.
-La reproduction et la copie des contenus par l Utilisateur requierent une autorisation prealable de l editeur. 
+### Article 1 : Objet
+Les présentes CGU ou Conditions Générales d’Utilisation encadrent juridiquement l’utilisation des services de l’application I-python (ci-après dénommé «l’app», ou «l’appli »).
+<br>Constituant le contrat entre la société Passemblage, l’Utilisateur, l’accès à l’appli doit être précédé de l’acceptation de ces CGU. L’accès à cette appli signifie l’acceptation des présentes CGU.
 
-### Article 4) Liens 
-L appli peut etre constitue de liens. En cliquant sur ces derniers, l Utilisateur sortira de la plateforme. Cette derniere n a pas de contrôle et ne peut pas être tenue responsable du contenu des pages web relatives a ces liens.
+### Article 2 : Accès au site
+L’appli permet d’accéder gratuitement aux services suivants :
+    <br>• Utilisation de I-python
+<br>L’appli est accessible gratuitement depuis n’importe où par tout utilisateur  Tous les frais nécessaires pour l’accès aux services (matériel informatique, connexion Internet…) sont à la charge de l’utilisateur.
+<br>Pour des raisons de maintenance ou autres, l’accès a l’appli peut être interrompu ou suspendu par l’éditeur sans préavis ni justification.
 
-### Article 5) Duree du contrat
-Le present contrat est valable pour une duree indeterminee. Le debut de l utilisation des services de l appli marque l application du contrat a l egard de l Utilisateur.
+### Article 3 : Propriété intellectuelle
+Les marques, logos ainsi que les contenus de l’appli (illustrations graphiques, textes…) sont protégés par le Code de la propriété intellectuelle et par le droit d’auteur.
+<br>La reproduction et la copie des contenus par l’Utilisateur requièrent une autorisation préalable de l’éditeur. 
 
-### Article 6) Droit applicable et juridiction competente
-Le present contrat est soumis a la legislation francaise. L absence de resolution a l amiable des cas de litige entre les parties implique le recours aux tribunaux francais competents pour regler le contentieux.
+### Article 4 : Liens 
+L’appli peut être constitué de liens . En cliquant sur ces derniers, l’Utilisateur sortira de la plateforme. Cette dernière n’a pas de contrôle et ne peut pas être tenue responsable du contenu des pages web relatives à ces liens.
+
+### Article 5 : Durée du contrat
+Le présent contrat est valable pour une durée indéterminée. Le début de l’utilisation des services de l’appli marque l’application du contrat à l’égard de l’Utilisateur.
+
+### Article 6 : Droit applicable et juridiction compétente
+Le présent contrat est soumis à la législation française. L’absence de résolution à l’amiable des cas de litige entre les parties implique le recours aux tribunaux français compétents pour régler le contentieux.
