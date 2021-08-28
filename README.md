@@ -1,11 +1,11 @@
 # I-python
 
-## installation
+## -|- INSTALLATION -|-
 
 Téléchargez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) puis exécutez le et suivez les instructions
 
-## compatibilité*
-#### liste exigence pour I-python
+## -|- COMPATIBILITÉ* -|-
+### liste exigence pour I-python
 
 ||MINIMUM|RECOMMANDÉ|
 |-|-|-|
@@ -15,9 +15,9 @@ Téléchargez [l’installeur](https://github.com/passemblage/I-python-Public/re
 | RAM 	| 20 Mo libres | 30 Mo libres |
 
 
-<i>*Les applications ica ne sont pas maintenue de garantir ces critères.</i>
+<i>*Les applications ica ne sont pas maintenue de garantire ces critères.</i>
 
-## applications
+## -|- APPLICATION -|-
 
 ### Terminal (TIP)
 
@@ -64,3 +64,25 @@ pour lister tout les fichier ica du dossier <i> ~/cytron/sys/app </i>
 ### Hedwige
 
 <i> en rédaction </i>
+
+## -|- CODE ERREUR -|-
+
+### 1 TIP
+
+### 2 test de perf
+
+### 3 parametres
+
+### 4 editeur de texte
+@04AA >> edt_save()
+
+### 5 menu d'arret
+
+### 6 d'hedwige
+
+### 7 cytron exploreur
+@07AA >> ce_go()
+
+### 8 page de debug
+
+### 9 ICA (I-python Custom Apps)
