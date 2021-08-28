@@ -29,7 +29,7 @@ def condition():
     condition_ba.place(x= 50 ,y=50,width= 500,height=250)
 
     try:
-        condition_ba.insert(0.0, urlopen('https://raw.githubusercontent.com/passemblage/I-python-Public/main/web/README.md').read())
+        condition_ba.insert(0.0, urlopen('https://raw.githubusercontent.com/passemblage/I-python-Public/main/fichier/README.md').read())
         condition_ba.configure(state='disabled')
 
         accepter = tk.Button(fenetre, text='accepter',bg = "#00ff00", activebackground="black", command =accepter_a)
