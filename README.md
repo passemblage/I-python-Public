@@ -2,7 +2,7 @@
 
 ## INSTALLATION
 
-Téléchargez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) puis exécutez le et suivez les instructions
+exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) ou téléchargez les fichier depuis le [centre de téléchargement](https://passemblage.github.io/I-python-Public/fichier/download)
 
 ## COMPATIBILITÉ*
 ### liste exigence pour I-python
