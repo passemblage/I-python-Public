@@ -48,8 +48,7 @@ Il a aussi remplacé la barre d’ouverture de l’éditeur de texte<br>
 
 ### Lanceur d'app ica
 
-Le lanceur d’app ica est apparut en [Q 07.02<br>
-il permet de lancé interprétation et l’exécution d’une app ica.<br>
+Le lanceur d’app ica est apparut en [Q 07.02, il permet de lancé interprétation et l’exécution d’une app ica.<br>
 Son système de sélection reprend le code de cytron exploreur pour lister tout les fichier ica du dossier <i> ~/cytron/sys/app </i>
 
 ### Paramètres
