@@ -66,4 +66,4 @@
 ## VOIR AUSSI
 [retour a l'accueil](https://passemblage.github.io/I-python-Public/)
 
-[condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
+[conditions d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
