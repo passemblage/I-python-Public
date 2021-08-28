@@ -23,3 +23,9 @@ Le présent contrat est valable pour une durée indéterminée. Le début de l�
 
 ### Article 6 : Droit applicable et juridiction compétente
 Le présent contrat est soumis à la législation française. L’absence de résolution à l’amiable des cas de litige entre les parties implique le recours aux tribunaux français compétents pour régler le contentieux.
+
+## -|- VOIR AUSSI -|-
+
+[retour a l'accueil](https://passemblage.github.io/I-python-Public/)
+
+[documentation technique](https://passemblage.github.io/I-python-Public/fichier/documentation%20technique)
