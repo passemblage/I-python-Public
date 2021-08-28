@@ -1,10 +1,10 @@
 # I-python
 
-## -|- INSTALLATION -|-
+## INSTALLATION
 
 Téléchargez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) puis exécutez le et suivez les instructions
 
-## -|- COMPATIBILITÉ* -|-
+## COMPATIBILITÉ*
 ### liste exigence pour I-python
 
 ||MINIMUM|RECOMMANDÉ|
@@ -17,7 +17,7 @@ Téléchargez [l’installeur](https://github.com/passemblage/I-python-Public/re
 
 <i>*Les applications ica ne sont pas maintenue de garantire ces critères.</i>
 
-## -|- APPLICATION -|-
+## APPLICATION
 
 ### Terminal (TIP)
 
@@ -65,7 +65,7 @@ pour lister tout les fichier ica du dossier <i> ~/cytron/sys/app </i>
 
 <i> en rédaction </i>
 
-## -|- VOIR AUSSI -|-
+## VOIR AUSSI
 
 [condition d'utilisation](https://passemblage.github.io/I-python-Public/fichier/legal)
 

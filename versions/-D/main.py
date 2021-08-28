@@ -19,7 +19,7 @@ except:
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "-D 06 -|- " + cytron.cy_version()
+version_id = "-D 06 " + cytron.cy_version()
 version_info ="- NEWS -\n-bug"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation et tests\npf4: développement, programmation et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: wHwZNkdRB7"
 

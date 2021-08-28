@@ -1123,7 +1123,7 @@ def mda_app():
 
 #id de la version
 
-    mda_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
+    mda_version_id = tk.Label(fenetre, text=version_id +" " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
     mda_version_id.pack()
     mda_version_id.place(x=largeur/2 -100, y=hauteur-20, width=200, height=20)
 
@@ -1406,7 +1406,7 @@ def dp_app(raison, code):
 
     #id de la version
 
-    dp_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
+    dp_version_id = tk.Label(fenetre, text=version_id +" " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
     dp_version_id.pack()
     dp_version_id.place(x=largeur/2 -100, y=hauteur-20, width=200, height=20)
 
