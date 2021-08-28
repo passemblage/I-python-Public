@@ -20,6 +20,7 @@
 <b> - 08 page de debug </b>
 
 <b> - 09 ICA (I-python Custom Apps) </b>
+<br>@09AA >> icai_go()
 
 ## • LISTE DES VARIABLES & FONCTIONS
 
