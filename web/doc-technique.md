@@ -1,5 +1,5 @@
 # I-python
-## CODE ERREUR
+## • CODE ERREUR
 
 <b> - 01 TIP </b>
 
@@ -21,7 +21,7 @@
 
 <b> - 09 ICA (I-python Custom Apps) </b>
 
-## LISTE DES VARIABLES & FONCTIONS
+## • LISTE DES VARIABLES & FONCTIONS
 
 |ADD TEST||
 |-|-|
