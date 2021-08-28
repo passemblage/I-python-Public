@@ -1,5 +1,5 @@
 # I-python
-## Conditions générales d’utilisation de I-python:
+## CONDITIONS GÉNÉRALES D'UTILISATION
 
 ### Article 1 : Objet
 Les présentes CGU ou Conditions Générales d’Utilisation encadrent juridiquement l’utilisation des services de l’application I-python (ci-après dénommé «l’app», ou «l’appli »).
