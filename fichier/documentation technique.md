@@ -22,8 +22,7 @@
 
 ## -|- LISTE DES VARIABLES & FONCTIONS -|-
 
-### ADD TEST
-|||
+|ADD TEST||
 |-|-|
 |addtest_titre|affichage du titre de l'appli|
 |addtest_start_b|bonton de demarage du test|
@@ -40,8 +39,7 @@
 |addtest_destroy|détruit result && explication|
 |addtest_inter|texte d'interprétation du score|
 
-### PARAMETRES
-|||
+|PARAMETRES||
 |-|-|
 |para_titre|affichage du titre de l'appli|
 |para_app|fonction qui fait apparettre l'appli|
