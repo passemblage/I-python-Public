@@ -67,22 +67,22 @@ pour lister tout les fichier ica du dossier <i> ~/cytron/sys/app </i>
 
 ## -|- CODE ERREUR -|-
 
-### 1 TIP
+<b> - 01 TIP </b>
 
-### 2 test de perf
+<b> - 02 test de perf </b>
 
-### 3 parametres
+<b> - 03 parametres </b>
 
-### 4 editeur de texte
-@04AA >> edt_save()
+<b> - 04 editeur de texte </b>
+<br>@04AA >> edt_save()
 
-### 5 menu d'arret
+<b> - 05 menu d'arret </b>
 
-### 6 d'hedwige
+<b> - 06 d'hedwige </b>
 
-### 7 cytron exploreur
-@07AA >> ce_go()
+<b> - 07 cytron exploreur </b>
+<br>@07AA >> ce_go()
 
-### 8 page de debug
+<b> - 08 page de debug </b>
 
-### 9 ICA (I-python Custom Apps)
+<b> - 09 ICA (I-python Custom Apps) </b>
