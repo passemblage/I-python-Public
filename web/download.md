@@ -5,7 +5,7 @@ En utilisant les lien de téléchargement suivants, vous accepter les [condition
 
 ### installation automatique
 
-[installeur (en python)](https://passemblage.github.io/I-python-Public/I-python.py)
+[installeur (en python)](https://passemblage.github.io/I-python-Public/I-python.pyw)
 
 ### installation manuelle
 
