@@ -11,6 +11,7 @@ Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releas
 |-|-|-|
 | python | - 3.4 ou supérieur<br> - suite tkinter |- 3.7 ou supérieur<br>- suite tkinter|
 | os 	| - Windows 7 ou supérieur <br> - système graphique basé sur debian 	|- Windows 10 ou supérieur|
+| écran | HD (1280x720) | Full HD (1920x1080) |
 | espace disque 	| 100 Ko | 200 Ko |
 | RAM 	| 20 Mo libres | 30 Mo libres |
 
