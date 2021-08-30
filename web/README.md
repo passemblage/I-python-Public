@@ -1,5 +1,6 @@
-# <b>[I-python](https://passemblage.github.io/I-python-Public/web)
-## • index
+# <b>[I-python](https://passemblage.github.io/I-python-Public/web)</b>
+
+## • Index
 
 ### I-python
 
