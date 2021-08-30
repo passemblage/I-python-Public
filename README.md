@@ -1,10 +1,10 @@
 # <b>[I-python](https://passemblage.github.io/I-python-Public/web)</b>
 
 ## <b> INSTALLATION </b>
-
+### pour commencer
 Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) ou téléchargez les fichiers depuis le [centre de téléchargement](https://passemblage.github.io/I-python-Public/web/download)
 
-## <b> COMPATIBILITÉ </b> * 
+### compatibilité *
 ### liste exigence pour I-python
 
 ||MINIMUM|RECOMMANDÉ|
