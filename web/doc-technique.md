@@ -1,25 +1,25 @@
 # **[I-python](https://passemblage.github.io/I-python-Public/web)**
 ## **CODE D'ERREUR**
 
-* - 01 TIP *
+- 01 TIP
 
-* - 02 test de perf *
+- 02 test de perf
 
-* - 03 parametres *
+- 03 parametres
 
-* - 04 editeur de texte *
+- 04 editeur de texte
 <br>@04AA >> edt_save()
 
-* - 05 menu d'arret *
+- 05 menu d'arret
 
-* - 06 d'hedwige *
+- 06 d'hedwige
 
-* - 07 cytron exploreur *
+- 07 cytron exploreur
 <br>@07AA >> ce_go()
 
-* - 08 page de debug *
+- 08 page de debug
 
-* - 09 ICA (I-python Custom Apps) *
+- 09 ICA (I-python Custom Apps)
 <br>@09AA >> icai_go()
 
 ## **LISTE DES VARIABLES & FONCTIONS**
