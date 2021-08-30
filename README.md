@@ -66,6 +66,6 @@ Ils permettent de modifier et personnaliser les réglages comme la couleur via u
 
 ## <b> VOIR AUSSI </b>
 
-[condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
+- [condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
 
-[documentation technique](https://passemblage.github.io/I-python-Public/web/doc-technique)
+- [documentation technique](https://passemblage.github.io/I-python-Public/web/doc-technique)
