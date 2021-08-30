@@ -1,5 +1,5 @@
-# <b>[I-python](https://passemblage.github.io/I-python-Public/web)</b>
-## <b> CENTRE DE TÉLÉCHARGEMENT </b>
+# **[I-python](https://passemblage.github.io/I-python-Public/web)**
+## **CENTRE DE TÉLÉCHARGEMENT**
 
 En utilisant les lien de téléchargement suivants, vous accepter les [conditions d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
 
@@ -21,7 +21,7 @@ En utilisant les lien de téléchargement suivants, vous accepter les [condition
 
 - [site officiel](https://www.python.org/downloads/)
 
-## <b> VOIR AUSSI </b>
+## **VOIR AUSSI**
 
 - [retour a l'accueil](https://passemblage.github.io/I-python-Public/)
 

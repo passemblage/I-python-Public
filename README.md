@@ -1,6 +1,6 @@
-# <b>[I-python](https://passemblage.github.io/I-python-Public/web)</b>
+# **[I-python](https://passemblage.github.io/I-python-Public/web)**
 
-## <b> INSTALLATION </b>
+## **INSTALLATION**
 ### téléchargement
 Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) ou téléchargez les fichiers depuis le [centre de téléchargement](https://passemblage.github.io/I-python-Public/web/download)
 
@@ -17,7 +17,7 @@ Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releas
 
 <i>*Les applications ica ne sont pas maintenue de garantire ces critères.</i>
 
-## <b> APPLICATION </b>
+## **APPLICATION**
 
 ### Terminal (TIP)
 
@@ -64,7 +64,7 @@ Ils permettent de modifier et personnaliser les réglages comme la couleur via u
 
 <i> en rédaction </i>
 
-## <b> VOIR AUSSI </b>
+## **VOIR AUSSI**
 
 - [condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
 
