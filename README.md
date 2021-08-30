@@ -70,5 +70,3 @@ Ils permettent de modifier et personnaliser les réglages comme la couleur via u
 [condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
 
 [documentation technique](https://passemblage.github.io/I-python-Public/web/doc-technique)
-
-[centre de téléchargement](https://passemblage.github.io/I-python-Public/web/download)

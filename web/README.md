@@ -15,7 +15,7 @@
 
 [documentation sur le ica](https://passemblage.github.io/I-python-Public/web/ica)
 
-[vidéo d'introduction](www.youtube.com/watch?v=jHBpZrP04fE&t)
+[vidéo d'introduction](https://www.youtube.com/watch?v=jHBpZrP04fE&t)
 
 ### Cytron
 
