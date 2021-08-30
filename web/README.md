@@ -4,26 +4,26 @@
 
 ### I-python
 
-[accueil](https://passemblage.github.io/I-python-Public)
+- [accueil](https://passemblage.github.io/I-python-Public)
 
-[condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
+- [condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
 
-[documentation technique](https://passemblage.github.io/I-python-Public/web/doc-technique)
+- [documentation technique](https://passemblage.github.io/I-python-Public/web/doc-technique)
 
-[centre de téléchargement](https://passemblage.github.io/I-python-Public/web/download)
+- [centre de téléchargement](https://passemblage.github.io/I-python-Public/web/download)
 
 ### Ica
 
-[documentation sur le ica](https://passemblage.github.io/I-python-Public/web/ica)
+- [documentation sur le ica](https://passemblage.github.io/I-python-Public/web/ica)
 
-[vidéo d'introduction](https://www.youtube.com/watch?v=jHBpZrP04fE&t)
+- [vidéo d'introduction](https://www.youtube.com/watch?v=jHBpZrP04fE&t)
 
 ### Cytron
 
-[Github officiel](https://github.com/pf4-DEV/cytron)
+- [Github officiel](https://github.com/pf4-DEV/cytron)
 
 ## • CONTACT
 
 Email: passemblage@gmail.com
 
-[serveur Discord](https://discord.gg/PFbymQ3d97)
+- [serveur Discord](https://discord.gg/PFbymQ3d97)
