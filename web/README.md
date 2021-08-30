@@ -24,6 +24,6 @@
 
 ## <b>CONTACT</b>
 
-Email: passemblage@gmail.com
+- Email: passemblage@gmail.com
 
 - [serveur Discord](https://discord.gg/PFbymQ3d97)
