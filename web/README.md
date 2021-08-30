@@ -1,6 +1,6 @@
 # <b>[I-python](https://passemblage.github.io/I-python-Public/web)</b>
 
-## INDEX
+## <b>INDEX</b>
 
 ### I-python
 
@@ -22,7 +22,7 @@
 
 - [Github officiel](https://github.com/pf4-DEV/cytron)
 
-## • CONTACT
+## <b>CONTACT</b>
 
 Email: passemblage@gmail.com
 
