@@ -29,6 +29,6 @@ Le présent contrat est soumis à la législation française. L’absence de ré
 
 ## <b> VOIR AUSSI </b>
 
-[retour a l'accueil](https://passemblage.github.io/I-python-Public/)
+- [retour a l'accueil](https://passemblage.github.io/I-python-Public/)
 
-[documentation technique](https://passemblage.github.io/I-python-Public/web/documentation%20technique)
+- [documentation technique](https://passemblage.github.io/I-python-Public/web/documentation%20technique)
