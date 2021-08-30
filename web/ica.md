@@ -9,4 +9,5 @@ Créer des applis dans I-python était de plus en plus complexe, en effet pour g
 Le ICA est un langage maison interprété à faible latence à la volé depuis *main.py*. Les applications créé en ICA sont accessible depuis le lanceur d’application ICA dans les versions [Q 07.02 et supérieur. Le fichier de code ICA doit impérativement avoir l’extension de fichier .ica et se trouvé dans */sys/app/* pour apparaître dans le lanceur
 
 ### Les zones:
+
 Les zones
