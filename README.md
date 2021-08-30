@@ -1,10 +1,10 @@
-# [I-python](https://passemblage.github.io/I-python-Public/web)
+# <b>[I-python](https://passemblage.github.io/I-python-Public/web)</b>
 
-## • INSTALLATION
+## <b> INSTALLATION </b>
 
 Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releases/download/i04/I-python.py) ou téléchargez les fichiers depuis le [centre de téléchargement](https://passemblage.github.io/I-python-Public/web/download)
 
-## • COMPATIBILITÉ*
+## <b> COMPATIBILITÉ </b> * 
 ### liste exigence pour I-python
 
 ||MINIMUM|RECOMMANDÉ|
@@ -18,7 +18,7 @@ Exécutez [l’installeur](https://github.com/passemblage/I-python-Public/releas
 
 <i>*Les applications ica ne sont pas maintenue de garantire ces critères.</i>
 
-## • APPLICATION
+## <b> APPLICATION </b>
 
 ### Terminal (TIP)
 
@@ -49,7 +49,7 @@ Il a aussi remplacé la barre d’ouverture de l’éditeur de texte<br>
 
 ### Lanceur d'app ica
 
-Le lanceur d’app ica est apparut en [Q 07.02, il permet de lancé interprétation et l’exécution d’une app ica.<br>
+Le lanceur d’app ica est apparut en [Q 07.02, il permet de lancé interprétation et l’exécution d’une app [ica](https://passemblage.github.io/I-python-Public/web/ica).<br>
 Son système de sélection reprend le code de cytron exploreur pour lister tout les fichier ica du dossier <i> ~/cytron/sys/app </i>
 
 ### Paramètres
@@ -65,7 +65,7 @@ Ils permettent de modifier et personnaliser les réglages comme la couleur via u
 
 <i> en rédaction </i>
 
-## • VOIR AUSSI
+## <b> VOIR AUSSI </b>
 
 [condition d'utilisation](https://passemblage.github.io/I-python-Public/web/legal)
 
