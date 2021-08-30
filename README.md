@@ -1,4 +1,4 @@
-# [I-python](https://passemblage.github.io/I-python-Public/)
+# [I-python](https://passemblage.github.io/I-python-Public/web)
 
 ## • INSTALLATION
 
