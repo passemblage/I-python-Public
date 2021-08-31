@@ -1,16 +1,15 @@
-##############################       debut des importations       ############################## Quitter
+##############################       debut des importations       ##############################
 
-import time, smtplib, ssl, os
+import os, cytron, time
 import tkinter as tk
+import threading
 
+from traceback import format_exc
+from ssl import create_default_context
+from smtplib import SMTP_SSL
 from webbrowser import open as webopen
 from _thread import start_new_thread
 from datetime import datetime
-
-try:
-    import cytron
-except:
-    print("ERR: le module cytron n'a pas peu etre importé")
 
 ##############################        fin des importations         ##############################
 
@@ -20,15 +19,18 @@ except:
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id, icai_off
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 07.06"
-version_info ="- NEWS -\n  *compatibilité systeme linux basé sur debian"
-info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\n\n- DEVLOPPEURS -\nlolo11: développement, programmation tests, et dev ica\npf4: développement, programmation, cytron, ICA et debug\n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: https://discord.gg/PFbymQ3d97"
+version_id = "[Q 07.07"
+version_info ="- NEWS -\n  *fs save\n*metronome de tache"
+info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\
+    \n\n- DEVLOPPEURS -\nlolo11: développement, programmation tests et bug ICA\npf4: développement, programmation, cytron, ICA et debug\
+    \n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: https://discord.gg/PFbymQ3d97"
 
 #definition de la couleur par defaut
-try:       # si il y une coulleur valide dans le fichier data, on l'applique 
-    gen_couleur = cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[0]
-except:    # sinon on met en lime
-    gen_couleur= "#00FF00"
+# si il y une coulleur valide dans le fichier data, on l'applique 
+try: gen_couleur = cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[0]
+
+# sinon on met en lime
+except: gen_couleur= "#00FF00"
 
 para_c_l = "#f0f0f0"
 para_t_l = "black"
@@ -47,6 +49,7 @@ menu_col_o = 0
 ical_open = 0
 icai_open = 0
 icai_off = False
+RUN = True
 
 #initialisation de fsf : 0 = full screen, 1 = pas de full screen
 fsf = 0
@@ -63,6 +66,14 @@ ttaches = 0
 
 ##############################fin d'assignation des variables##############################
 
+## CREATION DES DOSSIERS SYSTEME ##
+
+cytron.cy_mkdir("/", "cytron")
+cytron.cy_mkdir("/cytron" ,"user")
+cytron.cy_mkdir("/cytron" ,"sys")
+cytron.cy_mkdir("/cytron/sys" ,"app")
+cytron.cy_mkdir("/cytron/sys" ,"log")
+
 #########debut du setup de la fenetre#########
 
 #creation de la fenetre
@@ -70,7 +81,7 @@ fenetre = tk.Tk()
 
 #fenetre en plein ecran
 fenetre.attributes('-fullscreen', True)
-fenetre.geometry('1000x700')
+fenetre.geometry('1040x700')
 
 #set du titre de la fenetre
 fenetre.title(name_fenetre)
@@ -98,6 +109,12 @@ def theme_chang(color, text):
     if para_app_o == 1:
         para_app_d()
         para_app()
+
+def init_fs():
+    try:
+        para_fsf_aff(cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[2])
+    except: pass
+
 
 #definition fonction theme clair
 def para_lite():
@@ -260,15 +277,20 @@ def essential_destroy():
     menu_app_b.destroy()
     Label_Heure.destroy()
 
-def essential():
+def essential(geo=""):
     global Label_Heure, ligne_menu_outil_g, info_b, ligne_menu_outil_d, quitter_app_b, largeur, hauteur, terminal_sortie, cplr_hauteur, cplr_taille, exit_fenetre, fsf
+    if geo == "":
+        if fsf == 1:
+            largeur = fenetre.winfo_width()
+            hauteur = fenetre.winfo_height()
+        else:
+            largeur = fenetre.winfo_screenwidth()
+            hauteur = fenetre.winfo_screenheight()
 
-    if fsf == 1:
-        largeur = fenetre.winfo_width()
-        hauteur = fenetre.winfo_height()
     else:
-        largeur = fenetre.winfo_screenwidth()
-        hauteur = fenetre.winfo_screenheight()
+        fenetre.geometry(geo)
+        largeur = int(geo.split("x")[0])
+        hauteur = int(geo.split("x")[1])
 
     menu_col2()
 
@@ -307,7 +329,10 @@ def essential():
     menu_app_titre()
 
 def save_para():
-    text = str(gen_couleur) + "\n" + str(para_dark_o)
+    if fsf == 0:
+        text = str(gen_couleur) + "\n" + str(para_dark_o)
+    else:
+        text = str(gen_couleur) + "\n" + str(para_dark_o) + "\n" + str(largeur) + "x" + str(hauteur)
     cytron.cy_mkfil("/cytron/sys", "data.txt", text)
 
 
@@ -764,7 +789,7 @@ def interpreter(code):
             if commande[1] == "1":
                 if fe1 == 0:
                     try:
-                        start_new_thread( auto_reb,())
+                        threading.Thread(target=auto_reb, args=(),name="auto reb").start()
                         fe1 = 1
                         sortie = "reb automatique activé avec succès"
                     except:
@@ -826,7 +851,7 @@ def interpreter(code):
         tip_sortie(sortie)
 
 def tip_sortie(sortie):
-    terminal_ligne.place(x=largeur/2 -205, y=120, width=2, height=len(sortie.split("\n")) * 20)
+    terminal_ligne.place(x=largeur/2 -205, y=120, width=2, height=len(str(sortie).split("\n")) * 20)
     terminal_sortie.config(text=sortie)
 
 ### app tip #####
@@ -963,15 +988,15 @@ def para_titre_aff():
     para_titre.pack()
     para_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
 
-def para_fsf_aff():
+def para_fsf_aff(geo=""):
     global fsf, fe1
     if fe1 == 0:
-        start_new_thread( auto_reb,())
+        threading.Thread(target=auto_reb, args=(),name="auto reb").start()
         fe1 = 1
     fsf = 1
     fenetre.attributes('-fullscreen', False)
     essential_destroy()
-    essential()
+    essential(geo)
 
 def para_fst_aff():
     global fsf
@@ -1123,13 +1148,16 @@ def mda_app():
 
 #id de la version
 
-    mda_version_id = tk.Label(fenetre, text=version_id +" " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
+    mda_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
     mda_version_id.pack()
     mda_version_id.place(x=largeur/2 -100, y=hauteur-20, width=200, height=20)
 
-def quitter():
+def quitter(destroy=True):
+    global RUN
+    RUN = False
     save_para()
-    fenetre.destroy()
+    if destroy:
+        fenetre.destroy()
 
 def mda_d():
     global mda_titre, mda_open, mda_stop_b, mda_anul_b, mda_reboot_b, mda_version_id
@@ -1225,8 +1253,8 @@ def hedwige_start():
         hedwige_email = hedwige_text_ba.get("0.0", "end")
 
         # on crée la connexion
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(smtp_address, smtp_port, context=context) as server:
+        context = create_default_context()
+        with SMTP_SSL(smtp_address, smtp_port, context=context) as server:
             # connexion au compte
             server.login(hedwige_email_address, hedwige_email_password)
             # envoi du mail
@@ -1406,11 +1434,11 @@ def dp_app(raison, code):
 
     #id de la version
 
-    dp_version_id = tk.Label(fenetre, text=version_id +" " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
+    dp_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
     dp_version_id.pack()
     dp_version_id.place(x=largeur/2 -100, y=hauteur-20, width=200, height=20)
 
-    msg = "oups une erreur s'est produite:\n "+ raison + "\ncode:" + code
+    msg = "oups une erreur s'est produite:\n "+ str(raison) + "\ncode: " + str(code)
     dp_erreur = tk.Label(fenetre, text=msg, bg=para_c_l, fg = para_t_l,font=('', 15))
     dp_erreur.pack()
     dp_erreur.place(x=largeur/2 -250, y=hauteur/2-40, width=500, height=80)
@@ -1730,8 +1758,13 @@ def icai_go():
     icai_titre.pack()
     icai_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
 
-    for nb in range(len(icai_link)):
-        exec(cytron.cy_rfil_rela("/cytron/sys/app/", str(icai_link[nb])))
+    for link in icai_link:
+        try:
+            exec(cytron.cy_rfil_rela("/cytron/sys/app/", str(link)))
+        except Exception as err:
+            print("ERREUR EXECUTION DU LIEN '"+ str(link) + "': " , format_exc())
+            dp_app(err, "@09AA")
+
 
     for nb in range(icai_nb_t):                 #placement de zone text
         icai_t.extend([tk.Label(fenetre, text=icai_t_nom[nb],bg=para_c_l, fg = para_t_l, font=('', 12))])
@@ -1760,10 +1793,12 @@ def icai_d():
     if icai_open == 1:
         icai_titre.destroy()
         icai_d_t()
-        start_new_thread( icai_offs,())
+        threading.Thread(target=icai_offs, args=(),name="icai off").start()
         icai_open = 0
 
-        
+
+
+
 
 ##############################################
 ##############################################
@@ -1775,18 +1810,13 @@ def icai_d():
 ##############################################
 ##############################################
 
-## CREATION DES DOSSIER ##
 
-cytron.cy_mkdir("/", "cytron")
-cytron.cy_mkdir("/cytron" ,"user")
-cytron.cy_mkdir("/cytron" ,"sys")
-cytron.cy_mkdir("/cytron/sys" ,"app")
-cytron.cy_mkdir("/cytron/sys" ,"log")
+
 
 ######## AUTO REB #########
 
 def auto_reb():
-    while True:
+    while RUN:
         if fsf == 1:
             l = fenetre.winfo_width()
             h = fenetre.winfo_height()
@@ -1807,4 +1837,35 @@ def auto_reb():
             essential()
         time.sleep(0.5)
 
+###### metronome de taches ######
+# 
+def metronome():
+    old = ""
+    while RUN:
+        # auto off
+
+        if threading.enumerate()[0].is_alive() == False:
+            print("\n█ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █\n\
+                    \nINFO: Le programme a mal été arrêter, il est possible que les paramètre ne soit pas sauvegardé, merci de quitter I-python via le bouton en haut a gauche.\
+                \n\n█ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █\n")
+            quitter(False)
+            print(".")
+
+        # printer
+        taches = ""
+        for thread in threading.enumerate(): 
+            taches += str(thread.name) + " -> " + str(thread.is_alive()) + "\n"
+        if taches != old:
+            print("---TACHES---")
+            print(taches)
+            old = taches
+        time.sleep(1)
+
+#### LANCEMENT DES THREAD #####
+threading.Thread(target=metronome, args=(),name="task metronome").start()
+
+# init du full screen (on/off)
+init_fs()
+
+# boucle du programme
 fenetre.mainloop()
