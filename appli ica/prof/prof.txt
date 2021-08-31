@@ -1,0 +1,994 @@
+def ipo_app():
+    global ipo_open, ipo_pt_li
+    ipo_open = 1
+
+    ipo_pt_li= [0 for loop in range(43)]
+    
+    def ipo_pt(nb):
+        global ipo_pt_li
+        global gomme_open
+        if gomme_open == 0:
+            ipo_pt_li[nb] = ipo_pt_li[nb] + 1
+        elif gomme_open == 1 and ipo_pt_li[nb] > 0 :
+            ipo_pt_li[nb] = ipo_pt_li[nb] - 1
+        if ipo_pt_li[nb] == 0:
+            ipo_pt_li[nb] = 0
+            ipo_res = "gray"
+        if ipo_pt_li[nb] == 1:
+            ipo_res = "#003D2F"
+        elif ipo_pt_li[nb] == 2:
+            ipo_res = "#0ed145"
+        elif ipo_pt_li[nb] == 3:
+            ipo_res = "#ff8527"
+        elif ipo_pt_li[nb] == 4:
+            ipo_res = "#db0502"
+        elif ipo_pt_li[nb] == 5:
+            ipo_res = "#ff52b7"
+        elif ipo_pt_li[nb] == 6:
+            ipo_res = "#a127ff"
+        elif ipo_pt_li[nb] == 7:
+            ipo_res = "#010ec9"
+        elif ipo_pt_li[nb] > 7:
+            ipo_res = "#FFFFFF"
+        return(ipo_res)
+
+    def ipo_pt2(nb):
+        global ipo_pt_li
+        global gomme_open
+        if ipo_pt_li[nb] == 0:
+            return("")
+        else:
+            return(ipo_pt_li[nb]-1)
+
+    def set_legende():
+
+        global ipo_legende1, ipo_legende2, ipo_legende3, ipo_legende4, ipo_legende5
+        global ipo_legende6, ipo_legende7, ipo_legende8, ipo_legende9
+        # legende  des couleurs indication
+        #l1
+        ipo_legende1 = tk.Label(fenetre, bg = "gray", fg="#D3D3D3", text="place vide", font=('', 15))
+        ipo_legende1.pack()
+        ipo_legende1.place(x=130, y=hauteur/2 - 240, width=150, height=60)
+
+        ipo_legende2 = tk.Label(fenetre, bg = "#003D2F", fg="#D3D3D3", text="eleve sans\nparticipation", font=('', 15))
+        ipo_legende2.pack()
+        ipo_legende2.place(x=130, y=hauteur/2 - 180, width=150, height=60)
+        #l2
+        ipo_legende3 = tk.Label(fenetre, bg = "#0ed145", text="eleve avec\n1 participation", font=('', 15))
+        ipo_legende3.pack()
+        ipo_legende3.place(x=130, y=hauteur/2 - 120, width=150, height=60)
+        
+        ipo_legende4 = tk.Label(fenetre, bg = "#ff8527", text="eleve avec\n2 participations", font=('', 15))
+        ipo_legende4.pack()
+        ipo_legende4.place(x=130, y=hauteur/2 - 60, width=150, height=60)
+
+        ipo_legende5 = tk.Label(fenetre, bg = "#db0502", text="eleve avec\n3 participations", font=('', 15))
+        ipo_legende5.pack()
+        ipo_legende5.place(x=130, y=hauteur/2, width=150, height=60)
+
+        ipo_legende6 = tk.Label(fenetre, bg = "#ff52b7", text="eleve avec\n4 participations", font=('', 15))
+        ipo_legende6.pack()
+        ipo_legende6.place(x=130, y=hauteur/2 + 60, width=150, height=60)
+        #l3
+        ipo_legende7 = tk.Label(fenetre, bg = "#a127ff", text="eleve avec\n5 participations", font=('', 15))
+        ipo_legende7.pack()
+        ipo_legende7.place(x=130, y=hauteur/2 + 120, width=150, height=60)
+
+        ipo_legende8 = tk.Label(fenetre, bg = "#010ec9", text="eleve avec\n6 participations", font=('', 15))
+        ipo_legende8.pack()
+        ipo_legende8.place(x=130 , y=hauteur/2 + 180, width=150, height=60)
+
+        ipo_legende9 = tk.Label(fenetre, bg = "#FFFFFF", text="eleve avec\n7 participations\nou plus", font=('', 15))
+
+    def ipo_menu_1():
+        ipo_rgb = ipo_pt(1)
+        ipo_tabl_1.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_1.config(text=str((ipo_pt2(1))))
+    def ipo_menu_2():
+        ipo_rgb = ipo_pt(2)
+        ipo_tabl_2.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_2.config(text=str((ipo_pt2(2))))
+    def ipo_menu_3():
+        ipo_rgb = ipo_pt(3)
+        ipo_tabl_3.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_3.config(text=str((ipo_pt2(3))))
+    def ipo_menu_4():
+        ipo_rgb = ipo_pt(4)
+        ipo_tabl_4.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_4.config(text=str((ipo_pt2(4))))
+    def ipo_menu_5():
+        ipo_rgb = ipo_pt(5)
+        ipo_tabl_5.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_5.config(text=str((ipo_pt2(5))))
+    def ipo_menu_6():
+        ipo_rgb = ipo_pt(6)
+        ipo_tabl_6.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_6.config(text=str((ipo_pt2(6))))
+    def ipo_menu_7():
+        ipo_rgb = ipo_pt(7)
+        ipo_tabl_7.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_7.config(text=str((ipo_pt2(7))))
+    def ipo_menu_8():
+        ipo_rgb = ipo_pt(8)
+        ipo_tabl_8.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_8.config(text=str((ipo_pt2(8))))
+    def ipo_menu_9():
+        ipo_rgb = ipo_pt(9)
+        ipo_tabl_9.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_9.config(text=str((ipo_pt2(9))))
+    def ipo_menu_10():
+        ipo_rgb = ipo_pt(10)
+        ipo_tabl_10.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_10.config(text=str((ipo_pt2(10))))
+    def ipo_menu_11():
+        ipo_rgb = ipo_pt(11)
+        ipo_tabl_11.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_11.config(text=str((ipo_pt2(11))))
+    def ipo_menu_12():
+        ipo_rgb = ipo_pt(12)
+        ipo_tabl_12.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_12.config(text=str((ipo_pt2(12))))
+    def ipo_menu_13():
+        ipo_rgb = ipo_pt(13)
+        ipo_tabl_13.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_13.config(text=str((ipo_pt2(13))))
+    def ipo_menu_14():
+        ipo_rgb = ipo_pt(14)
+        ipo_tabl_14.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_14.config(text=str((ipo_pt2(14))))
+    def ipo_menu_15():
+        ipo_rgb = ipo_pt(15)
+        ipo_tabl_15.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_15.config(text=str((ipo_pt2(15))))
+    def ipo_menu_16():
+        ipo_rgb = ipo_pt(16)
+        ipo_tabl_16.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_16.config(text=str((ipo_pt2(16))))
+    def ipo_menu_17():
+        ipo_rgb = ipo_pt(17)
+        ipo_tabl_17.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_17.config(text=str((ipo_pt2(17))))
+    def ipo_menu_18():
+        ipo_rgb = ipo_pt(18)
+        ipo_tabl_18.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_18.config(text=str((ipo_pt2(18))))
+    def ipo_menu_19():
+        ipo_rgb = ipo_pt(19)
+        ipo_tabl_19.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_19.config(text=str((ipo_pt2(19))))
+    def ipo_menu_20():
+        ipo_rgb = ipo_pt(20)
+        ipo_tabl_20.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_20.config(text=str((ipo_pt2(20))))
+    def ipo_menu_21():
+        ipo_rgb = ipo_pt(21)
+        ipo_tabl_21.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_21.config(text=str((ipo_pt2(21))))
+    def ipo_menu_22():
+        ipo_rgb = ipo_pt(22)
+        ipo_tabl_22.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_22.config(text=str((ipo_pt2(22))))
+    def ipo_menu_23():
+        ipo_rgb = ipo_pt(23)
+        ipo_tabl_23.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_23.config(text=str((ipo_pt2(23))))
+    def ipo_menu_24():
+        ipo_rgb = ipo_pt(24)
+        ipo_tabl_24.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_24.config(text=str((ipo_pt2(24))))
+    def ipo_menu_25():
+        ipo_rgb = ipo_pt(25)
+        ipo_tabl_25.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_25.config(text=str((ipo_pt2(25))))
+    def ipo_menu_26():
+        ipo_rgb = ipo_pt(26)
+        ipo_tabl_26.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_26.config(text=str((ipo_pt2(26))))
+    def ipo_menu_27():
+        ipo_rgb = ipo_pt(27)
+        ipo_tabl_27.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_27.config(text=str((ipo_pt2(27))))
+    def ipo_menu_28():
+        ipo_rgb = ipo_pt(28)
+        ipo_tabl_28.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_28.config(text=str((ipo_pt2(28))))
+    def ipo_menu_29():
+        ipo_rgb = ipo_pt(29)
+        ipo_tabl_29.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_29.config(text=str((ipo_pt2(29))))
+    def ipo_menu_30():
+        ipo_rgb = ipo_pt(30)
+        ipo_tabl_30.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_30.config(text=str((ipo_pt2(30))))
+    def ipo_menu_31():
+        ipo_rgb = ipo_pt(31)
+        ipo_tabl_31.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_31.config(text=str((ipo_pt2(31))))
+    def ipo_menu_32():
+        ipo_rgb = ipo_pt(32)
+        ipo_tabl_32.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_32.config(text=str((ipo_pt2(32))))
+    def ipo_menu_33():
+        ipo_rgb = ipo_pt(33)
+        ipo_tabl_33.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_33.config(text=str((ipo_pt2(33))))
+    def ipo_menu_34():
+        ipo_rgb = ipo_pt(34)
+        ipo_tabl_34.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_34.config(text=str((ipo_pt2(34))))
+    def ipo_menu_35():
+        ipo_rgb = ipo_pt(35)
+        ipo_tabl_35.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_35.config(text=str((ipo_pt2(35))))
+    def ipo_menu_36():
+        ipo_rgb = ipo_pt(36)
+        ipo_tabl_36.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_36.config(text=str((ipo_pt2(36))))
+    def ipo_menu_37():
+        ipo_rgb = ipo_pt(37)
+        ipo_tabl_37.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_37.config(text=str((ipo_pt2(37))))
+    def ipo_menu_38():
+        ipo_rgb = ipo_pt(38)
+        ipo_tabl_38.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_38.config(text=str((ipo_pt2(38))))
+    def ipo_menu_39():
+        ipo_rgb = ipo_pt(39)
+        ipo_tabl_39.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_39.config(text=str((ipo_pt2(39))))
+    def ipo_menu_40():
+        ipo_rgb = ipo_pt(40)
+        ipo_tabl_40.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_40.config(text=str((ipo_pt2(40))))
+    def ipo_menu_41():
+        ipo_rgb = ipo_pt(41)
+        ipo_tabl_41.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_41.config(text=str((ipo_pt2(41))))
+    def ipo_menu_42():
+        ipo_rgb = ipo_pt(42)
+        ipo_tabl_42.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_42.config(text=str((ipo_pt2(42))))
+
+    global bouton_r, bouton_u
+    bouton_r.destroy()
+    bouton_u.destroy()
+    global ipo_tabl_1, ipo_tabl_2, ipo_tabl_3, ipo_tabl_4, ipo_tabl_5, ipo_tabl_6, ipo_tabl_7
+    global ipo_tabl_8, ipo_tabl_9, ipo_tabl_10, ipo_tabl_11, ipo_tabl_12, ipo_tabl_13, ipo_tabl_14
+    global ipo_tabl_15, ipo_tabl_16, ipo_tabl_17, ipo_tabl_18, ipo_tabl_19, ipo_tabl_20, ipo_tabl_21
+    global ipo_tabl_22, ipo_tabl_23, ipo_tabl_24, ipo_tabl_25, ipo_tabl_26, ipo_tabl_27, ipo_tabl_28
+    global ipo_tabl_29, ipo_tabl_30, ipo_tabl_31, ipo_tabl_32, ipo_tabl_33, ipo_tabl_34, ipo_tabl_35
+    global ipo_tabl_36, ipo_tabl_37, ipo_tabl_38, ipo_tabl_39, ipo_tabl_40, ipo_tabl_41, ipo_tabl_42
+    global ipo_legende1, ipo_legende2, ipo_legende3, ipo_legende4, ipo_legende5
+    global ipo_legende6, ipo_legende7, ipo_legende8, ipo_legende9
+
+    ipo_tabl_1 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_1)
+    ipo_tabl_1.pack()
+    ipo_tabl_1.place(x=largeur/2 - 405, y=135 , width=100, height=70)
+
+    ipo_tabl_2 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_2)
+    ipo_tabl_2.pack()
+    ipo_tabl_2.place(x=largeur/2 - 300, y=135 , width=100, height=70)
+
+    ipo_tabl_3 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_3)
+    ipo_tabl_3.pack()
+    ipo_tabl_3.place(x=largeur/2 - 155, y=135 , width=100, height=70)
+
+    ipo_tabl_4 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_4)
+    ipo_tabl_4.pack()
+    ipo_tabl_4.place(x=largeur/2 - 50, y=135 , width=100, height=70)
+
+    ipo_tabl_5 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_5)
+    ipo_tabl_5.pack()
+    ipo_tabl_5.place(x=largeur/2 + 55, y=135 , width=100, height=70)
+
+    ipo_tabl_6 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_6)
+    ipo_tabl_6.pack()
+    ipo_tabl_6.place(x=largeur/2 + 200, y=135 , width=100, height=70)
+
+    ipo_tabl_7 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_7)
+    ipo_tabl_7.pack()
+    ipo_tabl_7.place(x=largeur/2 + 305, y=135 , width=100, height=70)
+
+    ipo_tabl_8 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_8)
+    ipo_tabl_8.pack()
+    ipo_tabl_8.place(x=largeur/2 - 405, y=225 , width=100, height=70)
+
+    ipo_tabl_9 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_9)
+    ipo_tabl_9.pack()
+    ipo_tabl_9.place(x=largeur/2 - 300, y=225 , width=100, height=70)
+
+    ipo_tabl_10 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_10)
+    ipo_tabl_10.pack()
+    ipo_tabl_10.place(x=largeur/2 - 155, y=225 , width=100, height=70)
+
+    ipo_tabl_11 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_11)
+    ipo_tabl_11.pack()
+    ipo_tabl_11.place(x=largeur/2 - 50, y=225 , width=100, height=70)
+
+    ipo_tabl_12 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_12)
+    ipo_tabl_12.pack()
+    ipo_tabl_12.place(x=largeur/2 + 55, y=225 , width=100, height=70)
+
+    ipo_tabl_13 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_13)
+    ipo_tabl_13.pack()
+    ipo_tabl_13.place(x=largeur/2 + 200, y=225 , width=100, height=70)
+
+    ipo_tabl_14 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_14)
+    ipo_tabl_14.pack()
+    ipo_tabl_14.place(x=largeur/2 + 305, y=225 , width=100, height=70)
+
+    ipo_tabl_15 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_15)
+    ipo_tabl_15.pack()
+    ipo_tabl_15.place(x=largeur/2 - 405, y=315 , width=100, height=70)
+
+    ipo_tabl_16 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_16)
+    ipo_tabl_16.pack()
+    ipo_tabl_16.place(x=largeur/2 - 300, y=315 , width=100, height=70)
+
+    ipo_tabl_17 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_17)
+    ipo_tabl_17.pack()
+    ipo_tabl_17.place(x=largeur/2 - 155, y=315 , width=100, height=70)
+
+    ipo_tabl_18 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_18)
+    ipo_tabl_18.pack()
+    ipo_tabl_18.place(x=largeur/2 - 50, y=315 , width=100, height=70)
+
+    ipo_tabl_19 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_19)
+    ipo_tabl_19.pack()
+    ipo_tabl_19.place(x=largeur/2 + 55, y=315 , width=100, height=70)
+
+    ipo_tabl_20 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_20)
+    ipo_tabl_20.pack()
+    ipo_tabl_20.place(x=largeur/2 + 200, y=315 , width=100, height=70)
+
+    ipo_tabl_21 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_21)
+    ipo_tabl_21.pack()
+    ipo_tabl_21.place(x=largeur/2 + 305, y=315 , width=100, height=70)
+
+    ipo_tabl_22 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_22)
+    ipo_tabl_22.pack()
+    ipo_tabl_22.place(x=largeur/2 - 405, y=405 , width=100, height=70)
+
+    ipo_tabl_23 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_23)
+    ipo_tabl_23.pack()
+    ipo_tabl_23.place(x=largeur/2 - 300, y=405 , width=100, height=70)
+
+    ipo_tabl_24 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_24)
+    ipo_tabl_24.pack()
+    ipo_tabl_24.place(x=largeur/2 - 155, y=405 , width=100, height=70)
+
+    ipo_tabl_25 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_25)
+    ipo_tabl_25.pack()
+    ipo_tabl_25.place(x=largeur/2 - 50, y=405 , width=100, height=70)
+
+    ipo_tabl_26 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_26)
+    ipo_tabl_26.pack()
+    ipo_tabl_26.place(x=largeur/2 + 55, y=405 , width=100, height=70)
+
+    ipo_tabl_27 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_27)
+    ipo_tabl_27.pack()
+    ipo_tabl_27.place(x=largeur/2 + 200, y=405 , width=100, height=70)
+
+    ipo_tabl_28 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_28)
+    ipo_tabl_28.pack()
+    ipo_tabl_28.place(x=largeur/2 + 305, y=405 , width=100, height=70)
+
+    ipo_tabl_29 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_29)
+    ipo_tabl_29.pack()
+    ipo_tabl_29.place(x=largeur/2 - 405, y=495 , width=100, height=70)
+
+    ipo_tabl_30 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_30)
+    ipo_tabl_30.pack()
+    ipo_tabl_30.place(x=largeur/2 - 300, y=495 , width=100, height=70)
+
+    ipo_tabl_31 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_31)
+    ipo_tabl_31.pack()
+    ipo_tabl_31.place(x=largeur/2 - 155, y=495 , width=100, height=70)
+
+    ipo_tabl_32 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_32)
+    ipo_tabl_32.pack()
+    ipo_tabl_32.place(x=largeur/2 - 50, y=495 , width=100, height=70)
+
+    ipo_tabl_33 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_33)
+    ipo_tabl_33.pack()
+    ipo_tabl_33.place(x=largeur/2 + 55, y=495 , width=100, height=70)
+
+    ipo_tabl_34 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_34)
+    ipo_tabl_34.pack()
+    ipo_tabl_34.place(x=largeur/2 + 200, y=495 , width=100, height=70)
+
+    ipo_tabl_35 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_35)
+    ipo_tabl_35.pack()
+    ipo_tabl_35.place(x=largeur/2 + 305, y=495 , width=100, height=70)
+
+
+
+    ipo_tabl_36 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_36)
+    ipo_tabl_36.pack()
+    ipo_tabl_36.place(x=largeur/2 + -405, y=585 , width=100, height=70)
+
+    ipo_tabl_37 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_37)
+    ipo_tabl_37.pack()
+    ipo_tabl_37.place(x=largeur/2 + -300, y=585 , width=100, height=70)
+
+    ipo_tabl_38 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_38)
+    ipo_tabl_38.pack()
+    ipo_tabl_38.place(x=largeur/2 + -155, y=585 , width=100, height=70)
+
+    ipo_tabl_39 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_39)
+    ipo_tabl_39.pack()
+    ipo_tabl_39.place(x=largeur/2 -50, y=585 , width=100, height=70)
+
+    ipo_tabl_40 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_40)
+    ipo_tabl_40.pack()
+    ipo_tabl_40.place(x=largeur/2 + 55, y=585 , width=100, height=70)
+
+    ipo_tabl_41 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_41)
+    ipo_tabl_41.pack()
+    ipo_tabl_41.place(x=largeur/2 + 200, y=585 , width=100, height=70)
+
+    ipo_tabl_42 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_42)
+    ipo_tabl_42.pack()
+    ipo_tabl_42.place(x=largeur/2 + 305, y=585 , width=100, height=70)
+
+    set_legende()
+
+    global gomme_open
+    gomme_open = 0
+
+    def gomme():
+        global gomme_open
+        if gomme_open == 0:
+            gomme_open = 1
+            bouton_gomme.config(text="GOMME\n(on)", font=('', 15), bg = "green", activebackground="green")
+        else:
+            gomme_open = 0
+            bouton_gomme.config(text="GOMME\n(off)", font=('', 15), bg = "red", activebackground="red")
+
+    global bouton_gomme
+    bouton_gomme = tk.Button(fenetre, text="GOMME\n(off)",font=('', 15), bg = "red", activebackground="red", command=gomme)
+    bouton_gomme.pack()
+    bouton_gomme.place(x=largeur-220, y=0 , width=100, height=70)
+
+
+def ipo_app2():
+    global bouton_r, bouton_u
+    bouton_r.destroy()
+    bouton_u.destroy()
+
+    global ipo_open, ipo_pt_li
+    ipo_open = 1
+
+    ipo_pt_li= [0 for loop in range(43)]
+    
+    def ipo_pt(nb):
+        global ipo_pt_li
+        global gomme_open
+        if gomme_open == 0:
+            ipo_pt_li[nb] = ipo_pt_li[nb] + 1
+        elif gomme_open == 1 and ipo_pt_li[nb] > 0 :
+            ipo_pt_li[nb] = ipo_pt_li[nb] - 1
+        if ipo_pt_li[nb] == 0:
+            ipo_pt_li[nb] = 0
+            ipo_res = "gray"
+        if ipo_pt_li[nb] == 1:
+            ipo_res = "#003D2F"
+        elif ipo_pt_li[nb] == 2:
+            ipo_res = "#0ed145"
+        elif ipo_pt_li[nb] == 3:
+            ipo_res = "#ff8527"
+        elif ipo_pt_li[nb] == 4:
+            ipo_res = "#db0502"
+        elif ipo_pt_li[nb] == 5:
+            ipo_res = "#ff52b7"
+        elif ipo_pt_li[nb] == 6:
+            ipo_res = "#a127ff"
+        elif ipo_pt_li[nb] == 7:
+            ipo_res = "#010ec9"
+        elif ipo_pt_li[nb] > 7:
+            ipo_res = "#FFFFFF"
+        return(ipo_res)
+
+    def ipo_pt2(nb):
+        global ipo_pt_li
+        global gomme_open
+        if ipo_pt_li[nb] == 0:
+            return("")
+        else:
+            return(ipo_pt_li[nb]-1)
+    
+    def set_legende():
+
+        global ipo_legende1, ipo_legende2, ipo_legende3, ipo_legende4, ipo_legende5
+        global ipo_legende6, ipo_legende7, ipo_legende8, ipo_legende9
+        # legende  des couleurs indication
+        #l1
+        ipo_legende1 = tk.Label(fenetre, bg = "gray", fg="#D3D3D3", text="place vide", font=('', 15))
+        ipo_legende1.pack()
+        ipo_legende1.place(x=130, y=hauteur/2 - 240, width=150, height=60)
+
+        ipo_legende2 = tk.Label(fenetre, bg = "#003D2F", fg="#D3D3D3", text="eleve sans\nparticipation", font=('', 15))
+        ipo_legende2.pack()
+        ipo_legende2.place(x=130, y=hauteur/2 - 180, width=150, height=60)
+        #l2
+        ipo_legende3 = tk.Label(fenetre, bg = "#0ed145", text="eleve avec\n1 participation", font=('', 15))
+        ipo_legende3.pack()
+        ipo_legende3.place(x=130, y=hauteur/2 - 120, width=150, height=60)
+        
+        ipo_legende4 = tk.Label(fenetre, bg = "#ff8527", text="eleve avec\n2 participations", font=('', 15))
+        ipo_legende4.pack()
+        ipo_legende4.place(x=130, y=hauteur/2 - 60, width=150, height=60)
+
+        ipo_legende5 = tk.Label(fenetre, bg = "#db0502", text="eleve avec\n3 participations", font=('', 15))
+        ipo_legende5.pack()
+        ipo_legende5.place(x=130, y=hauteur/2, width=150, height=60)
+
+        ipo_legende6 = tk.Label(fenetre, bg = "#ff52b7", text="eleve avec\n4 participations", font=('', 15))
+        ipo_legende6.pack()
+        ipo_legende6.place(x=130, y=hauteur/2 + 60, width=150, height=60)
+        #l3
+        ipo_legende7 = tk.Label(fenetre, bg = "#a127ff", text="eleve avec\n5 participations", font=('', 15))
+        ipo_legende7.pack()
+        ipo_legende7.place(x=130, y=hauteur/2 + 120, width=150, height=60)
+
+        ipo_legende8 = tk.Label(fenetre, bg = "#010ec9", text="eleve avec\n6 participations", font=('', 15))
+        ipo_legende8.pack()
+        ipo_legende8.place(x=130 , y=hauteur/2 + 180, width=150, height=60)
+
+        ipo_legende9 = tk.Label(fenetre, bg = "#FFFFFF", text="eleve avec\n7 participations\nou plus", font=('', 15))
+        ipo_legende9.pack()
+        ipo_legende9.place(x=130, y=hauteur/2 + 240, width=150, height=70)
+
+    def ipo_menu_1():
+        ipo_rgb = ipo_pt(1)
+        ipo_tabl_1.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_1.config(text=str((ipo_pt2(1))))
+    def ipo_menu_2():
+        ipo_rgb = ipo_pt(2)
+        ipo_tabl_2.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_2.config(text=str((ipo_pt2(2))))
+    def ipo_menu_3():
+        ipo_rgb = ipo_pt(3)
+        ipo_tabl_3.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_3.config(text=str((ipo_pt2(3))))
+    def ipo_menu_4():
+        ipo_rgb = ipo_pt(4)
+        ipo_tabl_4.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_4.config(text=str((ipo_pt2(4))))
+    def ipo_menu_5():
+        ipo_rgb = ipo_pt(5)
+        ipo_tabl_5.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_5.config(text=str((ipo_pt2(5))))
+    def ipo_menu_6():
+        ipo_rgb = ipo_pt(6)
+        ipo_tabl_6.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_6.config(text=str((ipo_pt2(6))))
+    def ipo_menu_7():
+        ipo_rgb = ipo_pt(7)
+        ipo_tabl_7.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_7.config(text=str((ipo_pt2(7))))
+    def ipo_menu_8():
+        ipo_rgb = ipo_pt(8)
+        ipo_tabl_8.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_8.config(text=str((ipo_pt2(8))))
+    def ipo_menu_9():
+        ipo_rgb = ipo_pt(9)
+        ipo_tabl_9.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_9.config(text=str((ipo_pt2(9))))
+    def ipo_menu_10():
+        ipo_rgb = ipo_pt(10)
+        ipo_tabl_10.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_10.config(text=str((ipo_pt2(10))))
+    def ipo_menu_11():
+        ipo_rgb = ipo_pt(11)
+        ipo_tabl_11.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_11.config(text=str((ipo_pt2(11))))
+    def ipo_menu_12():
+        ipo_rgb = ipo_pt(12)
+        ipo_tabl_12.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_12.config(text=str((ipo_pt2(12))))
+    def ipo_menu_13():
+        ipo_rgb = ipo_pt(13)
+        ipo_tabl_13.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_13.config(text=str((ipo_pt2(13))))
+    def ipo_menu_14():
+        ipo_rgb = ipo_pt(14)
+        ipo_tabl_14.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_14.config(text=str((ipo_pt2(14))))
+    def ipo_menu_15():
+        ipo_rgb = ipo_pt(15)
+        ipo_tabl_15.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_15.config(text=str((ipo_pt2(15))))
+    def ipo_menu_16():
+        ipo_rgb = ipo_pt(16)
+        ipo_tabl_16.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_16.config(text=str((ipo_pt2(16))))
+    def ipo_menu_17():
+        ipo_rgb = ipo_pt(17)
+        ipo_tabl_17.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_17.config(text=str((ipo_pt2(17))))
+    def ipo_menu_18():
+        ipo_rgb = ipo_pt(18)
+        ipo_tabl_18.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_18.config(text=str((ipo_pt2(18))))
+    def ipo_menu_19():
+        ipo_rgb = ipo_pt(19)
+        ipo_tabl_19.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_19.config(text=str((ipo_pt2(19))))
+    def ipo_menu_20():
+        ipo_rgb = ipo_pt(20)
+        ipo_tabl_20.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_20.config(text=str((ipo_pt2(20))))
+    def ipo_menu_21():
+        ipo_rgb = ipo_pt(21)
+        ipo_tabl_21.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_21.config(text=str((ipo_pt2(21))))
+    def ipo_menu_22():
+        ipo_rgb = ipo_pt(22)
+        ipo_tabl_22.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_22.config(text=str((ipo_pt2(22))))
+    def ipo_menu_23():
+        ipo_rgb = ipo_pt(23)
+        ipo_tabl_23.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_23.config(text=str((ipo_pt2(23))))
+    def ipo_menu_24():
+        ipo_rgb = ipo_pt(24)
+        ipo_tabl_24.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_24.config(text=str((ipo_pt2(24))))
+    def ipo_menu_25():
+        ipo_rgb = ipo_pt(25)
+        ipo_tabl_25.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_25.config(text=str((ipo_pt2(25))))
+    def ipo_menu_26():
+        ipo_rgb = ipo_pt(26)
+        ipo_tabl_26.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_26.config(text=str((ipo_pt2(26))))
+    def ipo_menu_27():
+        ipo_rgb = ipo_pt(27)
+        ipo_tabl_27.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_27.config(text=str((ipo_pt2(27))))
+    def ipo_menu_28():
+        ipo_rgb = ipo_pt(28)
+        ipo_tabl_28.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_28.config(text=str((ipo_pt2(28))))
+    def ipo_menu_29():
+        ipo_rgb = ipo_pt(29)
+        ipo_tabl_29.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_29.config(text=str((ipo_pt2(29))))
+    def ipo_menu_30():
+        ipo_rgb = ipo_pt(30)
+        ipo_tabl_30.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_30.config(text=str((ipo_pt2(30))))
+    def ipo_menu_31():
+        ipo_rgb = ipo_pt(31)
+        ipo_tabl_31.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_31.config(text=str((ipo_pt2(31))))
+    def ipo_menu_32():
+        ipo_rgb = ipo_pt(32)
+        ipo_tabl_32.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_32.config(text=str((ipo_pt2(32))))
+    def ipo_menu_33():
+        ipo_rgb = ipo_pt(33)
+        ipo_tabl_33.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_33.config(text=str((ipo_pt2(33))))
+    def ipo_menu_34():
+        ipo_rgb = ipo_pt(34)
+        ipo_tabl_34.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_34.config(text=str((ipo_pt2(34))))
+    def ipo_menu_35():
+        ipo_rgb = ipo_pt(35)
+        ipo_tabl_35.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_35.config(text=str((ipo_pt2(35))))
+    def ipo_menu_36():
+        ipo_rgb = ipo_pt(36)
+        ipo_tabl_36.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_36.config(text=str((ipo_pt2(36))))
+    def ipo_menu_37():
+        ipo_rgb = ipo_pt(37)
+        ipo_tabl_37.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_37.config(text=str((ipo_pt2(37))))
+    def ipo_menu_38():
+        ipo_rgb = ipo_pt(38)
+        ipo_tabl_38.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_38.config(text=str((ipo_pt2(38))))
+    def ipo_menu_39():
+        ipo_rgb = ipo_pt(39)
+        ipo_tabl_39.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_39.config(text=str((ipo_pt2(39))))
+    def ipo_menu_40():
+        ipo_rgb = ipo_pt(40)
+        ipo_tabl_40.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_40.config(text=str((ipo_pt2(40))))
+    def ipo_menu_41():
+        ipo_rgb = ipo_pt(41)
+        ipo_tabl_41.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_41.config(text=str((ipo_pt2(41))))
+    def ipo_menu_42():
+        ipo_rgb = ipo_pt(42)
+        ipo_tabl_42.configure(bg=ipo_rgb,activebackground=ipo_rgb)
+        ipo_tabl_42.config(text=str((ipo_pt2(42))))
+
+    
+    global ipo_tabl_1, ipo_tabl_2, ipo_tabl_3, ipo_tabl_4, ipo_tabl_5, ipo_tabl_6, ipo_tabl_7
+    global ipo_tabl_8, ipo_tabl_9, ipo_tabl_10, ipo_tabl_11, ipo_tabl_12, ipo_tabl_13, ipo_tabl_14
+    global ipo_tabl_15, ipo_tabl_16, ipo_tabl_17, ipo_tabl_18, ipo_tabl_19, ipo_tabl_20, ipo_tabl_21
+    global ipo_tabl_22, ipo_tabl_23, ipo_tabl_24, ipo_tabl_25, ipo_tabl_26, ipo_tabl_27, ipo_tabl_28
+    global ipo_tabl_29, ipo_tabl_30, ipo_tabl_31, ipo_tabl_32, ipo_tabl_33, ipo_tabl_34, ipo_tabl_35
+    global ipo_tabl_36, ipo_tabl_37, ipo_tabl_38, ipo_tabl_39, ipo_tabl_40, ipo_tabl_41, ipo_tabl_42
+
+
+    ipo_tabl_1 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_1)
+    ipo_tabl_1.pack()
+    ipo_tabl_1.place(x=largeur/2 - 405, y=135 , width=100, height=70)
+
+    ipo_tabl_2 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_2)
+    ipo_tabl_2.pack()
+    ipo_tabl_2.place(x=largeur/2 - 300, y=135 , width=100, height=70)
+
+    #ipo_tabl_3 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_3)
+    #ipo_tabl_3.pack()
+    #ipo_tabl_3.place(x=largeur/2 - 155, y=135 , width=100, height=70)
+
+    #ipo_tabl_4 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_4)
+    #ipo_tabl_4.pack()
+    #ipo_tabl_4.place(x=largeur/2 - 50, y=135 , width=100, height=70)
+
+    #ipo_tabl_5 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_5)
+    #ipo_tabl_5.pack()
+    #ipo_tabl_5.place(x=largeur/2 + 55, y=135 , width=100, height=70)
+
+    ipo_tabl_6 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_6)
+    ipo_tabl_6.pack()
+    ipo_tabl_6.place(x=largeur/2 + 200, y=135 , width=100, height=70)
+
+    ipo_tabl_7 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_7)
+    ipo_tabl_7.pack()
+    ipo_tabl_7.place(x=largeur/2 + 305, y=135 , width=100, height=70)
+
+    ipo_tabl_8 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_8)
+    ipo_tabl_8.pack()
+    ipo_tabl_8.place(x=largeur/2 - 405, y=225 , width=100, height=70)
+
+    ipo_tabl_9 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_9)
+    ipo_tabl_9.pack()
+    ipo_tabl_9.place(x=largeur/2 - 300, y=225 , width=100, height=70)
+
+    #ipo_tabl_10 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_10)
+    #ipo_tabl_10.pack()
+    #ipo_tabl_10.place(x=largeur/2 - 155, y=225 , width=100, height=70)
+
+    #ipo_tabl_11 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_11)
+    #ipo_tabl_11.pack()
+    #ipo_tabl_11.place(x=largeur/2 - 50, y=225 , width=100, height=70)
+
+    #ipo_tabl_12 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_12)
+    #ipo_tabl_12.pack()
+    #ipo_tabl_12.place(x=largeur/2 + 55, y=225 , width=100, height=70)
+
+    ipo_tabl_13 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_13)
+    ipo_tabl_13.pack()
+    ipo_tabl_13.place(x=largeur/2 + 200, y=225 , width=100, height=70)
+
+    ipo_tabl_14 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_14)
+    ipo_tabl_14.pack()
+    ipo_tabl_14.place(x=largeur/2 + 305, y=225 , width=100, height=70)
+
+    ipo_tabl_15 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_15)
+    ipo_tabl_15.pack()
+    ipo_tabl_15.place(x=largeur/2 - 405, y=315 , width=100, height=70)
+
+    ipo_tabl_16 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_16)
+    ipo_tabl_16.pack()
+    ipo_tabl_16.place(x=largeur/2 - 300, y=315 , width=100, height=70)
+
+    #ipo_tabl_17 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_17)
+    #ipo_tabl_17.pack()
+    #ipo_tabl_17.place(x=largeur/2 - 155, y=315 , width=100, height=70)
+
+    #ipo_tabl_18 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_18)
+    #ipo_tabl_18.pack()
+    #ipo_tabl_18.place(x=largeur/2 - 50, y=315 , width=100, height=70)
+
+    ipo_tabl_19 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_19)
+    ipo_tabl_19.pack()
+    ipo_tabl_19.place(x=largeur/2 - 405, y=495 , width=100, height=70)
+
+    ipo_tabl_20 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_20)
+    ipo_tabl_20.pack()
+    ipo_tabl_20.place(x=largeur/2 + 200, y=315 , width=100, height=70)
+
+    ipo_tabl_21 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_21)
+    ipo_tabl_21.pack()
+    ipo_tabl_21.place(x=largeur/2 + 305, y=315 , width=100, height=70)
+
+    ipo_tabl_22 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_22)
+    ipo_tabl_22.pack()
+    ipo_tabl_22.place(x=largeur/2 - 405, y=405 , width=100, height=70)
+
+    ipo_tabl_23 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_23)
+    ipo_tabl_23.pack()
+    ipo_tabl_23.place(x=largeur/2 - 300, y=405 , width=100, height=70)
+
+    ipo_tabl_24 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_24)
+    ipo_tabl_24.pack()
+    ipo_tabl_24.place(x=largeur/2 - 300, y=495 , width=100, height=70)
+
+    ipo_tabl_25 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_25)
+    ipo_tabl_25.pack()
+    ipo_tabl_25.place(x=largeur/2 +200, y=495 , width=100, height=70)
+
+    ipo_tabl_26 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_26)
+    ipo_tabl_26.pack()
+    ipo_tabl_26.place(x=largeur/2 + 305, y=495 , width=100, height=70)
+
+    ipo_tabl_27 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_27)
+    ipo_tabl_27.pack()
+    ipo_tabl_27.place(x=largeur/2 + 200, y=405 , width=100, height=70)
+
+    ipo_tabl_28 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_28)
+    ipo_tabl_28.pack()
+    ipo_tabl_28.place(x=largeur/2 + 305, y=405 , width=100, height=70)
+
+    ipo_tabl_29 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_29)
+    ipo_tabl_29.pack()
+    ipo_tabl_29.place(x=largeur/2 - 405, y=585 , width=100, height=70)
+
+    ipo_tabl_30 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_30)
+    ipo_tabl_30.pack()
+    ipo_tabl_30.place(x=largeur/2 - 300, y=585 , width=100, height=70)
+
+
+
+    ipo_tabl_31 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_31)
+    ipo_tabl_31.pack()
+    ipo_tabl_31.place(x=largeur/2 - 155, y=225 , width=100, height=70)
+
+    ipo_tabl_32 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_32)
+    ipo_tabl_32.pack()
+    ipo_tabl_32.place(x=largeur/2 - 50, y=225 , width=100, height=70)
+
+    ipo_tabl_33 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_33)
+    ipo_tabl_33.pack()
+    ipo_tabl_33.place(x=largeur/2 + 55, y=225 , width=100, height=70)
+
+
+
+    ipo_tabl_34 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_34)
+    ipo_tabl_34.pack()
+    ipo_tabl_34.place(x=largeur/2 + 200, y=585 , width=100, height=70)
+
+    ipo_tabl_35 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_35)
+    ipo_tabl_35.pack()
+    ipo_tabl_35.place(x=largeur/2 + 305, y=585 , width=100, height=70)
+
+
+
+    ipo_tabl_36 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_36)
+    ipo_tabl_36.pack()
+    ipo_tabl_36.place(x=largeur/2 + -405, y=675 , width=100, height=70)
+
+    ipo_tabl_37 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_37)
+    ipo_tabl_37.pack()
+    ipo_tabl_37.place(x=largeur/2 + -300, y=675 , width=100, height=70)
+
+
+
+    ipo_tabl_38 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_38)
+    ipo_tabl_38.pack()
+    ipo_tabl_38.place(x=largeur/2 + -155, y=135 , width=100, height=70)
+
+    ipo_tabl_39 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_39)
+    ipo_tabl_39.pack()
+    ipo_tabl_39.place(x=largeur/2 -50, y=135 , width=100, height=70)
+
+    ipo_tabl_40 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_40)
+    ipo_tabl_40.pack()
+    ipo_tabl_40.place(x=largeur/2 + 55, y=135 , width=100, height=70)
+
+
+
+    ipo_tabl_41 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_41)
+    ipo_tabl_41.pack()
+    ipo_tabl_41.place(x=largeur/2 + 200, y=675 , width=100, height=70)
+
+    ipo_tabl_42 = tk.Button(fenetre, text=" ",font=('', 30), bg = "gray", activebackground="gray", command=ipo_menu_42)
+    ipo_tabl_42.pack()
+    ipo_tabl_42.place(x=largeur/2 + 305, y=675 , width=100, height=70)
+    set_legende()
+
+    global gomme_open
+    gomme_open = 0
+
+    def gomme():
+        global gomme_open
+        if gomme_open == 0:
+            gomme_open = 1
+            bouton_gomme.config(text="GOMME\n(on)", font=('', 15), bg = "green", activebackground="green")
+        else:
+            gomme_open = 0
+            bouton_gomme.config(text="GOMME\n(off)", font=('', 15), bg = "red", activebackground="red")
+
+    global bouton_gomme
+    bouton_gomme = tk.Button(fenetre, text="GOMME\n(off)",font=('', 15), bg = "red", activebackground="red", command=gomme)
+    bouton_gomme.pack()
+    bouton_gomme.place(x=largeur-220, y=0 , width=100, height=70)
+       
+
+   
+global bouton_u, bouton_r
+bouton_u = tk.Button(fenetre, text="CLASSE \n EN U",font=('', 18), bg = "gray", activebackground="green", command=ipo_app2)
+bouton_u.pack()
+bouton_u.place(x=largeur/2+100, y=hauteur/2-100 , width=200, height=200)
+
+bouton_r = tk.Button(fenetre, text="CLASSE \n EN \n RECTANGLE",font=('', 18), bg = "gray", activebackground="green", command=ipo_app)
+bouton_r.pack()
+bouton_r.place(x=largeur/2-300, y=hauteur/2-100 , width=200, height=200)
+
+def off():
+    def stop():
+        bouton_gomme.destroy()
+        ipo_legende1.destroy()
+        ipo_legende2.destroy()
+        ipo_legende3.destroy()
+        ipo_legende4.destroy()
+        ipo_legende5.destroy()
+        ipo_legende6.destroy()
+        ipo_legende7.destroy()
+        ipo_legende8.destroy()
+        ipo_legende9.destroy()
+        ipo_tabl_1.destroy()
+        ipo_tabl_2.destroy()
+        ipo_tabl_6.destroy()
+        ipo_tabl_7.destroy()
+        ipo_tabl_8.destroy()
+        ipo_tabl_9.destroy()
+        ipo_tabl_13.destroy()
+        ipo_tabl_14.destroy()
+        ipo_tabl_15.destroy()
+        ipo_tabl_16.destroy()
+        ipo_tabl_19.destroy()
+        ipo_tabl_20.destroy()
+        ipo_tabl_21.destroy()
+        ipo_tabl_22.destroy()
+        ipo_tabl_23.destroy()
+        ipo_tabl_24.destroy()
+        ipo_tabl_25.destroy()
+        ipo_tabl_26.destroy()
+        ipo_tabl_27.destroy()
+        ipo_tabl_28.destroy()
+        ipo_tabl_29.destroy()
+        ipo_tabl_30.destroy()
+        ipo_tabl_31.destroy()
+        ipo_tabl_32.destroy()
+        ipo_tabl_33.destroy()
+        ipo_tabl_34.destroy()
+        ipo_tabl_35.destroy()
+        ipo_tabl_36.destroy()
+        ipo_tabl_37.destroy()
+        ipo_tabl_38.destroy()
+        ipo_tabl_39.destroy()
+        ipo_tabl_40.destroy()
+        ipo_tabl_41.destroy()
+        ipo_tabl_42.destroy()
+        try:
+            ipo_tabl_3.destroy()
+            ipo_tabl_4.destroy()
+            ipo_tabl_5.destroy()
+            ipo_tabl_10.destroy()
+            ipo_tabl_11.destroy()
+            ipo_tabl_12.destroy()
+            ipo_tabl_17.destroy()
+            ipo_tabl_18.destroy()
+        except: pass
+
+        
+    while True:
+        if icai_off == True:
+            try:
+                stop()
+                break
+            except:
+                pass
+        else:
+            time.sleep(0.2)
+start_new_thread( off,())
