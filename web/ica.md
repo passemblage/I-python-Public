@@ -20,6 +20,7 @@ Le ICA est un langage maison interprété à faible latence à la volé depuis *
 #### /link
 *en rédaction*
 #### /d
+*en rédaction*
 
 ## **TÉLÉCHARGEMENT DES APP**
 Un shop dans le quel il serra possible de téléchargé les applis est encor en développement mais il est déjà actuellement possible de téléchargé des app ica grasse a TIP, voici les commande pour récupérer les app officiels.
