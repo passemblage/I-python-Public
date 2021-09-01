@@ -16,11 +16,11 @@ from datetime import datetime
 ##############################  debut d'assignation des variables  ##############################
 
 #globalisation des variables
-global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, fe1, version_id, icai_off
+global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, version_id, icai_off
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 07.07"
-version_info ="- NEWS -\n  *fs save\n*metronome de tache"
+version_id = "[Q 07.08"
+version_info ="- NEWS -\n  meilleur auto reb"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\
     \n\n- DEVLOPPEURS -\nlolo11: développement, programmation tests et bug ICA\npf4: développement, programmation, cytron, ICA et debug\
     \n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: https://discord.gg/PFbymQ3d97"
@@ -53,9 +53,6 @@ RUN = True
 
 #initialisation de fsf : 0 = full screen, 1 = pas de full screen
 fsf = 0
-
-#definition des FE fonctionalité experimantal pour le setup de TIP
-fe1 = 0
 
 #set du nom de la fenetre
 name_fenetre = "I-python"
@@ -100,10 +97,8 @@ fenetre.title(name_fenetre)
 def theme_chang(color, text):
     global para_c_l, para_t_l, para_app_o
     fenetre.configure(bg=color)
-    try:
-        terminal_sortie.configure(bg=color,fg= text )
-    except:
-        pass
+    try: terminal_sortie.configure(bg=color,fg= text )
+    except: pass
     para_c_l = color
     para_t_l = text
     if para_app_o == 1:
@@ -111,8 +106,7 @@ def theme_chang(color, text):
         para_app()
 
 def init_fs():
-    try:
-        para_fsf_aff(cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[2])
+    try: para_fsf_aff(cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[2])
     except: pass
 
 
@@ -122,10 +116,8 @@ def para_lite():
     theme_chang("#f0f0f0", "black")
     para_dark_o = 0
 
-    try:
-        modif_color(gen_couleur)
-    except:
-        pass
+    try: modif_color(gen_couleur)
+    except: pass
 
 #definition fonction theme sombre
 def para_dark(col):
@@ -133,28 +125,21 @@ def para_dark(col):
     para_dark_col = col
     theme_chang(col, gen_couleur)
     para_dark_o = 1
-    try:
-        modif_color(gen_couleur)
-    except:
-        pass
+    try:  modif_color(gen_couleur)
+    except: pass
 
 
 #setup du theme
 try:       # si il y un theme valide dans le fichier data, on l'applique 
     setup_theme = int(cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[1])
-    if setup_theme == 0:
-        para_lite()
-    else:
-        para_dark("#171c2b")
-except:    # sinon on met en claire  
-    para_lite()
+    if setup_theme == 0: para_lite()
+    else: para_dark("#171c2b")
+except: para_lite()
 
 #definition fonction alterner entre theme clair et sombre
 def theme_c():
-    if para_dark_o == 1:
-        para_lite()
-    else:
-        para_dark("#171c2b")
+    if para_dark_o == 1: para_lite()
+    else: para_dark("#171c2b")
     quitter_app()
 
 ##############################################
@@ -272,8 +257,7 @@ def essential_destroy():
     else:
         retour_couleur()
         menu_color.destroy()
-    if menu_app_ouvert == "oui":
-        retour_app()
+    if menu_app_ouvert == "oui": retour_app()
     menu_app_b.destroy()
     Label_Heure.destroy()
 
@@ -329,10 +313,8 @@ def essential(geo=""):
     menu_app_titre()
 
 def save_para():
-    if fsf == 0:
-        text = str(gen_couleur) + "\n" + str(para_dark_o)
-    else:
-        text = str(gen_couleur) + "\n" + str(para_dark_o) + "\n" + str(largeur) + "x" + str(hauteur)
+    if fsf == 0: text = str(gen_couleur) + "\n" + str(para_dark_o)
+    else: text = str(gen_couleur) + "\n" + str(para_dark_o) + "\n" + str(largeur) + "x" + str(hauteur)
     cytron.cy_mkfil("/cytron/sys", "data.txt", text)
 
 
@@ -580,26 +562,22 @@ def modif_color(rgb):
     exit_fenetre.configure(bg=rgb,activebackground=rgb)
 
     # menu couleurs
-    try:
-        color_retour.configure(bg=rgb,activebackground=rgb)
-    except:
-        menu_color.configure(bg=rgb,activebackground=rgb)
+    try: color_retour.configure(bg=rgb,activebackground=rgb)
+    except: menu_color.configure(bg=rgb,activebackground=rgb)
     
     ## menu_app ##
     if menu_app_ouvert == "oui":
         app_retour_b.configure(bg=rgb,activebackground=rgb)
         retour_app()
         menu_app()
-    else:
-        menu_app_b.configure(bg=rgb,activebackground=rgb)
+    else: menu_app_b.configure(bg=rgb,activebackground=rgb)
 
     ## terminal ##
     try:
         terminal_sortie.configure(fg="black")
         lancer_code.configure(bg=rgb,activebackground=rgb)
         terminal_ligne.configure(bg=rgb,activebackground=rgb)
-    except:
-        pass
+    except: pass
 
     ## parametres ##
     if para_app_o == 1:
@@ -610,10 +588,8 @@ def modif_color(rgb):
         para_fst.configure(bg=rgb,activebackground=rgb)
         para_info_ex.configure(bg=rgb,activebackground=rgb)
         para_fsbr()
-    try:
-        para_info_q_b.configure(bg=rgb,activebackground=rgb)
-    except:
-        pass
+    try: para_info_q_b.configure(bg=rgb,activebackground=rgb)
+    except: pass
     
 
     ## hedwige ##
@@ -639,8 +615,7 @@ def modif_color(rgb):
             terminal_code.configure(fg = "black", bg=gen_couleur)
             terminal__.configure(fg = rgb)
             terminal_sortie.configure(fg= rgb )
-        except:
-            pass
+        except: pass
 
         ## hedwige ##
         if hedwige_open == 1:
@@ -671,13 +646,11 @@ def modif_color(rgb):
             para_color_ba.configure(fg = gen_couleur)
             para_color_ba.configure(fg = "black", bg=gen_couleur)
             para_fsbr()
-        except:
-            pass
+        except: pass
         try:
             para_titre.configure(fg = rgb)
             para_info_f.configure(fg = rgb)
-        except:
-            pass
+        except: pass
         
 
     ###### LABELS LIGHT ######
@@ -687,8 +660,7 @@ def modif_color(rgb):
         try:
             terminal_code.configure(fg = "#000000", bg="#ffffff")
             terminal__.configure(fg = "#000000")
-        except:
-            pass
+        except: pass
 
         ## hedwige ##
         if hedwige_open == 1:
@@ -712,8 +684,7 @@ def modif_color(rgb):
         try:
             para_color_ba.configure( fg = "#000000")
             para_color_ba.configure(fg = "#000000", bg="#ffffff")
-        except:
-            pass
+        except: pass
 
     
     ##### CLOSE & OPEN #####
@@ -753,12 +724,11 @@ def destroy_menu():
         terminal__.destroy()
         lancer_code.destroy()
         terminal_ligne.destroy()
-    except:
-        pass
+    except: pass
 
 #definition fonction de l'interpreteur
 def interpreter(code):
-    global fsf, fe1
+    global fsf
 
     commande = code.split(" ")
     
@@ -777,7 +747,7 @@ def interpreter(code):
         tip_sortie(sortie)
 
     elif commande[0] == "aide":
-        sortie = "dim => affiche les dimentions de I-python \nnews => affiche les infos sur la version\nfst => fullscreen True \nfsf => fullscreen False \nclear => clear l'ecran \nreb + *ARG* => reboot [0 ~} d+s / 1 ~} d / 2 ~} s] \nfe *ARG* => active des fontionnalité [1 ~} auto reb]"
+        sortie = "dim => affiche les dimentions de I-python \nnews => affiche les infos sur la version\nfst => fullscreen True \nfsf => fullscreen False \nclear => clear l'ecran \nreb + *ARG* => reboot [0 ~} d+s / 1 ~} d / 2 ~} s] \ncytron *COMMANDE* => execute des commandes cytron (cytron aide)"
         tip_sortie(sortie)
 
     elif commande[0] == "dim" or commande[0] == "DIM":
@@ -785,21 +755,7 @@ def interpreter(code):
         tip_sortie(sortie)
 
     elif commande[0] == "fe":
-        try:
-            if commande[1] == "1":
-                if fe1 == 0:
-                    try:
-                        threading.Thread(target=auto_reb, args=(),name="auto reb").start()
-                        fe1 = 1
-                        sortie = "reb automatique activé avec succès"
-                    except:
-                        sortie = "imposible d'activé le reb automatique"
-                else:
-                    sortie = "le reb automatique est déjà activé"
-            else:
-                sortie = "ERREUR : ARGUMENT INCONNUE ici -> " + commande[1]
-        except:
-            sortie = "ERREUR : PAS D' ARGUMENT"
+        sortie = "fe inconnue"
         tip_sortie(sortie)
 
     elif commande[0] == "fsf":
@@ -830,11 +786,9 @@ def interpreter(code):
                 essential_destroy()
                 essential()
 
-            elif commande[1] == "1":
-                essential_destroy()
+            elif commande[1] == "1": essential_destroy()
 
-            elif commande[1] == "2":
-                essential()
+            elif commande[1] == "2": essential()
 
             else:
                 sortie = "ERREUR : ARGUMENT INCONNUE ici -> " + commande[1]
@@ -919,15 +873,13 @@ def para_app():
         para_color_er_d()
         backup = gen_couleur
         if rgb == "cclebug":
-            for loop in range(0, 10000000000):
-                pass
+            for loop in range(0, 10000000000): pass
             para_color_er_d()
             para_color_er = tk.Label(fenetre, text="ramener la coupe à la maison", bg=para_c_l, fg = para_t_l,font=('', 12))
             para_color_er.pack()
             para_color_er.place(x=largeur/2 -150, y=80, width=300, height=25)
         else:
-            try:
-                modif_color(rgb)
+            try: modif_color(rgb)
             except:
                 modif_color(backup)
                 para_color_er_d()
@@ -989,10 +941,7 @@ def para_titre_aff():
     para_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
 
 def para_fsf_aff(geo=""):
-    global fsf, fe1
-    if fe1 == 0:
-        threading.Thread(target=auto_reb, args=(),name="auto reb").start()
-        fe1 = 1
+    global fsf
     fsf = 1
     fenetre.attributes('-fullscreen', False)
     essential_destroy()
@@ -1010,8 +959,7 @@ def para_info_q():
         para_info_f.destroy()
         para_info_q_b.destroy()
         para_titre.destroy()
-    except:
-        pass
+    except: pass
 
 def para_info_r():
     para_info_q()
@@ -1041,10 +989,8 @@ def para_noir():
 
 
 def para_color_er_d():
-    try:
-        para_color_er.destroy()
-    except:
-        pass
+    try: para_color_er.destroy()
+    except: pass
 def para_app_d():
     try:
         global para_app_o
@@ -1059,8 +1005,7 @@ def para_app_d():
         para_info_ex.destroy()
         para_fsf.destroy()
         para_fst.destroy()
-    except:
-        pass
+    except: pass
 
 # 3 ########fin du setup des parametres######## 3 #
 # 4 ########debut du setup de l editeur de texte######## 4 #
@@ -1103,12 +1048,9 @@ def edt_save():
     try:
         nom = edt_name_ba.get()
         text = edt_ba.get("0.0", "end")
-        if nom.split("@")[0] == "DEV":
-            cytron.cy_mkfil("/", nom.split("@")[1], text)
-        else:
-            cytron.cy_mkfil("/cytron/user", nom, text)
-    except:
-        dp_app("imposible de save ce fichier","@04AA")
+        if nom.split("@")[0] == "DEV": cytron.cy_mkfil("/", nom.split("@")[1], text)
+        else: cytron.cy_mkfil("/cytron/user", nom, text)
+    except: dp_app("imposible de save ce fichier","@04AA")
 
 def edt_d():
     global edt_open, edt_titre
@@ -1156,8 +1098,7 @@ def quitter(destroy=True):
     global RUN
     RUN = False
     save_para()
-    if destroy:
-        fenetre.destroy()
+    if destroy: fenetre.destroy()
 
 def mda_d():
     global mda_titre, mda_open, mda_stop_b, mda_anul_b, mda_reboot_b, mda_version_id
@@ -1326,26 +1267,18 @@ def ce_label_af(x):
             ce_label[ce_len].pack()
             ce_label[ce_len].place(x=largeur/2 -300, y= 140 + ce_len*40, width=200, height=30)
         ce_sel = 0
-        if para_dark_o == 0:
-            ce_label[0].configure(bg = gen_couleur)
-        else:
-            ce_label[0].configure(bg = gen_couleur, fg = para_dark_col)
-    else:
-        pass
+        if para_dark_o == 0: ce_label[0].configure(bg = gen_couleur)
+        else: ce_label[0].configure(bg = gen_couleur, fg = para_dark_col)
 
 def ce_haut():
     global ce_sel, ce_len
     ce_bgrest()
     ce_sel = ce_sel - 1
-    if ce_sel == -1:
-        ce_sel = ce_len
+    if ce_sel == -1: ce_sel = ce_len
     try:
-        if para_dark_o == 0:
-            ce_label[ce_sel].configure(bg = gen_couleur)
-        else:
-            ce_label[ce_sel].configure(bg = gen_couleur, fg= para_dark_col)
-    except:
-        pass
+        if para_dark_o == 0: ce_label[ce_sel].configure(bg = gen_couleur)
+        else: ce_label[ce_sel].configure(bg = gen_couleur, fg= para_dark_col)
+    except: pass
 
 def ce_bas():
     global ce_sel, ce_len
@@ -1354,12 +1287,9 @@ def ce_bas():
     if ce_sel > ce_len:
         ce_sel = 0
     try:
-        if para_dark_o == 0:
-            ce_label[ce_sel].configure(bg = gen_couleur)
-        else:
-            ce_label[ce_sel].configure(bg = gen_couleur, fg= para_dark_col)
-    except:
-        pass
+        if para_dark_o == 0: ce_label[ce_sel].configure(bg = gen_couleur)
+        else: ce_label[ce_sel].configure(bg = gen_couleur, fg= para_dark_col)
+    except: pass
 
 def ce_go():
     global ce_sel, ce_go_pass, ce_label_path, ce_listdir
@@ -1381,16 +1311,13 @@ def ce_go():
             except:
                 ce_app()
                 dp_app("imposible d'ouvrir ce fichier avec l'edt","@07AA")
-    except:
-        pass
+    except: pass
 
 def ce_label_d():
     global ce_label
     try:
-        for x in range(ce_len+1):
-            ce_label[x].destroy()
-    except:
-        pass
+        for x in range(ce_len+1): ce_label[x].destroy()
+    except: pass
     del ce_label
     ce_label = []
 
@@ -1398,15 +1325,10 @@ def ce_bgrest():
     global ce_label, ce_len
     try:
         for x in range(ce_len+1):
-            
+            if para_dark_o == 0: ce_label[x].configure(bg = para_c_l)
+            else: ce_label[ce_sel].configure(bg= para_dark_col,fg = gen_couleur)
 
-            if para_dark_o == 0:
-                ce_label[x].configure(bg = para_c_l)
-            else:
-                ce_label[ce_sel].configure(bg= para_dark_col,fg = gen_couleur)
-
-    except:
-        pass
+    except: pass
 
 def ce_d():
     global ce_titre, ce_open, ce_label
@@ -1485,10 +1407,8 @@ def ical_app():
 #cy_rfil
     for x in range(len(temp)):
         try:
-            if temp[x].split(".")[1] == "ica":
-                ical_icaf.append(temp[x])
-        except:
-            pass
+            if temp[x].split(".")[1] == "ica": ical_icaf.append(temp[x])
+        except: pass
 
     ical_len = -2
 
@@ -1498,27 +1418,19 @@ def ical_app():
             ical_label[ical_len].pack()
             ical_label[ical_len].place(x=largeur/2 -300, y= 140 + ical_len*40, width=200, height=30)
         ical_sel = 0
-        if para_dark_o == 0:
-            ical_label[0].configure(bg = gen_couleur)
-        else:
-            ical_label[0].configure(bg = gen_couleur, fg = para_dark_col)
-    else:
-        pass
+        if para_dark_o == 0: ical_label[0].configure(bg = gen_couleur)
+        else: ical_label[0].configure(bg = gen_couleur, fg = para_dark_col)
 
 def ical_haut():
     global ical_sel, ical_len
     if ical_len != -2:
         ical_bgrest()
         ical_sel = ical_sel - 1
-        if ical_sel == -1:
-            ical_sel = ical_len
+        if ical_sel == -1: ical_sel = ical_len
         try:
-            if para_dark_o == 0:
-                ical_label[ical_sel].configure(bg = gen_couleur)
-            else:
-                ical_label[ical_sel].configure(bg = gen_couleur, fg= para_dark_col)
-        except:
-            pass
+            if para_dark_o == 0: ical_label[ical_sel].configure(bg = gen_couleur)
+            else: ical_label[ical_sel].configure(bg = gen_couleur, fg= para_dark_col)
+        except: pass
 
 def ical_bas():
     global ical_sel, ical_len
@@ -1528,12 +1440,9 @@ def ical_bas():
         if ical_sel > ical_len:
             ical_sel = 0
         try:
-            if para_dark_o == 0:
-                ical_label[ical_sel].configure(bg = gen_couleur)
-            else:
-                ical_label[ical_sel].configure(bg = gen_couleur, fg= para_dark_col)
-        except:
-            pass
+            if para_dark_o == 0: ical_label[ical_sel].configure(bg = gen_couleur)
+            else: ical_label[ical_sel].configure(bg = gen_couleur, fg= para_dark_col)
+        except: pass
 
 def ical_go():
     if ical_len != -2:
@@ -1545,10 +1454,8 @@ def ical_go():
 def ical_label_d():
     global ical_label
     try:
-        for x in range(ical_len+1):
-            ical_label[x].destroy()
-    except:
-        pass
+        for x in range(ical_len+1): ical_label[x].destroy()
+    except: pass
     del ical_label
     ical_label = []
 
@@ -1556,12 +1463,9 @@ def ical_bgrest():
     global ical_label, ical_len
     try:
         for x in range(ical_len+1):
-            if para_dark_o == 0:
-                ical_label[x].configure(bg = para_c_l)
-            else:
-                ical_label[ical_sel].configure(bg= para_dark_col,fg = gen_couleur)
-    except:
-        pass
+            if para_dark_o == 0: ical_label[x].configure(bg = para_c_l)
+            else: ical_label[ical_sel].configure(bg= para_dark_col,fg = gen_couleur)
+    except: pass
 
 def ical_d():
     global ical_titre, ical_open
@@ -1658,10 +1562,8 @@ def icai(chem):
                 icai_b_y.append(ty)
                 icai_b_lx.append(tlx)
                 icai_b_ly.append(tly)
-                try:
-                    icai_b_c.append(tc)
-                except:
-                    icai_b_c.append(gen_couleur)
+                try: icai_b_c.append(tc)
+                except: icai_b_c.append(gen_couleur)
                 
                 icai_log("ARGS ok")
             else:
@@ -1692,8 +1594,7 @@ def icai(chem):
                         icai_log("-> ficher non pressent, telechargent")
                         cytron.cy_wget("/cytron/sys/app", str(arg[0]), str(arg[1]))
                 icai_log("fin de la commande de telechargement")
-            except:
-                icai_log("erreur telechargement!")
+            except: icai_log("erreur telechargement!")
         elif l == "/go":                                                # si on a le signal /go
             icai_log("lancement de icai_go")                                 
             icai_go()                                                   # on lance la creation de bouton
@@ -1759,8 +1660,7 @@ def icai_go():
     icai_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
 
     for link in icai_link:
-        try:
-            exec(cytron.cy_rfil_rela("/cytron/sys/app/", str(link)))
+        try: exec(cytron.cy_rfil_rela("/cytron/sys/app/", str(link)))
         except Exception as err:
             print("ERREUR EXECUTION DU LIEN '"+ str(link) + "': " , format_exc())
             dp_app(err, "@09AA")
@@ -1777,10 +1677,8 @@ def icai_go():
         icai_b[nb].place(x=icai_b_x[nb], y= icai_b_y[nb], width= icai_b_lx[nb], height=icai_b_ly[nb])
 
 def icai_d_t():
-    for nb in range(icai_nb_t):
-        icai_t[nb].destroy()
-    for nb in range(icai_nb_b):
-        icai_b[nb].destroy()
+    for nb in range(icai_nb_t): icai_t[nb].destroy()
+    for nb in range(icai_nb_b):icai_b[nb].destroy()
     
 def icai_offs():
     global icai_off
@@ -1816,30 +1714,31 @@ def icai_d():
 ######## AUTO REB #########
 
 def auto_reb():
+
+    def c_coef():
+        if fsf == 1: c = fenetre.winfo_width() * fenetre.winfo_height()
+        else: c = fenetre.winfo_screenwidth() * fenetre.winfo_screenheight()
+        return(c)
+
+    actu = c_coef()
+
     while RUN:
-        if fsf == 1:
-            l = fenetre.winfo_width()
-            h = fenetre.winfo_height()
-        else:
-            l = fenetre.winfo_screenwidth()
-            h = fenetre.winfo_screenheight()
-        try:
-            lv = ln
-            hv = hn
-        except:
-            lv = l
-            hv = h
-        ln = l
-        hn = h
-        if ln != lv or hn != hv:
-            time.sleep(2)
+        if c_coef() != actu:
+            coef = c_coef()
+            time.sleep(0.1)
+            while coef != c_coef():
+                coef = c_coef()
+                time.sleep(0.5)
             essential_destroy()
             essential()
-        time.sleep(0.5)
+            actu = c_coef()
+        time.sleep(0.4)
+        
 
 ###### metronome de taches ######
-# 
+
 def metronome():
+    global RUN
     old = ""
     while RUN:
         # auto off
@@ -1853,16 +1752,23 @@ def metronome():
 
         # printer
         taches = ""
-        for thread in threading.enumerate(): 
-            taches += str(thread.name) + " -> " + str(thread.is_alive()) + "\n"
+        for thread in threading.enumerate():
+            taches += str(thread.name) + " -> " + str(thread.is_alive()) + " | " + str(thread.isDaemon()) + "\n"
         if taches != old:
             print("---TACHES---")
             print(taches)
             old = taches
         time.sleep(1)
+    print("STOP metronome")
 
 #### LANCEMENT DES THREAD #####
-threading.Thread(target=metronome, args=(),name="task metronome").start()
+# metronome de tache
+thr_metronome = threading.Thread(target=metronome, args=(),name="task metronome")
+thr_metronome.start()
+# auto reb
+thr_autoreb = threading.Thread(target=auto_reb, args=(),name="auto reb")
+thr_autoreb.daemon = True
+thr_autoreb.start()
 
 # init du full screen (on/off)
 init_fs()
