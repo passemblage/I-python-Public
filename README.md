@@ -58,11 +58,11 @@ Ils permettent de modifier et personnaliser les réglages comme la couleur via u
 
 ### Editeur de texte
 
-<i> en rédaction </i>
+*en rédaction*
 
 ### Hedwige
 
-<i> en rédaction </i>
+*en rédaction*
 
 ## **VOIR AUSSI**
 
