@@ -8,132 +8,125 @@
 ██             ██       █████████
 ██             ██             ██
                ██
-.pour    : Passemblage
 .avec    : Lolo11
 .codé en : UTF-8
 .langage : python 3
-.note    : version compatibile
-           debian linux
+.github  : https://github.com/pf4-DEV/cytron
 --|~|--|~|--|~|--|~|--|~|--|~|--
 '''
 
-### importation ###
+### importation
 import os, sys
 from urllib.request import urlopen
 from _thread import start_new_thread
 
-### definition des variables ###
-global cy_path_v, version, console_o
+### definition des variables
+global path_v, version, console_o
 
-version = "cytron 12"
+version_id = "cytron 13"
 
-console_o = 0
-cy_path_v = os.path.dirname(sys.argv[0])
+console_o = False
+path_v = os.path.dirname(sys.argv[0])
 
-### MULTI OS ###
+### fonctions
 
-def cy_console_print():
-    if console_o == 0:
+def check_internet(site="https://google.com"):
+    try:
+        urlopen(site)
+        return(True)
+    except: return(False)
+
+def console():
+    if console_o == False:
         start_new_thread(console_to_thread,())
 
-def cy_ls(chem):
-    return(os.listdir(cy_path_v + chem))
+def ls(chem):
+    return(os.listdir(path_v + chem))
 
-def cy_version():
-    return(version)
+def version():
+    return(version_id)
 
-def cy_path():
-    return(cy_path_v)
+def path():
+    return(path_v)
 
-def cy_mkdire(chem, nom):
-    cy_mkdir(chem, nom)
-
-def cy_mkdir(chem, nom):
+def mkdir(chem, nom):
     try:
-        cy_temp = cy_path_v + chem + "/" + nom
-        os.makedirs(cy_temp)
-        return("DONE!")
-    except:
-        return("erreur: 'chem rela + nom'")
+        temp = path_v + chem + "/" + nom
+        os.makedirs(temp)
+        return("DONE")
+    except: return("erreur: 'chem rela + nom'")
 
-def cy_wget(chem, nom, addr):
-    cy_temp = cy_path_v + chem + "/" + nom
-    with open(cy_temp, 'wb') as img:
-        img.write(urlopen(addr).read())
+def wget(chem, nom, addr):
+    if check_internet():
+        temp = path_v + chem + "/" + nom
+        with open(temp, 'wb') as img: img.write(urlopen(addr).read())
+        return("DONE")
+    else: return("erreur: pas de connection internet")
 
-def cy_mkfil(chem, nom, text):
-    cy_temp = cy_path_v + chem + "/" + nom
-    fil = open(cy_temp, "w")
+def mkfil(chem, nom, text):
+    temp = path_v + chem + "/" + nom
+    fil = open(temp, "w")
     fil.write(str(text))
     fil.close()
+    return("DONE")
 
-def cy_rfil(chem):
+def rfil(chem):
     fil = open(chem, "r")
     return(fil.read())
 
-def cy_rfil_rela(chem, nom):
-    cy_temp = cy_path_v + chem + "/" + nom
+def rfil_rela(chem, nom):
+    temp = path_v + chem + "/" + nom
     try:
-        fil = open(cy_temp, "r")
+        fil = open(temp, "r")
         return(fil.read())
-    except:
-        pass
+    except: pass
 
-### console pour cy_console_print ###
+### retro compatibilité
+def cy_console():               return(console())
+def cy_ls(chem):                return(ls(chem))
+def cy_version():               return(version())
+def cy_path():                  return(path())
+def cy_mkdire(chem, nom):       return(mkdir(chem, nom))
+def cy_mkdir(chem, nom):        return(mkdir(chem, nom))
+def cy_wget(chem, nom, addr):   return(wget(chem, nom, addr))
+def cy_mkfil(chem, nom, text):  return(mkfil(chem, nom, text))
+def cy_rfil(chem):              return(rfil(chem))
+def cy_rfil_rela(chem, nom):    return(rfil_rela(chem, nom))
+def cy_run(ipt):                return(run(ipt))
+
+### console pour console_print
 def console_to_thread():
     global console_o
-    console_o = 1
+    console_o = True
     while True:
         ipt = input('~} ').split(" ")
-        retour = cy_run(ipt)
-        if retour == None:
-            os.system('cls' if os.name == 'nt' else 'clear')
-        elif retour == "exit":
-            console_o = 0
-            break
-        else:
-            print(retour)
+        retour = run(ipt)
+        if retour == None: os.system('cls' if os.name == 'nt' else 'clear')
+        elif retour == "exit": console_o = False ; break
+        else: print(retour)
 
-### commandes ###
-
-def cy_run(ipt):
-    if ipt[0] == "":
-        pass
-    elif ipt[0] == "version":
-        return(cy_version())
-    elif ipt[0] == "path":
-        return(cy_path())
-    elif ipt[0] == "mkdir":
-        try:
-            cy_mkdir(ipt[1], ipt[2])
-            return("DONE!")
-        except:
-            return("erreur: 'chem rela + nom'") 
-    elif ipt[0] == "wget":
-        try:
-            cy_wget(ipt[1], ipt[2], ipt[3])
-            return("DONE!")
-        except:
-            return("erreur: 'chem rela + nom + addr'")
-    elif ipt[0] == "mkfil":
-        try:
-            cy_mkfil(ipt[1], ipt[2], ipt[3])
-            return("DONE!")
-        except:
-            return("erreur: 'chem rela + nom + text'")
-    elif ipt[0] == "ls":
-        try:
-            return(cy_ls(ipt[1]))
-        except:
-            return("erreur: 'chem rela'")
-    elif ipt[0] == "rfil":
-        try:
-            return(cy_rfil_rela(ipt[1], ipt[2]))
-        except:
-            return("erreur: 'nom'")
-    elif ipt[0] == "exit":
+### commandes
+def run(ipt):
+    if ipt[0] == "": pass                                   # commande vide
+    elif ipt[0] == "version": return(version())             # version
+    elif ipt[0] == "path": return(path())                   # path
+    elif ipt[0] == "mkdir":                                 # mkdir
+        try: return(mkdir(ipt[1], ipt[2]))
+        except: return("erreur: 'chem rela + nom'") 
+    elif ipt[0] == "wget":                                  # wget
+        try: return(wget(ipt[1], ipt[2], ipt[3]))
+        except: return("erreur: 'chem rela + nom + addr'")
+    elif ipt[0] == "mkfil":                                 # mkfil
+        try: return(mkfil(ipt[1], ipt[2], ipt[3]))
+        except: return("erreur: 'chem rela + nom + text'")
+    elif ipt[0] == "ls":                                    # ls
+        try: return(ls(ipt[1]))
+        except: return("erreur: 'chem rela'")
+    elif ipt[0] == "rfil":                                  # rfil
+        try: return(rfil_rela(ipt[1], ipt[2]))
+        except: return("erreur: 'nom'")
+    elif ipt[0] == "exit":                                  # exit
         return("exit")
-    elif ipt[0] == "aide" or ipt[0] == "help":
+    elif ipt[0] == "aide" or ipt[0] == "help":              # aide
         return("version > affiche la version\npath    > affiche le chemain\nmkdir   > crée un dossier\nls      > affiche le contenue d'un dossier\nwget    > crée un fichier depuis le web\nmkfil   > créé un fichier\nrfil    > affiche le contenue d'un fichier\nhelp    > affiche l'aide")
-    else:
-        return("commande inconnu")
+    else: return("commande inconnu")                        # autres commandes
