@@ -19,15 +19,15 @@ from datetime import datetime
 global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, version_id, icai_off
 
 # A CHANGER A CHAQUE VERSION:
-version_id = "[Q 07.08"
-version_info ="- NEWS -\n  meilleur auto reb"
+version_id = "[Q 07.09"
+version_info ="- NEWS -\n  adaptation cytron 13+"
 info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\
     \n\n- DEVLOPPEURS -\nlolo11: développement, programmation tests et bug ICA\npf4: développement, programmation, cytron, ICA et debug\
     \n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: https://discord.gg/PFbymQ3d97"
 
 #definition de la couleur par defaut
 # si il y une coulleur valide dans le fichier data, on l'applique 
-try: gen_couleur = cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[0]
+try: gen_couleur = cytron.rfil_rela("/cytron/sys", "data.txt").split("\n")[0]
 
 # sinon on met en lime
 except: gen_couleur= "#00FF00"
@@ -65,11 +65,11 @@ ttaches = 0
 
 ## CREATION DES DOSSIERS SYSTEME ##
 
-cytron.cy_mkdir("/", "cytron")
-cytron.cy_mkdir("/cytron" ,"user")
-cytron.cy_mkdir("/cytron" ,"sys")
-cytron.cy_mkdir("/cytron/sys" ,"app")
-cytron.cy_mkdir("/cytron/sys" ,"log")
+cytron.mkdir("/", "cytron")
+cytron.mkdir("/cytron" ,"user")
+cytron.mkdir("/cytron" ,"sys")
+cytron.mkdir("/cytron/sys" ,"app")
+cytron.mkdir("/cytron/sys" ,"log")
 
 #########debut du setup de la fenetre#########
 
@@ -106,7 +106,7 @@ def theme_chang(color, text):
         para_app()
 
 def init_fs():
-    try: para_fsf_aff(cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[2])
+    try: para_fsf_aff(cytron.rfil_rela("/cytron/sys", "data.txt").split("\n")[2])
     except: pass
 
 
@@ -131,7 +131,7 @@ def para_dark(col):
 
 #setup du theme
 try:       # si il y un theme valide dans le fichier data, on l'applique 
-    setup_theme = int(cytron.cy_rfil_rela("/cytron/sys", "data.txt").split("\n")[1])
+    setup_theme = int(cytron.rfil_rela("/cytron/sys", "data.txt").split("\n")[1])
     if setup_theme == 0: para_lite()
     else: para_dark("#171c2b")
 except: para_lite()
@@ -303,7 +303,7 @@ def essential(geo=""):
     quitter_app_b = tk.Button(fenetre, text="quitter l'app", font=('', 12), bg = gen_couleur, activebackground=gen_couleur, command = quitter_app)
     quitter_app_b.place(x=0, y=26, width=120, height=26)
 
-    info_b = tk.Button(fenetre, text= version_id + "\n" + cytron.cy_version(), font=('', 12), bg = gen_couleur, activebackground=gen_couleur)
+    info_b = tk.Button(fenetre, text= version_id + "\n" + cytron.version(), font=('', 12), bg = gen_couleur, activebackground=gen_couleur)
     info_b.place(x=largeur-120, y=0, width=120, height=52)
 
     # caluculs pour le relatif #
@@ -315,7 +315,7 @@ def essential(geo=""):
 def save_para():
     if fsf == 0: text = str(gen_couleur) + "\n" + str(para_dark_o)
     else: text = str(gen_couleur) + "\n" + str(para_dark_o) + "\n" + str(largeur) + "x" + str(hauteur)
-    cytron.cy_mkfil("/cytron/sys", "data.txt", text)
+    cytron.mkfil("/cytron/sys", "data.txt", text)
 
 
 def relancer_essential():
@@ -775,7 +775,7 @@ def interpreter(code):
             arg = []
             for i in range(len(commande)-1):
                 arg.append(commande[i+1])
-            sortie = cytron.cy_run(arg)
+            sortie = cytron.run(arg)
         except:
             sortie = "erreur pas d'argument"
         tip_sortie(sortie)
@@ -1048,8 +1048,8 @@ def edt_save():
     try:
         nom = edt_name_ba.get()
         text = edt_ba.get("0.0", "end")
-        if nom.split("@")[0] == "DEV": cytron.cy_mkfil("/", nom.split("@")[1], text)
-        else: cytron.cy_mkfil("/cytron/user", nom, text)
+        if nom.split("@")[0] == "DEV": cytron.mkfil("/", nom.split("@")[1], text)
+        else: cytron.mkfil("/cytron/user", nom, text)
     except: dp_app("imposible de save ce fichier","@04AA")
 
 def edt_d():
@@ -1090,7 +1090,7 @@ def mda_app():
 
 #id de la version
 
-    mda_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
+    mda_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.version(), bg=para_c_l, fg = para_t_l,font=('', 10))
     mda_version_id.pack()
     mda_version_id.place(x=largeur/2 -100, y=hauteur-20, width=200, height=20)
 
@@ -1227,7 +1227,7 @@ def ce_app():
     global ce_titre, ce_open, ce_label, ce_haut_b, ce_bas_b, ce_sel, ce_bas_go, ce_bas_ed, ce_go_pass
     ce_label = []
     ce_sel = 0
-    ce_go_pass = cytron.cy_path()
+    ce_go_pass = cytron.path()
     
     ce_open = 1
     ce_titre = tk.Label(fenetre, text="Cytron Exploreur",bg=para_c_l, fg = para_t_l, font=('', 25))
@@ -1251,7 +1251,7 @@ def ce_app():
     ce_bas_ed.pack()
     ce_bas_ed.place(x=largeur/2 + 100, y=200, width=40, height=40)
 
-    ce_label_af(cytron.cy_path())
+    ce_label_af(cytron.path())
 
 def ce_label_af(x):
     global ce_len, ce_label_path, ce_sel, ce_listdir
@@ -1304,7 +1304,7 @@ def ce_go():
             try:
                 edt_app()
                 edt_ba.delete("0.0", "end")
-                edt_ba.insert(0.0, cytron.cy_rfil(ce_go_pass))
+                edt_ba.insert(0.0, cytron.rfil(ce_go_pass))
 
                 edt_name_ba.delete("0", "end")
                 edt_name_ba.insert(0, ce_go_fill)
@@ -1356,7 +1356,7 @@ def dp_app(raison, code):
 
     #id de la version
 
-    dp_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.cy_version(), bg=para_c_l, fg = para_t_l,font=('', 10))
+    dp_version_id = tk.Label(fenetre, text=version_id +" -|- " + cytron.version(), bg=para_c_l, fg = para_t_l,font=('', 10))
     dp_version_id.pack()
     dp_version_id.place(x=largeur/2 -100, y=hauteur-20, width=200, height=20)
 
@@ -1386,7 +1386,7 @@ def ical_app():
     ical_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
 
     ical_label = []
-    ical_label_path = cytron.cy_path() + "/cytron/sys/app"
+    ical_label_path = cytron.path() + "/cytron/sys/app"
     ical_sel = 0
 
     #fleches
@@ -1402,9 +1402,9 @@ def ical_app():
     ical_bas_go.pack()
     ical_bas_go.place(x=largeur/2 + 150, y=200, width=40, height=40)
 
-    temp = os.listdir(cytron.cy_path() + "/cytron/sys/app")
+    temp = os.listdir(cytron.path() + "/cytron/sys/app")
     ical_icaf = []
-#cy_rfil
+#rfil
     for x in range(len(temp)):
         try:
             if temp[x].split(".")[1] == "ica": ical_icaf.append(temp[x])
@@ -1483,7 +1483,7 @@ def icai(chem):
     global icai_nb_b, icai_b_nom, icai_b_x, icai_b_y, icai_b_lx, icai_b_c, icai_b_ly
 
     icai_init_p()
-    cont = cytron.cy_rfil(chem)
+    cont = cytron.rfil(chem)
     ligne = cont.split("\n")
     nbligne = len(ligne)
     icai_log("STRAT! " + str(chem) + " -> " + str(nbligne) + " ligne(s)")      # on affiche des infos
@@ -1572,7 +1572,7 @@ def icai(chem):
         elif lpp == "/link" or lpp == "/l":                             # si c'est un lien
             icai_log("lien ligne " + str(nb+1) + ": " + l)              # on affiche des infos
             try:
-                cytron.cy_rfil_rela("/cytron/sys/app/", l.split(" ! ")[1])     # on test le lien
+                cytron.rfil_rela("/cytron/sys/app/", l.split(" ! ")[1])     # on test le lien
                 icai_link.append(l.split(" ! ")[1])                            # on save le lien
 
                 icai_log("lien valide")                                 # on affiche des infos
@@ -1584,15 +1584,15 @@ def icai(chem):
                 arg = l.split(" ! ")[1].split(" | ")                    # on divise les arg.
                 if int(arg[2]) == 1:
                     icai_log("type de telechargement: force")
-                    cytron.cy_wget("/cytron/sys/app", str(arg[0]), str(arg[1]))
+                    cytron.wget("/cytron/sys/app", str(arg[0]), str(arg[1]))
                 else:
                     icai_log("type de telechargement: standard")
                     try:
-                        cytron.cy_rfil_rela("/cytron/sys/app/", str(arg[0]))
+                        cytron.rfil_rela("/cytron/sys/app/", str(arg[0]))
                         icai_log("-> fichier deja present")
                     except:
                         icai_log("-> ficher non pressent, telechargent")
-                        cytron.cy_wget("/cytron/sys/app", str(arg[0]), str(arg[1]))
+                        cytron.wget("/cytron/sys/app", str(arg[0]), str(arg[1]))
                 icai_log("fin de la commande de telechargement")
             except: icai_log("erreur telechargement!")
         elif l == "/go":                                                # si on a le signal /go
@@ -1609,10 +1609,10 @@ def icai_log(text):
 def icai_log_print():
     global log
     try:
-        text = cytron.cy_rfil_rela("/cytron/sys/log", "ica.log")
-        cytron.cy_mkfil("/cytron/sys/log", "ica.log", text + "\n" + log)
+        text = cytron.rfil_rela("/cytron/sys/log", "ica.log")
+        cytron.mkfil("/cytron/sys/log", "ica.log", text + "\n" + log)
     except:
-        cytron.cy_mkfil("/cytron/sys/log", "ica.log", log)
+        cytron.mkfil("/cytron/sys/log", "ica.log", log)
 
 
 def icai_init_p():
@@ -1660,7 +1660,7 @@ def icai_go():
     icai_titre.place(x=largeur/2 -256, y=2, width=515, height=40)
 
     for link in icai_link:
-        try: exec(cytron.cy_rfil_rela("/cytron/sys/app/", str(link)))
+        try: exec(cytron.rfil_rela("/cytron/sys/app/", str(link)))
         except Exception as err:
             print("ERREUR EXECUTION DU LIEN '"+ str(link) + "': " , format_exc())
             dp_app(err, "@09AA")
