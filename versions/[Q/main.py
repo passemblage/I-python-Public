@@ -21,7 +21,7 @@ global gen_couleur, console_open, menu_col_o, fsf, version_info, info_para, vers
 # A CHANGER A CHAQUE VERSION:
 version_id = "[Q 07.09"
 version_info ="- NEWS -\n  adaptation cytron 13+"
-info_para = "- COPYRIGHT -\n©2020-2021, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\
+info_para = "- COPYRIGHT -\n©2020-2022, I-python tout droit réservé à la PASSEMBLAGE.\nNous ne sommes pas affiliés avec Python.\
     \n\n- DEVLOPPEURS -\nlolo11: développement, programmation tests et bug ICA\npf4: développement, programmation, cytron, ICA et debug\
     \n\n- CONTACT -\nemail: passemblage@gmail.com\ndiscord: https://discord.gg/PFbymQ3d97"
 
